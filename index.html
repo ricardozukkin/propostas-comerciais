@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zukkin — Pitch Deck Investidores</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #E63B2E;
+  --red-dark: #C42B1F;
+  --red-deep: #8B1A10;
+  --navy: #0F1923;
+  --navy-light: #1A2B3C;
+  --white: #FFFFFF;
+  --off-white: #F8F6F3;
+  --cream: #F0EDE8;
+  --gray-100: #E8E4DF;
+  --gray-300: #B5AFA8;
+  --gray-500: #7A746D;
+  --gray-700: #4A453F;
+  --gray-900: #1E1B18;
+  --teal: #1A8A82;
+  --gold: #C8A44E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--navy);
+  color: var(--gray-900);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ===== PASSWORD SCREEN ===== */
+#lock-screen {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+#lock-screen.hidden {
+  opacity: 0; transform: scale(1.05); pointer-events: none;
+}
+#lock-screen .lock-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 4rem; color: var(--white); margin-bottom: 0.5rem;
+  letter-spacing: -2px;
+}
+#lock-screen .lock-logo span { color: var(--red); }
+#lock-screen .lock-sub {
+  color: var(--gray-500); font-size: 0.85rem; letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 3rem;
+}
+#lock-screen .lock-input-wrap {
+  display: flex; gap: 12px; align-items: center;
+}
+#lock-screen input {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white); padding: 14px 24px; font-size: 1.1rem;
+  font-family: 'JetBrains Mono', monospace; letter-spacing: 8px;
+  text-align: center; width: 220px; border-radius: 8px;
+  outline: none; transition: border-color 0.3s;
+}
+#lock-screen input:focus { border-color: var(--red); }
+#lock-screen input::placeholder { color: var(--gray-500); letter-spacing: 2px; font-size: 0.85rem; }
+#lock-screen .lock-btn {
+  background: var(--red); color: white; border: none; padding: 14px 28px;
+  font-size: 0.9rem; font-weight: 600; border-radius: 8px; cursor: pointer;
+  letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s;
+}
+#lock-screen .lock-btn:hover { background: var(--red-dark); transform: translateY(-1px); }
+#lock-screen .lock-error {
+  color: var(--red); font-size: 0.8rem; margin-top: 1rem;
+  opacity: 0; transition: opacity 0.3s;
+}
+#lock-screen .lock-error.show { opacity: 1; }
+#lock-screen .lock-footer {
+  position: absolute; bottom: 2rem; color: var(--gray-500);
+  font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* ===== PRESENTATION CONTAINER ===== */
+#presentation {
+  display: none; width: 100vw; height: 100vh;
+  position: relative; overflow: hidden;
+}
+#presentation.active { display: block; }
+
+/* ===== SLIDES ===== */
+.slide {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateX(60px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none; padding: 0;
+}
+.slide.active {
+  opacity: 1; transform: translateX(0); pointer-events: all;
+}
+.slide.prev {
+  opacity: 0; transform: translateX(-60px);
+}
+.slide-inner {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+
+/* ===== NAVIGATION ===== */
+#nav-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 32px;
+  background: rgba(15,25,35,0.92); backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+#nav-bar .nav-logo {
+  font-family: 'DM Serif Display', serif; color: var(--white);
+  font-size: 1.1rem; letter-spacing: -1px;
+}
+#nav-bar .nav-logo span { color: var(--red); }
+#nav-bar .nav-center {
+  display: flex; align-items: center; gap: 16px;
+}
+#nav-bar .nav-btn {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+  color: white; width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.3s; font-size: 0.9rem;
+}
+#nav-bar .nav-btn:hover { background: var(--red); border-color: var(--red); }
+#nav-bar .nav-counter {
+  color: var(--gray-500); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem; letter-spacing: 2px; min-width: 60px; text-align: center;
+}
+#nav-bar .nav-right {
+  color: var(--gray-500); font-size: 0.65rem; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===== PROGRESS BAR ===== */
+#progress {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 101;
+  background: var(--red);
+  transition: width 0.5s ease;
+}
+
+/* ===== COMMON SLIDE STYLES ===== */
+.bg-navy { background: var(--navy); color: var(--white); }
+.bg-white { background: var(--off-white); color: var(--gray-900); }
+.bg-red { background: var(--red); color: var(--white); }
+.bg-cream { background: var(--cream); color: var(--gray-900); }
+
+.slide-pad { padding: 60px 80px 80px; }
+.slide-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.2rem; line-height: 1.1; letter-spacing: -1.5px;
+  margin-bottom: 0.3rem;
+}
+.slide-title-sm {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4rem; line-height: 1.15; letter-spacing: -1px;
+  margin-bottom: 0.3rem;
+}
+.slide-subtitle {
+  font-size: 0.85rem; color: var(--gray-500); letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 2rem; font-weight: 500;
+}
+.accent-line {
+  width: 48px; height: 3px; background: var(--red); margin-bottom: 1.5rem;
+}
+.red { color: var(--red); }
+
+/* Grid layouts */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+
+/* Cards */
+.card {
+  background: var(--white); border-radius: 12px; padding: 28px;
+  border: 1px solid var(--gray-100);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.card-navy {
+  background: var(--navy-light); border-radius: 12px; padding: 28px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.card-red {
+  background: rgba(230,59,46,0.08); border-radius: 12px; padding: 28px;
+  border: 1px solid rgba(230,59,46,0.15);
+}
+
+.card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+.card p, .card-navy p { font-size: 0.82rem; line-height: 1.55; color: var(--gray-500); }
+.card-navy h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.card-navy p { color: rgba(255,255,255,0.55); }
+
+.num-big {
+  font-family: 'DM Serif Display', serif; font-size: 3rem;
+  color: var(--red); line-height: 1; margin-bottom: 4px;
+}
+.num-label { font-size: 0.78rem; color: var(--gray-500); font-weight: 500; }
+
+/* Tag pills */
+.tag {
+  display: inline-block; padding: 4px 12px; border-radius: 20px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.tag-red { background: rgba(230,59,46,0.12); color: var(--red); }
+.tag-navy { background: rgba(15,25,35,0.08); color: var(--navy); }
+.tag-teal { background: rgba(26,138,130,0.12); color: var(--teal); }
+
+/* Stagger animations */
+.stagger > * {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.slide.active .stagger > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.1s; }
+.slide.active .stagger > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.2s; }
+.slide.active .stagger > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.3s; }
+.slide.active .stagger > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.4s; }
+.slide.active .stagger > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.5s; }
+.slide.active .stagger > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.6s; }
+.slide.active .stagger > *:nth-child(7) { opacity: 1; transform: none; transition-delay: 0.7s; }
+.slide.active .stagger > *:nth-child(8) { opacity: 1; transform: none; transition-delay: 0.8s; }
+.slide.active .stagger > *:nth-child(9) { opacity: 1; transform: none; transition-delay: 0.9s; }
+
+/* Specific slide styles */
+.cover-bg {
+  background: var(--navy);
+  position: relative;
+}
+.cover-bg::before {
+  content: ''; position: absolute; top: -30%; right: -10%;
+  width: 70vw; height: 70vw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,59,46,0.12) 0%, transparent 70%);
+}
+.cover-bg::after {
+  content: ''; position: absolute; bottom: -20%; left: -15%;
+  width: 50vw; height: 50vw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,59,46,0.06) 0%, transparent 60%);
+}
+
+.team-photo {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--red-deep));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif; font-size: 2rem; color: white;
+  margin-bottom: 16px; flex-shrink: 0;
+}
+
+.module-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.8rem; color: white; margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.kpi-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+}
+.kpi-cell {
+  padding: 40px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+}
+.kpi-cell:nth-child(1) { border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.kpi-cell:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.kpi-cell:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.08); }
+.kpi-num {
+  font-family: 'DM Serif Display', serif; font-size: 4rem;
+  color: var(--white); line-height: 1; margin-bottom: 8px;
+}
+.kpi-label { font-size: 0.8rem; color: var(--gray-300); font-weight: 500; letter-spacing: 1px; }
+.kpi-detail { font-size: 0.7rem; color: var(--gray-500); margin-top: 4px; }
+
+/* Logo grid */
+.logo-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+}
+.logo-item {
+  background: var(--white); border: 1px solid var(--gray-100);
+  border-radius: 8px; padding: 14px 10px; text-align: center;
+  font-size: 0.72rem; font-weight: 600; color: var(--gray-700);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 56px; transition: all 0.3s;
+}
+.logo-item:hover { border-color: var(--red); transform: scale(1.03); }
+
+/* Comparison table */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+.comp-table th {
+  padding: 10px 14px; text-align: center; font-weight: 700;
+  font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+}
+.comp-table th:first-child { text-align: left; }
+.comp-table th.th-zk { background: var(--red); color: white; border-radius: 8px 8px 0 0; }
+.comp-table th.th-other { background: var(--gray-100); color: var(--gray-700); }
+.comp-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-100); text-align: center; }
+.comp-table td:first-child { text-align: left; color: var(--gray-700); }
+.comp-table .check { color: #27AE60; font-weight: 700; }
+.comp-table .half { color: #F39C12; }
+.comp-table .miss { color: #E74C3C; font-weight: 700; }
+
+/* Pillar cards */
+.pillar-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--red); color: white; display: flex;
+  align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif; font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+/* Flow steps */
+.flow-step {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--gray-100);
+}
+.flow-step:last-child { border-bottom: none; }
+.flow-num {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: var(--red); color: white; display: flex;
+  align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;
+}
+.flow-step h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 3px; }
+.flow-step p { font-size: 0.78rem; color: var(--gray-500); line-height: 1.45; }
+
+/* Scroll-like content */
+.content-scroll {
+  flex: 1; overflow-y: auto; padding-right: 8px;
+}
+.content-scroll::-webkit-scrollbar { width: 3px; }
+.content-scroll::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
+
+@media (max-width: 1024px) {
+  .slide-pad { padding: 40px 40px 70px; }
+  .slide-title { font-size: 2.4rem; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .logo-grid { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOCK SCREEN ===== -->
+<div id="lock-screen">
+  <div class="lock-logo">Zukkin<span>.</span></div>
+  <div class="lock-sub">Confidencial</div>
+  <div class="lock-input-wrap">
+    <input type="password" id="pwd-input" placeholder="Senha" maxlength="8" autofocus>
+    <button class="lock-btn" onclick="tryUnlock()">Entrar</button>
+  </div>
+  <div class="lock-error" id="pwd-error">Senha incorreta</div>
+  <div class="lock-footer">Pitch Deck — Investidores 2026</div>
+</div>
+
+<!-- ===== PROGRESS ===== -->
+<div id="progress" style="width: 0%"></div>
+
+<!-- ===== PRESENTATION ===== -->
+<div id="presentation">
+
+  <!-- SLIDE 0: COVER -->
+  <div class="slide active" data-idx="0">
+    <div class="slide-inner cover-bg" style="justify-content: center; align-items: flex-start; padding: 80px;">
+      <div style="position: relative; z-index: 1;">
+        <div class="stagger">
+          <div style="font-size: 0.75rem; color: var(--gray-500); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 2rem;">Pitch Deck — Investidores 2026</div>
+          <div style="font-family: 'DM Serif Display', serif; font-size: 5.5rem; color: var(--white); letter-spacing: -3px; line-height: 1;">Zukkin<span style="color: var(--red)">.</span></div>
+          <div style="font-size: 1.15rem; color: var(--gray-300); margin-top: 1rem; max-width: 520px; line-height: 1.6;">Inteligência de preços para o varejo alimentar brasileiro.<br><span style="color: var(--gray-500);">Menos operacional, mais resultado.</span></div>
+          <div style="display: flex; gap: 48px; margin-top: 3.5rem;">
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--red);">R$ 16M</div><div style="font-size: 0.72rem; color: var(--gray-500); letter-spacing: 1px;">RECEITA 2025</div></div>
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--red);">19%</div><div style="font-size: 0.72rem; color: var(--gray-500); letter-spacing: 1px;">MARGEM EBITDA</div></div>
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--red);">+100</div><div style="font-size: 0.72rem; color: var(--gray-500); letter-spacing: 1px;">REDES ATENDIDAS</div></div>
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--red);">10 anos</div><div style="font-size: 0.72rem; color: var(--gray-500); letter-spacing: 1px;">DE OPERAÇÃO</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="position: absolute; bottom: 80px; left: 80px; z-index: 1;">
+        <div style="font-size: 0.7rem; color: var(--gray-500);">Confidencial — Material exclusivo para investidores qualificados</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 1: QUEM SOMOS -->
+  <div class="slide" data-idx="1">
+    <div class="slide-inner bg-white slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">Quem somos</div>
+        <div class="slide-title" style="max-width: 700px;">A plataforma de pricing intelligence do <span class="red">varejo alimentar.</span></div>
+        <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+          <div>
+            <p style="font-size: 0.92rem; line-height: 1.7; color: var(--gray-700);">A Zukkin oferece tecnologia para o varejo precificar melhor. São 6 módulos integrados — do dado de campo à transmissão automática de preço ao ERP — que transformam a operação de pricing de manual e reativa para automatizada e inteligente.</p>
+            <p style="font-size: 0.92rem; line-height: 1.7; color: var(--gray-700); margin-top: 1rem;">Com mais de 10 anos de operação, atendemos +100 redes varejistas em 27 estados, incluindo nomes como Grupo Muffato, GPA, Zona Sul, Swift, Bahamas e OXXO.</p>
+            <div style="margin-top: 2rem; display: flex; gap: 12px; flex-wrap: wrap;">
+              <span class="tag tag-red">SaaS + Serviço Gerenciado</span>
+              <span class="tag tag-navy">B2B Enterprise</span>
+              <span class="tag tag-teal">Varejo Alimentar</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="card" style="text-align: center; background: var(--navy); border: none;">
+              <div style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 4px;">Visão</div>
+              <p style="color: rgba(255,255,255,0.6); font-size: 0.82rem; line-height: 1.5;">Em 5 anos ter produtos utilizados por 50% dos 200 maiores varejistas do Brasil.</p>
+            </div>
+            <div class="card" style="text-align: center; background: var(--red); border: none;">
+              <div style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 4px;">Missão</div>
+              <p style="color: rgba(255,255,255,0.75); font-size: 0.82rem; line-height: 1.5;">Democratizar o pricing no varejo e garantir que os clientes tenham as melhores precificações.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: EQUIPE -->
+  <div class="slide" data-idx="2">
+    <div class="slide-inner bg-cream slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">Equipe</div>
+        <div class="slide-title-sm">Fundadores com +20 anos<br>de experiência combinada.</div>
+        <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px;">
+          <div class="card" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div class="team-photo">RF</div>
+            <h3 style="font-size: 1.1rem;">Ricardo Forte</h3>
+            <div style="font-size: 0.75rem; color: var(--red); font-weight: 600; margin-bottom: 12px;">Cofundador & Diretor</div>
+            <p style="font-size: 0.8rem; color: var(--gray-500); line-height: 1.5;">20 anos de experiência com Varejo, E-commerce e Tecnologia. Empreendedor serial: rede de lojas, e-commerces, agência de marketing. Graduado em Marketing com MBA em Gestão Estratégica de Negócios pela FGV.</p>
+          </div>
+          <div class="card" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div class="team-photo" style="background: linear-gradient(135deg, var(--navy), var(--navy-light));">BF</div>
+            <h3 style="font-size: 1.1rem;">Bruno Fernandes</h3>
+            <div style="font-size: 0.75rem; color: var(--red); font-weight: 600; margin-bottom: 12px;">Cofundador & CTO</div>
+            <p style="font-size: 0.8rem; color: var(--gray-500); line-height: 1.5;">Programador autodidata com experiência em gestão de equipe e desenvolvimento ágil. Responsável pelos KPIs de Qualidade e Produto. Empreendedor há mais de 10 anos.</p>
+          </div>
+          <div class="card" style="display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--navy); border: none;">
+            <div style="font-size: 0.7rem; color: var(--gray-500); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;">Investidores</div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 8px;">MAXINVEST</div>
+            <div style="font-size: 0.72rem; color: var(--gray-300); margin-bottom: 20px;">Investimentos & Participações</div>
+            <div style="font-size: 0.7rem; color: var(--gray-500); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">LPs oriundos de:</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+              <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.68rem; color: var(--gray-300);">Globo</span>
+              <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.68rem; color: var(--gray-300);">Itaú</span>
+              <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.68rem; color: var(--gray-300);">iFood</span>
+              <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.68rem; color: var(--gray-300);">Burger King</span>
+              <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.68rem; color: var(--gray-300);">Mitsubishi</span>
+              <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.68rem; color: var(--gray-300);">Astellas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: O PROBLEMA -->
+  <div class="slide" data-idx="3">
+    <div class="slide-inner bg-navy slide-pad" style="color: white;">
+      <div class="stagger">
+        <div class="slide-subtitle" style="color: var(--red);">O Problema</div>
+        <div class="slide-title-sm" style="color: white; max-width: 600px;">O varejo alimentar opera com margens de 2% a 6%. Qualquer erro de preço é a diferença entre lucrar e fechar.</div>
+        <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+          <div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--red); margin-bottom: 1.5rem;">O Ciclo Vicioso do Varejo</div>
+            <div class="flow-step" style="border-color: rgba(255,255,255,0.06);">
+              <div class="flow-num">1</div>
+              <div><h4 style="color: white;">Custo sobe</h4><p style="color: var(--gray-300);">Produto chega com custo novo, nenhum sistema captura automaticamente.</p></div>
+            </div>
+            <div class="flow-step" style="border-color: rgba(255,255,255,0.06);">
+              <div class="flow-num">2</div>
+              <div><h4 style="color: white;">Baixa visibilidade</h4><p style="color: var(--gray-300);">Varejista vende com preço defasado, destruindo margem sem saber.</p></div>
+            </div>
+            <div class="flow-step" style="border-color: rgba(255,255,255,0.06);">
+              <div class="flow-num">3</div>
+              <div><h4 style="color: white;">Dados tardios</h4><p style="color: var(--gray-300);">2 a 5 dias de defasagem. Sem foto, sem controle, sem validação.</p></div>
+            </div>
+            <div class="flow-step" style="border-color: rgba(255,255,255,0.06);">
+              <div class="flow-num">4</div>
+              <div><h4 style="color: white;">Decisão no feeling</h4><p style="color: var(--gray-300);">Sem dado confiável, a decisão é por intuição em até 50.000 SKUs.</p></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--red); margin-bottom: 1.5rem;">4 Dores Estruturais</div>
+            <div class="card-navy" style="margin-bottom: 14px;">
+              <h3 style="color: var(--red);">Comparação instantânea</h3>
+              <p>O consumidor já sabe o preço antes de entrar na loja. Varejistas sem monitoramento perdem a venda ou vendem abaixo do potencial.</p>
+            </div>
+            <div class="card-navy" style="margin-bottom: 14px;">
+              <h3 style="color: var(--red);">Operação manual</h3>
+              <p>Redes sem sistema dependem de planilhas e equipes ad hoc. Processo lento, impreciso e caro.</p>
+            </div>
+            <div class="card-navy" style="margin-bottom: 14px;">
+              <h3 style="color: var(--red);">Margem sob pressão</h3>
+              <p>Preço de custo varia constantemente. Sem regras automáticas de repasse, a margem é comprimida silenciosamente.</p>
+            </div>
+            <div class="card-navy">
+              <h3 style="color: var(--red);">Alta complexidade</h3>
+              <p>Precificação ideal considera tipo de loja, localização, sazonalidade. Simplificar = perder margem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: 3 PILARES -->
+  <div class="slide" data-idx="4">
+    <div class="slide-inner bg-white slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">A Solução</div>
+        <div class="slide-title-sm">Três pilares de valor<br>para o varejista.</div>
+        <div class="grid-3" style="margin-top: 2rem;">
+          <div class="card" style="border-top: 4px solid var(--red);">
+            <div class="pillar-num">1</div>
+            <h3 style="font-size: 1.15rem;">Expansão de Margem</h3>
+            <p style="margin-top: 8px;">Regras de margem mínima por categoria e produto. O sistema bloqueia precificações abaixo do custo e alerta sobre margem negativa — eliminando o risco de venda com prejuízo por erro operacional.</p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--red-dark);">
+            <div class="pillar-num" style="background: var(--red-dark);">2</div>
+            <h3 style="font-size: 1.15rem;">Aumento de Faturamento</h3>
+            <p style="margin-top: 8px;">Identificação de produtos com preço abaixo do mercado: o sistema sugere reajustes em itens sub-precificados. Em categorias menos sensíveis, o upside de margem é capturado sem perda de tráfego.</p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--navy);">
+            <div class="pillar-num" style="background: var(--navy);">3</div>
+            <h3 style="font-size: 1.15rem;">Aumento de Produtividade</h3>
+            <p style="margin-top: 8px;">Eliminação da precificação manual: com o sistema integrado ao ERP, o varejista elimina digitação, erros de preço e desconto indevido. Automação reduz retrabalho e incidentes de impacto financeiro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: 6 MÓDULOS -->
+  <div class="slide" data-idx="5">
+    <div class="slide-inner bg-cream slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">Plataforma</div>
+        <div class="slide-title-sm">6 módulos. 1 ecossistema<br>integrado end-to-end.</div>
+        <div class="grid-3" style="margin-top: 1.5rem;">
+          <div class="card">
+            <div class="module-icon" style="background: #3B82F6;">P</div>
+            <h3>Zukkin Pricing</h3>
+            <p>Software de precificação inteligente integrado aos ERPs. Motor central da plataforma. Estratégias personalizadas, governança e transmissão automática ao ERP.</p>
+          </div>
+          <div class="card">
+            <div class="module-icon" style="background: #F59E0B;">A</div>
+            <h3>Zukkin Analytics</h3>
+            <p>Dashboard de competitividade com relatórios dinâmicos, alertas via WhatsApp e e-mail, base 100 e múltiplas fontes de dados integradas.</p>
+          </div>
+          <div class="card">
+            <div class="module-icon" style="background: #8B5CF6;">R</div>
+            <h3>Zukkin ZRobot</h3>
+            <p>Web scraping automatizado para extração de preços em e-commerces e apps. Match inteligente de produtos. Cobertura do canal digital.</p>
+          </div>
+          <div class="card">
+            <div class="module-icon" style="background: var(--red);">Q</div>
+            <h3>Zukkin Pesquisa</h3>
+            <p>Serviço gerenciado de pesquisa de preços no varejo físico. Equipe em 27 estados. API para integração e dados em tempo real.</p>
+          </div>
+          <div class="card">
+            <div class="module-icon" style="background: #10B981;">G</div>
+            <h3>Zukkin ZGo</h3>
+            <p>App mobile para operação de campo. Personalização por projeto, integração com sistemas e rota otimizada para pesquisadores.</p>
+          </div>
+          <div class="card">
+            <div class="module-icon" style="background: #6366F1;">M</div>
+            <h3>Zukkin Market</h3>
+            <p>Captura massiva de dados de preços de concorrentes físicos. Entrega contínua com comparativo em tempo real. Base proprietária de 10 anos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: COMO FUNCIONA -->
+  <div class="slide" data-idx="6">
+    <div class="slide-inner bg-white slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">Metodologia</div>
+        <div class="slide-title-sm">Da pesquisa ao preço na gôndola.</div>
+        <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+          <div>
+            <div style="font-weight: 700; font-size: 0.85rem; color: var(--red); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;">Coleta de Dados</div>
+            <div class="card-red" style="margin-bottom: 12px;">
+              <h3 style="color: var(--gray-900);">Tira Teima — máquina de busca-preço</h3>
+              <p style="color: var(--gray-700);">Pesquisa via terminal de consulta das lojas. Alta produtividade: 1.000 itens em 40 minutos.</p>
+            </div>
+            <div class="card-red" style="margin-bottom: 12px;">
+              <h3 style="color: var(--gray-900);">Gôndolas — buscas inteligentes</h3>
+              <p style="color: var(--gray-700);">Mapeamento de lojas identificando todas as categorias pesquisadas por corredor.</p>
+            </div>
+            <div class="card-red" style="margin-bottom: 12px;">
+              <h3 style="color: var(--gray-900);">Listas Inteligentes</h3>
+              <p style="color: var(--gray-700);">Lista previamente validada para garantir acurácia do cadastro Produto x Loja.</p>
+            </div>
+            <div class="card-red">
+              <h3 style="color: var(--gray-900);">Pesquisas Online (ZRobot)</h3>
+              <p style="color: var(--gray-700);">Crawler automático pesquisa preços em e-commerces com match inteligente de produtos.</p>
+            </div>
+          </div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.85rem; color: var(--navy); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;">Inteligência & Ação</div>
+            <div class="flow-step"><div class="flow-num">1</div><div><h4>Contratação</h4><p>Cliente define frequência, itens, concorrentes e praças.</p></div></div>
+            <div class="flow-step"><div class="flow-num">2</div><div><h4>Rota otimizada</h4><p>ZGo gera rota para cada pesquisador. Feriados e ausências planejados.</p></div></div>
+            <div class="flow-step"><div class="flow-num">3</div><div><h4>Coleta em campo</h4><p>Agente registra preço + foto via ZGo (funciona offline).</p></div></div>
+            <div class="flow-step"><div class="flow-num">4</div><div><h4>Entrega na plataforma</h4><p>Dados no Analytics. Alertas disparados. Relatórios atualizados.</p></div></div>
+            <div class="flow-step"><div class="flow-num">5</div><div><h4>Fluxo de precificação</h4><p>Sistema dispara sugestões de preço por praça e categoria.</p></div></div>
+            <div class="flow-step"><div class="flow-num">6</div><div><h4>Simulação e aprovação</h4><p>Gestor revisa impacto em receita e margem antes de confirmar.</p></div></div>
+            <div class="flow-step"><div class="flow-num">7</div><div><h4>Transmissão ao ERP</h4><p>Preços aprovados enviados automaticamente. Audit trail completo.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: DIFERENCIAIS -->
+  <div class="slide" data-idx="7">
+    <div class="slide-inner bg-navy slide-pad" style="color: white;">
+      <div class="stagger">
+        <div class="slide-subtitle" style="color: var(--red);">Diferenciais</div>
+        <div class="slide-title-sm" style="color: white;">Por que a Zukkin é difícil<br>de replicar.</div>
+        <div class="grid-3" style="margin-top: 2rem;">
+          <div class="card-navy" style="border-top: 3px solid var(--red);">
+            <h3 style="color: var(--red);">Carteira e Comercial</h3>
+            <p style="margin-top: 8px;">+100 redes incluindo GPA, Muffato, Swift, Zona Sul, Bahamas, OXXO. Receita recorrente com alta retenção. 10 anos de relacionamento com os principais players.</p>
+          </div>
+          <div class="card-navy" style="border-top: 3px solid var(--gold);">
+            <h3 style="color: var(--gold);">Ativo de Dados</h3>
+            <p style="margin-top: 8px;">Rede de pesquisa em 27 estados e +800 cidades. Integração com principais ERPs. Para replicar a solução: anos e milhões de reais de investimento.</p>
+          </div>
+          <div class="card-navy" style="border-top: 3px solid var(--teal);">
+            <h3 style="color: var(--teal);">Necessidade Estrutural</h3>
+            <p style="margin-top: 8px;">Guerra de preços entre formatos tornou pricing inteligente questão de sobrevivência. Componente de IA com elasticidade de preço. 10 anos de dados alimentando modelos.</p>
+          </div>
+        </div>
+        <div style="margin-top: 2rem; background: rgba(255,255,255,0.04); border-radius: 12px; padding: 28px; border: 1px solid rgba(255,255,255,0.06);">
+          <div style="font-weight: 700; font-size: 0.85rem; margin-bottom: 16px; color: var(--gray-300);">Comparativo de Mercado</div>
+          <table class="comp-table" style="color: white;">
+            <thead>
+              <tr>
+                <th style="background: none; color: var(--gray-500); text-align: left;">Funcionalidade</th>
+                <th class="th-zk">Zukkin</th>
+                <th class="th-other">Infoprice</th>
+                <th class="th-other">Smarket / Predify</th>
+                <th class="th-other">Solução Interna</th>
+              </tr>
+            </thead>
+            <tbody style="font-size: 0.78rem;">
+              <tr><td style="color: var(--gray-300);">Pricing integrado ao ERP</td><td class="check">✓</td><td class="half">◐</td><td class="miss">✗</td><td class="miss">✗</td></tr>
+              <tr><td style="color: var(--gray-300);">Analytics de competitividade</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="half">◐</td></tr>
+              <tr><td style="color: var(--gray-300);">Pesquisa de campo nacional</td><td class="check">✓</td><td class="check">✓</td><td class="miss">✗</td><td class="half">◐</td></tr>
+              <tr><td style="color: var(--gray-300);">Crawler de e-commerce</td><td class="check">✓</td><td class="check">✓</td><td class="half">◐</td><td class="miss">✗</td></tr>
+              <tr><td style="color: var(--gray-300);">Machine Learning e elasticidade</td><td class="check">✓</td><td class="half">◐</td><td class="miss">✗</td><td class="miss">✗</td></tr>
+              <tr><td style="color: var(--gray-300);">App mobile para campo</td><td class="check">✓</td><td class="miss">✗</td><td class="miss">✗</td><td class="half">◐</td></tr>
+              <tr><td style="color: var(--gray-300);">Solução integrada end-to-end</td><td class="check">✓</td><td class="half">◐</td><td class="half">◐</td><td class="miss">✗</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: TENDÊNCIAS -->
+  <div class="slide" data-idx="8">
+    <div class="slide-inner bg-white slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">Mercado</div>
+        <div class="slide-title-sm">6 forças que ampliam<br>o mercado da Zukkin.</div>
+        <div class="grid-3" style="margin-top: 1.5rem;">
+          <div class="card" style="border-left: 4px solid var(--red); border-radius: 0 12px 12px 0;">
+            <h3>Ascensão do Atacarejo</h3>
+            <p>Crescimento de dois dígitos ao ano, invadindo área de influência de supermercados regionais. Guerra de formatos exige inteligência de preço.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--red); border-radius: 0 12px 12px 0;">
+            <h3>IA na Precificação</h3>
+            <p>Requisito nas grandes redes globais, chegando ao médio porte brasileiro via Zukkin. Elasticidade de preço e algoritmos preditivos.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--red); border-radius: 0 12px 12px 0;">
+            <h3>Digitalização do Varejo</h3>
+            <p>Comparação de preços migrou para o celular. O erro de preço chega ao consumidor antes dele entrar na loja.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--navy); border-radius: 0 12px 12px 0;">
+            <h3>Consumidor Mais Sensível</h3>
+            <p>Pós-inflação de alimentos, o comportamento de comparação não voltou. Preço é critério #1 para 68% dos shoppers.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--navy); border-radius: 0 12px 12px 0;">
+            <h3>Maturidade do Varejo</h3>
+            <p>Penetração de ERP atingiu massa crítica — pré-requisito técnico para implantar Zukkin Pricing em escala.</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--navy); border-radius: 0 12px 12px 0;">
+            <h3>M&A em Tech Varejo</h3>
+            <p>NeoGrid/Hinova, TOTVS, Sankhya buscam ativos de pricing. Zukkin como ativo estratégico para múltiplos perfis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: CLIENTES -->
+  <div class="slide" data-idx="9">
+    <div class="slide-inner bg-cream slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">Clientes</div>
+        <div class="slide-title-sm" style="margin-bottom: 0.5rem;">+100 redes varejistas<br>confiam na Zukkin.</div>
+        <p style="font-size: 0.88rem; color: var(--gray-500); margin-bottom: 1.5rem;">Base ativa inclui alguns dos maiores grupos varejistas regionais e nacionais do Brasil.</p>
+        <div class="logo-grid stagger">
+          <div class="logo-item">Votorantim</div>
+          <div class="logo-item">Muffato</div>
+          <div class="logo-item">Grupo Pereira</div>
+          <div class="logo-item">Hiperideal</div>
+          <div class="logo-item">Tonin</div>
+          <div class="logo-item">Grupo Coutinho</div>
+          <div class="logo-item">Barbosa</div>
+          <div class="logo-item" style="border-color: var(--red); background: rgba(230,59,46,0.04);">GPA</div>
+          <div class="logo-item" style="border-color: var(--red); background: rgba(230,59,46,0.04);">Swift</div>
+          <div class="logo-item">Pague Menos</div>
+          <div class="logo-item">Shibata</div>
+          <div class="logo-item">Confiança</div>
+          <div class="logo-item">São Vicente</div>
+          <div class="logo-item">Costa Atacadão</div>
+          <div class="logo-item" style="border-color: var(--red); background: rgba(230,59,46,0.04);">Bahamas</div>
+          <div class="logo-item">Vivo</div>
+          <div class="logo-item">Mart Minas</div>
+          <div class="logo-item" style="border-color: var(--red); background: rgba(230,59,46,0.04);">Zona Sul</div>
+          <div class="logo-item">Atakarejo</div>
+          <div class="logo-item">Bistek</div>
+          <div class="logo-item">am/pm</div>
+          <div class="logo-item">OXXO</div>
+          <div class="logo-item">NISSEI</div>
+          <div class="logo-item" style="background: var(--navy); color: white; border: none;">+80 redes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: FINANCIALS -->
+  <div class="slide" data-idx="10">
+    <div class="slide-inner bg-navy slide-pad" style="color: white;">
+      <div class="stagger">
+        <div class="slide-subtitle" style="color: var(--red);">Financials</div>
+        <div class="slide-title-sm" style="color: white; margin-bottom: 2rem;">Métricas que sustentam<br>a tese de investimento.</div>
+        <div class="kpi-grid" style="background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,255,255,0.06);">
+          <div class="kpi-cell">
+            <div class="kpi-num" style="color: var(--red);">R$ 16M</div>
+            <div class="kpi-label">RECEITA 2025</div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-num">R$ 1.3M</div>
+            <div class="kpi-label">MRR</div>
+            <div class="kpi-detail">+20% desde o ano anterior</div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-num">R$ 17M</div>
+            <div class="kpi-label">ARR</div>
+            <div class="kpi-detail">+10% desde o ano anterior</div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-num" style="color: var(--red);">19%</div>
+            <div class="kpi-label">MARGEM EBITDA</div>
+            <div class="kpi-detail">2025</div>
+          </div>
+        </div>
+        <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px;">
+          <div class="card-navy" style="text-align: center;">
+            <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white);">+100</div>
+            <div style="font-size: 0.72rem; color: var(--gray-500);">Redes Atendidas</div>
+          </div>
+          <div class="card-navy" style="text-align: center;">
+            <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white);">27</div>
+            <div style="font-size: 0.72rem; color: var(--gray-500);">Estados Cobertos</div>
+          </div>
+          <div class="card-navy" style="text-align: center;">
+            <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white);">55%</div>
+            <div style="font-size: 0.72rem; color: var(--gray-500);">Margem Bruta</div>
+          </div>
+          <div class="card-navy" style="text-align: center;">
+            <div style="font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white);">10+</div>
+            <div style="font-size: 0.72rem; color: var(--gray-500);">Anos de Operação</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: TESE DE AQUISIÇÃO -->
+  <div class="slide" data-idx="11">
+    <div class="slide-inner bg-white slide-pad">
+      <div class="stagger">
+        <div class="slide-subtitle">Oportunidade</div>
+        <div class="slide-title-sm">Por que investir na Zukkin.</div>
+        <div class="grid-3" style="margin-top: 2rem;">
+          <div class="card" style="border-top: 4px solid var(--red);">
+            <div style="font-size: 0.7rem; color: var(--red); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-weight: 700;">Para ERPs</div>
+            <h3 style="font-size: 1rem;">TOTVS, Sankhya, Linx</h3>
+            <p style="margin-top: 8px; font-size: 0.82rem;">Cross-sell imediato para base existente. Pricing como módulo premium. Aumento de lock-in. Base de dados de mercado como diferencial competitivo.</p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--navy);">
+            <div style="font-size: 0.7rem; color: var(--navy); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-weight: 700;">Para Data & Analytics</div>
+            <h3 style="font-size: 1rem;">NeoGrid, Scanntech</h3>
+            <p style="margin-top: 8px; font-size: 0.82rem;">Ativo de dados proprietário de 10 anos. Rede de pesquisa de campo como infraestrutura. Acesso direto ao decisor de pricing.</p>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--teal);">
+            <div style="font-size: 0.7rem; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-weight: 700;">Para Fundos de PE</div>
+            <h3 style="font-size: 1rem;">Buy & Build</h3>
+            <p style="margin-top: 8px; font-size: 0.82rem;">Receita recorrente, 19% EBITDA. Consolidação de concorrentes menores. Expansão LATAM e novas verticais (farmácias, pet). Path claro de expansão de margem.</p>
+          </div>
+        </div>
+        <div style="margin-top: 2rem; background: var(--navy); border-radius: 12px; padding: 28px; text-align: center;">
+          <div style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--white);">A Zukkin combina produto maduro, base de clientes ativa, receita recorrente e ativos tecnológicos difíceis de replicar.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: CONTATO -->
+  <div class="slide" data-idx="12">
+    <div class="slide-inner cover-bg" style="justify-content: center; align-items: flex-start; padding: 80px;">
+      <div style="position: relative; z-index: 1;">
+        <div class="stagger">
+          <div style="font-family: 'DM Serif Display', serif; font-size: 4.5rem; color: var(--white); letter-spacing: -2px; line-height: 1;">Obrigado<span style="color: var(--red)">.</span></div>
+          <div style="font-size: 1.1rem; color: var(--gray-300); margin-top: 1rem; max-width: 480px; line-height: 1.6;">Estamos à disposição para discutir os próximos passos e fornecer informações adicionais.</div>
+          <div style="margin-top: 3rem; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 0.8rem;">RF</div>
+              <div>
+                <div style="color: var(--white); font-weight: 600;">Ricardo Forte</div>
+                <div style="color: var(--gray-500); font-size: 0.85rem;">ricardo@zukkin.com &nbsp;|&nbsp; (13) 98111-2221</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 3rem; display: flex; gap: 24px;">
+            <a href="https://zukkin.com.br" target="_blank" style="color: var(--red); font-size: 0.85rem; text-decoration: none; font-weight: 600;">zukkin.com.br →</a>
+          </div>
+        </div>
+      </div>
+      <div style="position: absolute; bottom: 80px; left: 80px; z-index: 1;">
+        <div style="font-size: 0.7rem; color: var(--gray-500);">Confidencial — Material exclusivo para investidores qualificados — 2026</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== NAV BAR ===== -->
+<div id="nav-bar" style="display: none;">
+  <div class="nav-logo">Zukkin<span>.</span></div>
+  <div class="nav-center">
+    <button class="nav-btn" onclick="prevSlide()">←</button>
+    <div class="nav-counter"><span id="slide-num">01</span> / <span id="slide-total">13</span></div>
+    <button class="nav-btn" onclick="nextSlide()">→</button>
+  </div>
+  <div class="nav-right">← → para navegar</div>
+</div>
+
+<script>
+// Password
+function tryUnlock() {
+  const pwd = document.getElementById('pwd-input').value;
+  if (pwd === '1717') {
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.getElementById('presentation').classList.add('active');
+    document.getElementById('nav-bar').style.display = 'flex';
+    updateProgress();
+    setTimeout(() => { document.getElementById('lock-screen').style.display = 'none'; }, 700);
+  } else {
+    document.getElementById('pwd-error').classList.add('show');
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+    setTimeout(() => document.getElementById('pwd-error').classList.remove('show'), 2000);
+  }
+}
+document.getElementById('pwd-input').addEventListener('keypress', e => { if (e.key === 'Enter') tryUnlock(); });
+
+// Slides
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+document.getElementById('slide-total').textContent = String(total).padStart(2, '0');
+
+function goToSlide(idx) {
+  if (idx < 0 || idx >= total || idx === current) return;
+  slides[current].classList.remove('active');
+  slides[current].classList.add(idx > current ? 'prev' : '');
+  current = idx;
+  slides[current].classList.remove('prev');
+  slides[current].classList.add('active');
+  document.getElementById('slide-num').textContent = String(current + 1).padStart(2, '0');
+  updateProgress();
+  // Clean prev classes
+  setTimeout(() => { slides.forEach(s => { if (!s.classList.contains('active')) s.classList.remove('prev'); }); }, 800);
+}
+function nextSlide() { goToSlide(current + 1); }
+function prevSlide() { goToSlide(current - 1); }
+function updateProgress() {
+  const pct = ((current + 1) / total) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+}
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('lock-screen').style.display !== 'none') return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+
+// Touch support
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+});
+</script>
+</body>
+</html>
