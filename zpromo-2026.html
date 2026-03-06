@@ -585,6 +585,20 @@ footer strong { color: rgba(255,255,255,.55); }
 </style>
 </head>
 <body>
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#FDFBF8;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif">
+<div style="text-align:center;max-width:360px;padding:48px 40px;background:white;border:1px solid #E8E2D9;border-radius:14px;box-shadow:0 4px 32px rgba(0,0,0,.08)">
+<div style="font-family:Playfair Display,serif;font-size:2rem;font-weight:900;color:#141010;margin-bottom:4px">Z<span style="color:#C8102E">Promo</span></div>
+<div style="font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;margin-bottom:32px">Acesso Restrito</div>
+<input id="pw" type="password" placeholder="Digite a senha" style="width:100%;padding:14px 18px;border:1px solid #E8E2D9;border-radius:8px;font-family:Outfit,sans-serif;font-size:.95rem;outline:none;margin-bottom:12px;color:#2C2420;background:#FDFBF8" onkeydown="if(event.key==='Enter')check()">
+<div id="err" style="color:#C8102E;font-size:.78rem;margin-bottom:12px;min-height:18px"></div>
+<button onclick="check()" style="width:100%;padding:15px;background:#C8102E;color:white;border:none;border-radius:8px;font-family:Outfit,sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.05em;cursor:pointer">Entrar →</button>
+</div>
+</div>
+<script>
+function check(){var v=document.getElementById("pw").value;if(v==="ZPromo"){document.getElementById("gate").style.display="none";sessionStorage.setItem("zp","1")}else{document.getElementById("err").textContent="Senha incorreta. Tente novamente.";document.getElementById("pw").value="";document.getElementById("pw").focus()}}
+if(sessionStorage.getItem("zp")==="1"){document.getElementById("gate").style.display="none"}
+document.getElementById("pw").focus();
+</script>
 
 <!-- NAV -->
 <nav>
