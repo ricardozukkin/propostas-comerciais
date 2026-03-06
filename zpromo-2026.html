@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZPromo 2026 — Zukkin</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8192C;
+    --red-dark: #B5121F;
+    --red-light: #FF3347;
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --gray: #F4F4F2;
+    --gray-mid: #CCCCCC;
+    --text: #1A1A1A;
+    --text-muted: #666666;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,25,44,0.3);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-badge {
+    background: var(--red);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .nav-cta {
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 10px 24px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--red-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(232,25,44,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(232,25,44,0.06) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,25,44,0.15);
+    border: 1px solid rgba(232,25,44,0.4);
+    color: var(--red-light);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before {
+    content: '✦';
+    color: var(--red);
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: var(--white);
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  .hero-title .accent { color: var(--red); }
+
+  .hero-subtitle {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 48px;
+    font-weight: 300;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .hero-stats {
+    display: flex; gap: 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    width: fit-content;
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+  .hero-stat {
+    padding: 24px 36px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .hero-stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--red), transparent);
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 48px; }
+
+  .section-tag {
+    display: inline-block;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid rgba(232,25,44,0.3);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* PROBLEMA */
+  .problema {
+    background: var(--gray);
+  }
+
+  .problema-header {
+    max-width: 1200px; margin: 0 auto;
+    margin-bottom: 64px;
+  }
+
+  .problema-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .problema-card {
+    background: var(--white);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .problema-card:hover { transform: translateY(-4px); }
+  .problema-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .problema-card:hover::before { transform: scaleX(1); }
+
+  .problema-icon {
+    width: 52px; height: 52px;
+    background: rgba(232,25,44,0.08);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .problema-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .problema-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* SOLUÇÃO */
+  .solucao { background: var(--black); }
+
+  .solucao .section-title { color: var(--white); }
+  .solucao .section-desc { color: rgba(255,255,255,0.5); }
+  .solucao .section-tag { color: var(--red-light); border-color: rgba(232,25,44,0.3); }
+
+  .solucao-header {
+    max-width: 1200px; margin: 0 auto 64px;
+  }
+
+  .solucao-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .solucao-card {
+    background: rgba(255,255,255,0.02);
+    padding: 40px 32px;
+    transition: background 0.3s;
+  }
+  .solucao-card:hover { background: rgba(232,25,44,0.06); }
+
+  .solucao-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(232,25,44,0.2);
+    line-height: 1;
+    margin-bottom: 20px;
+    letter-spacing: -0.04em;
+  }
+  .solucao-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .solucao-card p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* COMO FUNCIONA */
+  .como { background: var(--white); }
+
+  .como-header { max-width: 1200px; margin: 0 auto 64px; }
+
+  .como-flow {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; gap: 0;
+  }
+
+  .como-step {
+    flex: 1;
+    padding: 48px 40px;
+    background: var(--gray);
+    position: relative;
+    text-align: center;
+  }
+
+  .como-arrow {
+    width: 48px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--red);
+    font-size: 1.5rem;
+  }
+
+  .como-step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+  .como-step-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .como-step h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .como-step p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .como-step.highlight {
+    background: var(--red);
+  }
+  .como-step.highlight .como-step-num { color: rgba(255,255,255,0.7); }
+  .como-step.highlight h3 { color: var(--white); }
+  .como-step.highlight p { color: rgba(255,255,255,0.75); }
+
+  /* CANAIS */
+  .canais { background: var(--gray); }
+  .canais-header { max-width: 1200px; margin: 0 auto 56px; }
+
+  .canais-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .canal-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 36px 28px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .canal-card:hover {
+    border-color: var(--red);
+    transform: translateY(-4px);
+  }
+  .canal-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .canal-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--red);
+  }
+  .canal-card p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .canais-note {
+    max-width: 1200px; margin: 28px auto 0;
+    background: var(--red);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 20px 32px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  /* COMPARATIVO */
+  .comparativo { background: var(--black); padding: 100px 48px; }
+  .comparativo-header { max-width: 1200px; margin: 0 auto 56px; }
+  .comparativo .section-title { color: var(--white); }
+  .comparativo .section-tag { color: var(--red-light); border-color: rgba(232,25,44,0.3); }
+
+  .comp-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .comp-col {
+    padding: 48px 40px;
+  }
+  .comp-col.sem {
+    background: rgba(255,255,255,0.04);
+  }
+  .comp-col.com {
+    background: rgba(232,25,44,0.08);
+    border: 1px solid rgba(232,25,44,0.2);
+    border-radius: 0 16px 16px 0;
+  }
+
+  .comp-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .comp-col.sem .comp-label { color: rgba(255,255,255,0.4); }
+  .comp-col.com .comp-label { color: var(--red-light); }
+
+  .comp-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 20px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .comp-col.sem .comp-item { color: rgba(255,255,255,0.45); }
+  .comp-col.com .comp-item { color: rgba(255,255,255,0.85); }
+
+  .comp-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* RESULTADOS */
+  .resultados { background: var(--white); }
+  .resultados-header { max-width: 1200px; margin: 0 auto 56px; }
+
+  .kpis {
+    max-width: 1200px; margin: 0 auto 48px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .kpi {
+    border: 1px solid var(--gray-mid);
+    border-radius: 12px;
+    padding: 40px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .kpi:hover {
+    border-color: var(--red);
+    transform: translateY(-4px);
+  }
+  .kpi-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 8px;
+  }
+  .kpi-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .kpi-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-top: 6px;
+  }
+
+  /* TESTEMUNHO */
+  .testemunho {
+    max-width: 1200px; margin: 0 auto;
+    background: var(--gray);
+    border-radius: 16px;
+    padding: 48px 56px;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 40px; align-items: center;
+  }
+  .testemunho-quote {
+    font-size: 4rem;
+    color: var(--red);
+    font-family: 'Syne', sans-serif;
+    line-height: 1;
+  }
+  .testemunho-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .testemunho-author {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* INTEGRACAO */
+  .integracao { background: var(--gray); padding: 100px 48px; }
+  .integracao-header { max-width: 1200px; margin: 0 auto 56px; }
+
+  .integracao-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .integ-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 28px 24px;
+    text-align: center;
+    border-top: 3px solid var(--red);
+  }
+  .integ-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+  .integ-card p {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--red);
+    padding: 100px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+  .cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+
+  .cta-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .cta h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .cta p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.65;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .cta-buttons {
+    display: flex; gap: 16px;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--white);
+    color: var(--red);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.5);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-secondary:hover { border-color: white; }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    padding: 36px 48px;
+    font-size: 0.82rem;
+  }
+  footer a { color: var(--red); text-decoration: none; }
+  footer strong { color: rgba(255,255,255,0.6); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 70px 24px; }
+    .hero-stats { flex-direction: column; width: 100%; }
+    .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .problema-grid, .solucao-grid, .canais-grid, .integracao-grid { grid-template-columns: 1fr; }
+    .comp-grid { grid-template-columns: 1fr; }
+    .como-flow { flex-direction: column; }
+    .como-arrow { transform: rotate(90deg); }
+    .kpis { grid-template-columns: 1fr; }
+    .testemunho { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Z<span>Promo</span></div>
+  <div class="nav-badge">✦ Novidade 2026</div>
+  <a href="#cta" class="nav-cta">Agendar Demo →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Novidade 2026 — Zukkin Analytics</div>
+    <h1 class="hero-title">
+      ZPromo<br>
+      <span class="accent">Inteligência</span><br>
+      de Ofertas
+    </h1>
+    <p class="hero-subtitle">Monitoramento Inteligente da Concorrência</p>
+    <p class="hero-desc">
+      IA que transforma encartes, redes sociais e WhatsApp em dados estratégicos em tempo real — para decisões de pricing mais rápidas e precisas.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-number">D+0</div>
+        <div class="hero-stat-label">Entrega de Dados</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">99,9%</div>
+        <div class="hero-stat-label">Precisão com IA</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">24/7</div>
+        <div class="hero-stat-label">Monitoramento</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">4</div>
+        <div class="hero-stat-label">Canais Integrados</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Explorar
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="problema-header reveal">
+    <div class="section-tag">O Desafio</div>
+    <h2 class="section-title">Sua equipe ainda monitora<br>preços assim?</h2>
+    <p class="section-desc">A gestão manual é lenta, cara e cheia de brechas para erros. O resultado: decisões por intuição, perda de margem e reações sempre tarde demais.</p>
+  </div>
+  <div class="problema-grid">
+    <div class="problema-card reveal">
+      <div class="problema-icon">🕐</div>
+      <h3>Coleta Manual</h3>
+      <p>Equipes inteiras gastando horas coletando preços de encartes físicos e digitais — trabalho repetitivo que poderia ser automatizado.</p>
+    </div>
+    <div class="problema-card reveal">
+      <div class="problema-icon">📉</div>
+      <h3>Dados Atrasados</h3>
+      <p>As informações chegam quando a promoção do concorrente já acabou. Você reage tarde — e perde vendas que poderia ter conquistado.</p>
+    </div>
+    <div class="problema-card reveal">
+      <div class="problema-icon">⚠️</div>
+      <h3>Erros Humanos</h3>
+      <p>Digitação incorreta, produtos trocados, preços errados na planilha. Cada erro compromete a qualidade das suas decisões comerciais.</p>
+    </div>
+    <div class="problema-card reveal">
+      <div class="problema-icon">💸</div>
+      <h3>Perda de Margem</h3>
+      <p>Sem dados confiáveis em tempo real, decisões são tomadas por intuição — gerando perda de receita e erosão de margem evitáveis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section class="solucao">
+  <div class="solucao-header reveal">
+    <div class="section-tag">A Solução</div>
+    <h2 class="section-title" style="color:white">IA Monitorando<br>em Tempo Real</h2>
+    <p class="section-desc">O ZPromo coleta, lê e organiza automaticamente todas as ofertas da concorrência — entregando dados precisos e estruturados prontos para decisão.</p>
+  </div>
+  <div class="solucao-grid reveal">
+    <div class="solucao-card">
+      <div class="solucao-num">01</div>
+      <h3>Rapidez Extrema</h3>
+      <p>Coleta hoje, dados disponíveis no mesmo dia (D+0) — para você agir antes da concorrência.</p>
+    </div>
+    <div class="solucao-card">
+      <div class="solucao-num">02</div>
+      <h3>IA Validada</h3>
+      <p>99,9% de precisão na leitura de produtos, preços e condições das ofertas. Sem erros, sem dados incompletos.</p>
+    </div>
+    <div class="solucao-card">
+      <div class="solucao-num">03</div>
+      <h3>Insight Competitivo</h3>
+      <p>Monitore a concorrência em escala. Saiba quem vende o quê, por quanto, e em qual canal — em um único painel.</p>
+    </div>
+    <div class="solucao-card">
+      <div class="solucao-num">04</div>
+      <h3>Vínculo Automático</h3>
+      <p>Match inteligente de produtos com seu catálogo para comparação direta com sua estratégia de preços.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como">
+  <div class="como-header reveal">
+    <div class="section-tag">Como Funciona</div>
+    <h2 class="section-title">3 Passos,<br>Tudo Automatizado</h2>
+    <p class="section-desc">Do monitoramento à entrega no seu painel, o ZPromo opera de forma completamente autônoma.</p>
+  </div>
+  <div class="como-flow reveal">
+    <div class="como-step">
+      <div class="como-step-num">Passo 01</div>
+      <span class="como-step-icon">🔍</span>
+      <h3>Captura</h3>
+      <p>IA monitora encartes físicos e digitais, redes sociais e grupos de WhatsApp continuamente.</p>
+    </div>
+    <div class="como-arrow">→</div>
+    <div class="como-step highlight">
+      <div class="como-step-num">Passo 02</div>
+      <span class="como-step-icon">⚡</span>
+      <h3>Extração</h3>
+      <p>Extrai produtos, preços e condições com 99,9% de precisão — sem intervenção manual.</p>
+    </div>
+    <div class="como-arrow" style="color:white">→</div>
+    <div class="como-step">
+      <div class="como-step-num">Passo 03</div>
+      <span class="como-step-icon">📊</span>
+      <h3>Entrega D+0</h3>
+      <p>Dados organizados no Zukkin Analytics no mesmo dia — prontos para decisão.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CANAIS -->
+<section class="canais">
+  <div class="canais-header reveal">
+    <div class="section-tag">Canais Monitorados</div>
+    <h2 class="section-title">Cobertura Total<br>de Ofertas</h2>
+    <p class="section-desc">Nenhum canal de promoção da concorrência passa despercebido.</p>
+  </div>
+  <div class="canais-grid reveal">
+    <div class="canal-card">
+      <span class="canal-icon">📰</span>
+      <h3>Encartes Físicos</h3>
+      <p>Folhetos impressos de supermercados, atacarejos e farmácias capturados e digitalizados automaticamente.</p>
+    </div>
+    <div class="canal-card">
+      <span class="canal-icon">💻</span>
+      <h3>Encartes Digitais</h3>
+      <p>Ofertas publicadas em sites e aplicativos dos concorrentes monitoradas em tempo real.</p>
+    </div>
+    <div class="canal-card">
+      <span class="canal-icon">📱</span>
+      <h3>Redes Sociais</h3>
+      <p>Instagram, Facebook e outras plataformas com promoções coletadas e estruturadas automaticamente.</p>
+    </div>
+    <div class="canal-card">
+      <span class="canal-icon">💬</span>
+      <h3>WhatsApp</h3>
+      <p>Grupos e listas de transmissão com ofertas dos concorrentes incluídos no monitoramento contínuo.</p>
+    </div>
+  </div>
+  <div class="canais-note reveal">
+    ✓ Tudo integrado dentro do <strong style="margin-left:4px;margin-right:4px">Zukkin Analytics</strong> — sem ferramentas extras, sem logins adicionais, sem complexidade.
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="comparativo">
+  <div class="comparativo-header reveal">
+    <div class="section-tag">Por que ZPromo</div>
+    <h2 class="section-title" style="color:white">Resultados que<br>Fazem a Diferença</h2>
+  </div>
+  <div class="comp-grid reveal">
+    <div class="comp-col sem">
+      <div class="comp-label">❌ Sem ZPromo</div>
+      <div class="comp-item"><span class="comp-icon">✗</span> Coleta manual lenta e cara</div>
+      <div class="comp-item"><span class="comp-icon">✗</span> Dados desatualizados e incompletos</div>
+      <div class="comp-item"><span class="comp-icon">✗</span> Erros de digitação frequentes</div>
+      <div class="comp-item"><span class="comp-icon">✗</span> Decisões por intuição e achismo</div>
+      <div class="comp-item"><span class="comp-icon">✗</span> Equipe operacional sobrecarregada</div>
+      <div class="comp-item"><span class="comp-icon">✗</span> Reação sempre depois do concorrente</div>
+    </div>
+    <div class="comp-col com">
+      <div class="comp-label">✅ Com ZPromo</div>
+      <div class="comp-item"><span class="comp-icon">✓</span> IA coleta e processa automaticamente</div>
+      <div class="comp-item"><span class="comp-icon">✓</span> Dados no mesmo dia — D+0</div>
+      <div class="comp-item"><span class="comp-icon">✓</span> 99,9% de precisão garantida</div>
+      <div class="comp-item"><span class="comp-icon">✓</span> Decisões baseadas em dados reais</div>
+      <div class="comp-item"><span class="comp-icon">✓</span> Equipe focada em estratégia</div>
+      <div class="comp-item"><span class="comp-icon">✓</span> Aja antes da concorrência</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="resultados">
+  <div class="resultados-header reveal">
+    <div class="section-tag">Já em Produção</div>
+    <h2 class="section-title">Clientes Já Usando<br>e Aprovando</h2>
+    <p class="section-desc">O ZPromo não é uma promessa — é uma solução em operação com resultados comprovados.</p>
+  </div>
+  <div class="kpis reveal">
+    <div class="kpi">
+      <div class="kpi-number">D+0</div>
+      <div class="kpi-label">Entrega de Dados</div>
+      <div class="kpi-sub">Disponível no mesmo dia</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number">99,9%</div>
+      <div class="kpi-label">Precisão da IA</div>
+      <div class="kpi-sub">Na leitura de ofertas e preços</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-number">24/7</div>
+      <div class="kpi-label">Monitoramento</div>
+      <div class="kpi-sub">Automático e sem interrupção</div>
+    </div>
+  </div>
+  <div class="testemunho reveal">
+    <div class="testemunho-quote">"</div>
+    <div>
+      <p class="testemunho-text">O grande diferencial é a velocidade. Antes levávamos dias para ter uma visão das ofertas da concorrência. Agora é quase instantâneo.</p>
+      <div class="testemunho-author">— Cliente em operação com o ZPromo</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRAÇÃO -->
+<section class="integracao">
+  <div class="integracao-header reveal">
+    <div class="section-tag">Integração Nativa</div>
+    <h2 class="section-title">Zero Fricção para<br>Sua Equipe</h2>
+    <p class="section-desc">O ZPromo opera diretamente no mesmo painel do Zukkin Analytics. Sem instalações adicionais, sem novas senhas, sem treinamentos complexos.</p>
+  </div>
+  <div class="integracao-grid reveal">
+    <div class="integ-card">
+      <span class="integ-icon">🔌</span>
+      <p>Sem ferramentas extras</p>
+    </div>
+    <div class="integ-card">
+      <span class="integ-icon">📚</span>
+      <p>Sem curva de aprendizado</p>
+    </div>
+    <div class="integ-card">
+      <span class="integ-icon">🔄</span>
+      <p>Sem mudança de processo</p>
+    </div>
+    <div class="integ-card">
+      <span class="integ-icon">📍</span>
+      <p>Dados da concorrência no mesmo lugar</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-content">
+    <div class="cta-tag">🚀 Oferta de Lançamento</div>
+    <h2>Vamos Começar?</h2>
+    <p>Agende uma demonstração personalizada e veja o ZPromo funcionando com os dados reais da sua concorrência. Condições exclusivas para os primeiros clientes.</p>
+    <div class="cta-buttons">
+      <a href="https://www.zukkin.com.br" target="_blank" class="btn-primary">Agendar Demo →</a>
+      <a href="https://www.zukkin.com.br" target="_blank" class="btn-secondary">Fale com Nosso Time</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Zukkin Brasil</strong> · Uma solução da plataforma Zukkin Analytics · <a href="https://www.zukkin.com.br" target="_blank">www.zukkin.com.br</a></p>
+  <p style="margin-top: 8px;">© 2026 Zukkin Brasil — Todos os direitos reservados</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
