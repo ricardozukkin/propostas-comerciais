@@ -595,7 +595,7 @@ footer strong { color: rgba(255,255,255,.55); }
 </div>
 </div>
 <script>
-function check(){var v=document.getElementById("pw").value;if(v==="ZPromo"){document.getElementById("gate").style.display="none";sessionStorage.setItem("zp","1")}else{document.getElementById("err").textContent="Senha incorreta. Tente novamente.";document.getElementById("pw").value="";document.getElementById("pw").focus()}}
+function check(){var v=document.getElementById("pw").value;if(v==="zpromo"){document.getElementById("gate").style.display="none";sessionStorage.setItem("zp","1")}else{document.getElementById("err").textContent="Senha incorreta. Tente novamente.";document.getElementById("pw").value="";document.getElementById("pw").focus()}}
 if(sessionStorage.getItem("zp")==="1"){document.getElementById("gate").style.display="none"}
 document.getElementById("pw").focus();
 </script>
