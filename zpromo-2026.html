@@ -4,1020 +4,329 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZPromo 2026 — Zukkin</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --red: #E8192C;
-    --red-dark: #B5121F;
-    --red-light: #FF3347;
-    --black: #0A0A0A;
-    --white: #FFFFFF;
-    --gray: #F4F4F2;
-    --gray-mid: #CCCCCC;
-    --text: #1A1A1A;
-    --text-muted: #666666;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--text);
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(232,25,44,0.3);
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: var(--white);
-    letter-spacing: -0.02em;
-  }
-  .nav-logo span { color: var(--red); }
-  .nav-badge {
-    background: var(--red);
-    color: white;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 4px 12px;
-    border-radius: 20px;
-    text-transform: uppercase;
-  }
-  .nav-cta {
-    background: var(--red);
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.85rem;
-    padding: 10px 24px;
-    border-radius: 6px;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--red-light); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: var(--black);
-    display: flex; flex-direction: column;
-    justify-content: center;
-    padding: 120px 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(232,25,44,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(232,25,44,0.06) 0%, transparent 50%);
-  }
-
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  .hero-content { position: relative; z-index: 2; max-width: 900px; }
-
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(232,25,44,0.15);
-    border: 1px solid rgba(232,25,44,0.4);
-    color: var(--red-light);
-    font-family: 'Syne', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 4px;
-    margin-bottom: 32px;
-    animation: fadeUp 0.6s ease both;
-  }
-  .hero-tag::before {
-    content: '✦';
-    color: var(--red);
-    font-size: 0.8rem;
-  }
-
-  .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 800;
-    line-height: 0.95;
-    color: var(--white);
-    letter-spacing: -0.04em;
-    margin-bottom: 12px;
-    animation: fadeUp 0.6s ease 0.1s both;
-  }
-  .hero-title .accent { color: var(--red); }
-
-  .hero-subtitle {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
-    font-weight: 600;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-    animation: fadeUp 0.6s ease 0.2s both;
-  }
-
-  .hero-desc {
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.6);
-    max-width: 560px;
-    line-height: 1.65;
-    margin-bottom: 48px;
-    font-weight: 300;
-    animation: fadeUp 0.6s ease 0.3s both;
-  }
-
-  .hero-stats {
-    display: flex; gap: 0;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    overflow: hidden;
-    width: fit-content;
-    animation: fadeUp 0.6s ease 0.4s both;
-  }
-  .hero-stat {
-    padding: 24px 36px;
-    text-align: center;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.03);
-  }
-  .hero-stat:last-child { border-right: none; }
-  .hero-stat-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.4rem;
-    font-weight: 800;
-    color: var(--red);
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-  .hero-stat-label {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.45);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 6px;
-    font-weight: 500;
-  }
-
-  .hero-scroll {
-    position: absolute; bottom: 36px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: rgba(255,255,255,0.3);
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    animation: bounce 2s infinite;
-  }
-  .scroll-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--red), transparent);
-  }
-
-  /* SECTIONS */
-  section { padding: 100px 48px; }
-
-  .section-tag {
-    display: inline-block;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--red);
-    border: 1px solid rgba(232,25,44,0.3);
-    padding: 4px 12px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    margin-bottom: 16px;
-  }
-
-  .section-desc {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    max-width: 600px;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  /* PROBLEMA */
-  .problema {
-    background: var(--gray);
-  }
-
-  .problema-header {
-    max-width: 1200px; margin: 0 auto;
-    margin-bottom: 64px;
-  }
-
-  .problema-grid {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-  }
-
-  .problema-card {
-    background: var(--white);
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-  .problema-card:hover { transform: translateY(-4px); }
-  .problema-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--red);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-  .problema-card:hover::before { transform: scaleX(1); }
-
-  .problema-icon {
-    width: 52px; height: 52px;
-    background: rgba(232,25,44,0.08);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-  }
-  .problema-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--text);
-  }
-  .problema-card p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    font-weight: 300;
-  }
-
-  /* SOLUÇÃO */
-  .solucao { background: var(--black); }
-
-  .solucao .section-title { color: var(--white); }
-  .solucao .section-desc { color: rgba(255,255,255,0.5); }
-  .solucao .section-tag { color: var(--red-light); border-color: rgba(232,25,44,0.3); }
-
-  .solucao-header {
-    max-width: 1200px; margin: 0 auto 64px;
-  }
-
-  .solucao-grid {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .solucao-card {
-    background: rgba(255,255,255,0.02);
-    padding: 40px 32px;
-    transition: background 0.3s;
-  }
-  .solucao-card:hover { background: rgba(232,25,44,0.06); }
-
-  .solucao-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 3rem;
-    font-weight: 800;
-    color: rgba(232,25,44,0.2);
-    line-height: 1;
-    margin-bottom: 20px;
-    letter-spacing: -0.04em;
-  }
-  .solucao-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-  .solucao-card p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  /* COMO FUNCIONA */
-  .como { background: var(--white); }
-
-  .como-header { max-width: 1200px; margin: 0 auto 64px; }
-
-  .como-flow {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; gap: 0;
-  }
-
-  .como-step {
-    flex: 1;
-    padding: 48px 40px;
-    background: var(--gray);
-    position: relative;
-    text-align: center;
-  }
-
-  .como-arrow {
-    width: 48px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--red);
-    font-size: 1.5rem;
-  }
-
-  .como-step-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 16px;
-  }
-  .como-step-icon {
-    font-size: 2.4rem;
-    margin-bottom: 16px;
-    display: block;
-  }
-  .como-step h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .como-step p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    font-weight: 300;
-  }
-  .como-step.highlight {
-    background: var(--red);
-  }
-  .como-step.highlight .como-step-num { color: rgba(255,255,255,0.7); }
-  .como-step.highlight h3 { color: var(--white); }
-  .como-step.highlight p { color: rgba(255,255,255,0.75); }
-
-  /* CANAIS */
-  .canais { background: var(--gray); }
-  .canais-header { max-width: 1200px; margin: 0 auto 56px; }
-
-  .canais-grid {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .canal-card {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 36px 28px;
-    text-align: center;
-    border: 1px solid transparent;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .canal-card:hover {
-    border-color: var(--red);
-    transform: translateY(-4px);
-  }
-  .canal-icon {
-    font-size: 2.4rem;
-    margin-bottom: 16px;
-    display: block;
-  }
-  .canal-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--red);
-  }
-  .canal-card p {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  .canais-note {
-    max-width: 1200px; margin: 28px auto 0;
-    background: var(--red);
-    color: var(--white);
-    border-radius: 10px;
-    padding: 20px 32px;
-    display: flex; align-items: center; gap: 12px;
-    font-size: 0.92rem;
-    font-weight: 500;
-  }
-
-  /* COMPARATIVO */
-  .comparativo { background: var(--black); padding: 100px 48px; }
-  .comparativo-header { max-width: 1200px; margin: 0 auto 56px; }
-  .comparativo .section-title { color: var(--white); }
-  .comparativo .section-tag { color: var(--red-light); border-color: rgba(232,25,44,0.3); }
-
-  .comp-grid {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .comp-col {
-    padding: 48px 40px;
-  }
-  .comp-col.sem {
-    background: rgba(255,255,255,0.04);
-  }
-  .comp-col.com {
-    background: rgba(232,25,44,0.08);
-    border: 1px solid rgba(232,25,44,0.2);
-    border-radius: 0 16px 16px 0;
-  }
-
-  .comp-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .comp-col.sem .comp-label { color: rgba(255,255,255,0.4); }
-  .comp-col.com .comp-label { color: var(--red-light); }
-
-  .comp-item {
-    display: flex; align-items: flex-start; gap: 14px;
-    margin-bottom: 20px;
-    font-size: 0.92rem;
-    line-height: 1.5;
-  }
-  .comp-col.sem .comp-item { color: rgba(255,255,255,0.45); }
-  .comp-col.com .comp-item { color: rgba(255,255,255,0.85); }
-
-  .comp-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
-
-  /* RESULTADOS */
-  .resultados { background: var(--white); }
-  .resultados-header { max-width: 1200px; margin: 0 auto 56px; }
-
-  .kpis {
-    max-width: 1200px; margin: 0 auto 48px;
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .kpi {
-    border: 1px solid var(--gray-mid);
-    border-radius: 12px;
-    padding: 40px 32px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .kpi:hover {
-    border-color: var(--red);
-    transform: translateY(-4px);
-  }
-  .kpi-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--red);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    margin-bottom: 8px;
-  }
-  .kpi-label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .kpi-sub {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    margin-top: 6px;
-  }
-
-  /* TESTEMUNHO */
-  .testemunho {
-    max-width: 1200px; margin: 0 auto;
-    background: var(--gray);
-    border-radius: 16px;
-    padding: 48px 56px;
-    display: grid; grid-template-columns: auto 1fr;
-    gap: 40px; align-items: center;
-  }
-  .testemunho-quote {
-    font-size: 4rem;
-    color: var(--red);
-    font-family: 'Syne', sans-serif;
-    line-height: 1;
-  }
-  .testemunho-text {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.65;
-    font-weight: 300;
-    margin-bottom: 16px;
-  }
-  .testemunho-author {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  /* INTEGRACAO */
-  .integracao { background: var(--gray); padding: 100px 48px; }
-  .integracao-header { max-width: 1200px; margin: 0 auto 56px; }
-
-  .integracao-grid {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .integ-card {
-    background: var(--white);
-    border-radius: 10px;
-    padding: 28px 24px;
-    text-align: center;
-    border-top: 3px solid var(--red);
-  }
-  .integ-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
-  .integ-card p {
-    font-size: 0.85rem;
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  /* CTA */
-  .cta {
-    background: var(--red);
-    padding: 100px 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .cta::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-  }
-  .cta-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
-
-  .cta-tag {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    color: white;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 4px;
-    margin-bottom: 24px;
-  }
-  .cta h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    margin-bottom: 20px;
-  }
-  .cta p {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.65;
-    margin-bottom: 40px;
-    font-weight: 300;
-  }
-
-  .cta-buttons {
-    display: flex; gap: 16px;
-    justify-content: center; flex-wrap: wrap;
-  }
-  .btn-primary {
-    background: var(--white);
-    color: var(--red);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 16px 32px;
-    border-radius: 8px;
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-  }
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid rgba(255,255,255,0.5);
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 14px 32px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: border-color 0.2s;
-  }
-  .btn-secondary:hover { border-color: white; }
-
-  /* FOOTER */
-  footer {
-    background: var(--black);
-    color: rgba(255,255,255,0.35);
-    text-align: center;
-    padding: 36px 48px;
-    font-size: 0.82rem;
-  }
-  footer a { color: var(--red); text-decoration: none; }
-  footer strong { color: rgba(255,255,255,0.6); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    section { padding: 70px 24px; }
-    .hero-stats { flex-direction: column; width: 100%; }
-    .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .problema-grid, .solucao-grid, .canais-grid, .integracao-grid { grid-template-columns: 1fr; }
-    .comp-grid { grid-template-columns: 1fr; }
-    .como-flow { flex-direction: column; }
-    .como-arrow { transform: rotate(90deg); }
-    .kpis { grid-template-columns: 1fr; }
-    .testemunho { grid-template-columns: 1fr; gap: 16px; }
-  }
+:root{--crimson:#C8102E;--crimson-light:#E8192C;--gold:#C9A84C;--gold-light:#E8C96A;--ink:#0C0C0C;--ink-soft:#1A1A1A;--white:#FFFFFF;--off-white:#F8F6F1;--stone:#E8E4DC;--muted:#888480;--text:#2A2520}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--off-white);color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:68px;background:rgba(12,12,12,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.2)}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;color:var(--white);letter-spacing:.02em}
+.nav-logo em{color:var(--gold);font-style:normal}
+.nav-pill{font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:5px 14px;border-radius:2px}
+.nav-wa{display:flex;align-items:center;gap:8px;background:#25D366;color:white;text-decoration:none;font-size:.82rem;font-weight:600;padding:10px 22px;border-radius:4px;letter-spacing:.02em;transition:opacity .2s,transform .2s}
+.nav-wa:hover{opacity:.9;transform:translateY(-1px)}
+.nav-wa svg{width:16px;height:16px;fill:white}
+.hero{min-height:100vh;background:var(--ink);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:68px 0 0;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 50%,rgba(200,16,46,.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 10% 80%,rgba(201,168,76,.05) 0%,transparent 50%)}
+.hero-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px}
+.hero-left{padding:80px 56px 80px 72px;position:relative;z-index:2}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:36px;opacity:0;animation:fadeUp .7s ease .1s forwards}
+.eyebrow-line{width:32px;height:1px;background:var(--gold)}
+.eyebrow-text{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,5.5vw,6rem);font-weight:900;line-height:.92;color:var(--white);letter-spacing:-.01em;margin-bottom:8px;opacity:0;animation:fadeUp .7s ease .2s forwards}
+.hero-title .red{color:var(--crimson-light)}
+.hero-title .italic{font-style:italic;color:rgba(255,255,255,.55)}
+.hero-tagline{font-size:clamp(.95rem,1.5vw,1.15rem);color:rgba(255,255,255,.45);font-weight:300;line-height:1.7;max-width:440px;margin:28px 0 48px;opacity:0;animation:fadeUp .7s ease .35s forwards}
+.hero-tagline strong{color:rgba(255,255,255,.8);font-weight:500}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .45s forwards}
+.btn-gold{display:flex;align-items:center;gap:10px;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:600;font-size:.88rem;letter-spacing:.05em;text-transform:uppercase;padding:16px 28px;border-radius:3px;transition:background .2s,transform .2s}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-ghost{display:flex;align-items:center;gap:10px;background:transparent;color:rgba(255,255,255,.6);text-decoration:none;font-weight:500;font-size:.88rem;letter-spacing:.03em;padding:16px 28px;border-radius:3px;border:1px solid rgba(255,255,255,.15);transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);color:white}
+.hero-right{height:100%;display:flex;flex-direction:column;justify-content:center;padding:80px 72px 80px 40px;position:relative;z-index:2;border-left:1px solid rgba(255,255,255,.06)}
+.hero-stats{display:flex;flex-direction:column;gap:2px;opacity:0;animation:fadeUp .7s ease .3s forwards}
+.hero-stat{display:flex;align-items:center;padding:28px 32px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);gap:24px;transition:background .3s}
+.hero-stat:hover{background:rgba(200,16,46,.06)}
+.hero-stat:first-child{border-top-left-radius:8px;border-top-right-radius:8px}
+.hero-stat:last-child{border-bottom-left-radius:8px;border-bottom-right-radius:8px}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--crimson-light);line-height:1;min-width:120px;letter-spacing:-.02em}
+.stat-info{border-left:1px solid rgba(255,255,255,.08);padding-left:24px}
+.stat-label{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:4px}
+.stat-desc{font-size:.9rem;color:rgba(255,255,255,.65);font-weight:300}
+.sec-label{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.label-line{width:28px;height:1px;background:var(--crimson)}
+.label-text{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson)}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.5vw,3.6rem);font-weight:900;line-height:1.05;letter-spacing:-.01em;color:var(--text);margin-bottom:18px}
+.sec-title em{font-style:italic;color:var(--crimson)}
+.sec-desc{font-size:1rem;color:var(--muted);line-height:1.75;max-width:540px;font-weight:300}
+.problema-wrap{background:var(--ink-soft)}
+.problema-inner{max-width:1400px;margin:0 auto;padding:110px 72px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.problema-cards{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.prob-card{background:rgba(255,255,255,.03);padding:36px 32px;border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;transition:background .3s}
+.prob-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--crimson),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.prob-card:hover{background:rgba(200,16,46,.05)}
+.prob-card:hover::after{transform:scaleX(1)}
+.prob-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:rgba(255,255,255,.04);line-height:1;margin-bottom:20px}
+.prob-card h3{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:10px}
+.prob-card p{font-size:.85rem;color:rgba(255,255,255,.4);line-height:1.7;font-weight:300}
+.solucao-wrap{background:var(--off-white)}
+.solucao-inner{max-width:1400px;margin:0 auto;padding:110px 72px}
+.solucao-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:72px;align-items:end}
+.solucao-quote{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;color:var(--text);line-height:1.55;padding-left:28px;border-left:3px solid var(--crimson)}
+.solucao-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--stone);border-radius:12px;overflow:hidden}
+.sol-card{padding:40px 32px;border-right:1px solid var(--stone);background:white;transition:background .3s;position:relative}
+.sol-card:last-child{border-right:none}
+.sol-card:hover{background:var(--off-white)}
+.sol-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--crimson);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.sol-card:hover::before{transform:scaleX(1)}
+.sol-icon{font-size:2rem;margin-bottom:20px;display:block}
+.sol-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:12px}
+.sol-card p{font-size:.83rem;color:var(--muted);line-height:1.7;font-weight:300}
+.processo-wrap{background:var(--crimson)}
+.processo-inner{max-width:1400px;margin:0 auto;padding:90px 72px}
+.processo-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(0,0,0,.15);border-radius:10px;overflow:hidden;margin-top:52px}
+.proc-step{background:rgba(255,255,255,.07);padding:48px 40px;position:relative}
+.proc-step::before{content:attr(data-n);position:absolute;top:32px;right:32px;font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:rgba(255,255,255,.05);line-height:1}
+.proc-icon{font-size:2.2rem;margin-bottom:20px;display:block}
+.proc-step h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:white;margin-bottom:12px}
+.proc-step p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.7;font-weight:300}
+.proc-badge{display:inline-block;margin-top:20px;background:rgba(255,255,255,.15);color:white;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:2px}
+.canais-wrap{background:var(--white)}
+.canais-inner{max-width:1400px;margin:0 auto;padding:110px 72px}
+.canais-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px}
+.canais-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.canal{display:flex;gap:20px;padding:32px 28px;border:1px solid var(--stone);border-radius:8px;background:var(--off-white);transition:border-color .3s,transform .3s,background .3s}
+.canal:hover{border-color:var(--crimson);transform:translateY(-3px);background:white}
+.canal-icon-wrap{width:52px;height:52px;flex-shrink:0;background:white;border:1px solid var(--stone);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.canal-body h3{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.canal-body p{font-size:.8rem;color:var(--muted);line-height:1.65;font-weight:300}
+.canais-note{margin-top:28px;background:var(--ink);color:rgba(255,255,255,.7);border-radius:8px;padding:18px 28px;font-size:.88rem;display:flex;align-items:center;gap:12px}
+.canais-note strong{color:var(--gold)}
+.comp-wrap{background:var(--off-white)}
+.comp-inner{max-width:1400px;margin:0 auto;padding:110px 72px}
+.comp-header{margin-bottom:64px}
+.comp-table{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.comp-side{border-radius:10px;padding:48px 40px}
+.comp-side.sem{background:white;border:1px solid var(--stone)}
+.comp-side.com{background:var(--ink);border:1px solid rgba(201,168,76,.2)}
+.comp-head{display:flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid}
+.comp-side.sem .comp-head{color:var(--muted);border-color:var(--stone)}
+.comp-side.com .comp-head{color:var(--gold);border-color:rgba(201,168,76,.2)}
+.comp-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;font-size:.92rem;line-height:1.5}
+.comp-side.sem .comp-item{color:var(--muted)}
+.comp-side.com .comp-item{color:rgba(255,255,255,.75)}
+.comp-x{color:#CC0000;font-size:1rem}
+.comp-check{color:#22C55E;font-size:1rem}
+.kpis-wrap{background:var(--ink)}
+.kpis-inner{max-width:1400px;margin:0 auto;padding:110px 72px}
+.kpis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden}
+.kpi{padding:52px 40px;text-align:center;background:rgba(255,255,255,.02);border-right:1px solid rgba(255,255,255,.06);transition:background .3s}
+.kpi:last-child{border-right:none}
+.kpi:hover{background:rgba(200,16,46,.07)}
+.kpi-val{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:900;color:var(--crimson-light);line-height:1;letter-spacing:-.03em;margin-bottom:12px}
+.kpi-name{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px}
+.kpi-sub{font-size:.82rem;color:rgba(255,255,255,.45);font-weight:300}
+.depo{margin-top:56px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:52px 56px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+.depo-mark{font-family:'Playfair Display',serif;font-size:6rem;font-weight:900;color:var(--crimson);line-height:.7}
+.depo-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:16px}
+.depo-author{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.cta-wrap{background:var(--off-white);overflow:hidden}
+.cta-inner{max-width:1400px;margin:0 auto;padding:110px 72px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.cta-offer{background:var(--ink);border-radius:12px;padding:48px 40px;border:1px solid rgba(201,168,76,.2)}
+.offer-badge{display:inline-block;background:var(--gold);color:var(--ink);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;border-radius:2px;margin-bottom:24px}
+.offer-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:white;margin-bottom:12px;line-height:1.2}
+.offer-desc{font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.7;font-weight:300;margin-bottom:32px}
+.offer-btns{display:flex;flex-direction:column;gap:12px}
+.btn-wa-main{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:white;text-decoration:none;font-weight:600;font-size:.9rem;letter-spacing:.04em;padding:18px 28px;border-radius:6px;transition:opacity .2s,transform .2s}
+.btn-wa-main:hover{opacity:.9;transform:translateY(-2px)}
+.btn-wa-main svg{width:20px;height:20px;fill:white;flex-shrink:0}
+.btn-wa-sec{display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:rgba(255,255,255,.55);text-decoration:none;font-size:.85rem;font-weight:500;padding:15px 28px;border-radius:6px;border:1px solid rgba(255,255,255,.12);transition:border-color .2s,color .2s}
+.btn-wa-sec:hover{border-color:rgba(255,255,255,.3);color:white}
+footer{background:var(--ink);color:rgba(255,255,255,.25);text-align:center;padding:36px 48px;font-size:.78rem;border-top:1px solid rgba(255,255,255,.05)}
+footer a{color:var(--gold);text-decoration:none}
+footer strong{color:rgba(255,255,255,.5)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:1024px){.hero{grid-template-columns:1fr}.hero-right{border-left:none;border-top:1px solid rgba(255,255,255,.06);padding:40px 56px 80px}.problema-inner,.solucao-header,.canais-header,.cta-inner{grid-template-columns:1fr;gap:40px}.solucao-grid,.processo-steps{grid-template-columns:1fr 1fr}.canais-grid,.kpis-grid,.comp-table{grid-template-columns:1fr}.depo{grid-template-columns:1fr;gap:16px}nav{padding:0 24px}}
+@media(max-width:640px){.hero-left{padding:60px 24px}.solucao-grid,.processo-steps,.problema-cards{grid-template-columns:1fr}.problema-inner,.solucao-inner,.processo-inner,.canais-inner,.comp-inner,.kpis-inner,.cta-inner{padding:70px 24px}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">Z<span>Promo</span></div>
-  <div class="nav-badge">✦ Novidade 2026</div>
-  <a href="#cta" class="nav-cta">Agendar Demo →</a>
+  <div class="nav-logo">Z<em>Promo</em></div>
+  <div class="nav-pill">Novidade 2026</div>
+  <a href="https://wa.me/5513981112221?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20demo%20do%20ZPromo." class="nav-wa" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Falar no WhatsApp
+  </a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Novidade 2026 — Zukkin Analytics</div>
-    <h1 class="hero-title">
-      ZPromo<br>
-      <span class="accent">Inteligência</span><br>
-      de Ofertas
-    </h1>
-    <p class="hero-subtitle">Monitoramento Inteligente da Concorrência</p>
-    <p class="hero-desc">
-      IA que transforma encartes, redes sociais e WhatsApp em dados estratégicos em tempo real — para decisões de pricing mais rápidas e precisas.
-    </p>
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Zukkin Analytics · Novidade 2026</span></div>
+    <h1 class="hero-title"><span class="red">ZPromo</span><br>Inteligência<br><span class="italic">de Ofertas</span></h1>
+    <p class="hero-tagline"><strong>Pare de perder vendas para a concorrência.</strong> Nossa IA monitora encartes, redes sociais e WhatsApp em tempo real — e entrega os dados no mesmo dia.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/5513981112221?text=Ol%C3%A1!%20Quero%20agendar%20uma%20demo%20do%20ZPromo%20agora." target="_blank" class="btn-gold">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quero uma Demo Agora
+      </a>
+      <a href="#solucao" class="btn-ghost">Ver a Solução ↓</a>
+    </div>
+  </div>
+  <div class="hero-right">
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-number">D+0</div>
-        <div class="hero-stat-label">Entrega de Dados</div>
+      <div class="hero-stat"><div class="stat-num">D+0</div><div class="stat-info"><div class="stat-label">Entrega de Dados</div><div class="stat-desc">Disponível no mesmo dia da captura</div></div></div>
+      <div class="hero-stat"><div class="stat-num">99,9%</div><div class="stat-info"><div class="stat-label">Precisão com IA</div><div class="stat-desc">Leitura validada de produtos e preços</div></div></div>
+      <div class="hero-stat"><div class="stat-num">24/7</div><div class="stat-info"><div class="stat-label">Monitoramento</div><div class="stat-desc">Automático, contínuo, sem interrupção</div></div></div>
+      <div class="hero-stat"><div class="stat-num">4</div><div class="stat-info"><div class="stat-label">Canais Integrados</div><div class="stat-desc">Encartes, digitais, redes e WhatsApp</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="problema-wrap">
+  <div class="problema-inner">
+    <div class="reveal">
+      <div class="sec-label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text" style="color:var(--gold)">O Problema</span></div>
+      <h2 class="sec-title" style="color:white">Você está<br><em style="color:var(--crimson-light)">perdendo dinheiro</em><br>agora.</h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,.4);margin-top:16px">Monitoramento manual é lento, caro e cheio de erros. Enquanto sua equipe coleta planilhas, o concorrente já virou o jogo.</p>
+    </div>
+    <div class="problema-cards reveal">
+      <div class="prob-card"><div class="prob-num">01</div><h3>Coleta Manual</h3><p>Horas desperdiçadas coletando encartes físicos e digitais — trabalho repetitivo que poderia ser 100% automatizado.</p></div>
+      <div class="prob-card"><div class="prob-num">02</div><h3>Dados Atrasados</h3><p>As informações chegam quando a promoção do concorrente já acabou. Você reage tarde e perde vendas.</p></div>
+      <div class="prob-card"><div class="prob-num">03</div><h3>Erros Humanos</h3><p>Digitação errada, produtos trocados, preços incorretos. Cada erro compromete toda a sua tomada de decisão.</p></div>
+      <div class="prob-card"><div class="prob-num">04</div><h3>Perda de Margem</h3><p>Sem dados reais, decisões são tomadas por intuição — gerando erosão de margem que poderia ser evitada.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="solucao-wrap" id="solucao">
+  <div class="solucao-inner">
+    <div class="solucao-header reveal">
+      <div>
+        <div class="sec-label"><div class="label-line"></div><span class="label-text">A Solução</span></div>
+        <h2 class="sec-title">IA que trabalha<br><em>enquanto você dorme.</em></h2>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number">99,9%</div>
-        <div class="hero-stat-label">Precisão com IA</div>
+      <p class="solucao-quote">O ZPromo coleta, lê e organiza automaticamente todas as ofertas da concorrência — dados precisos, estruturados e prontos para decisão.</p>
+    </div>
+    <div class="solucao-grid reveal">
+      <div class="sol-card"><span class="sol-icon">⚡</span><h3>Rapidez Extrema</h3><p>Coleta hoje, dados disponíveis no mesmo dia (D+0). Aja antes da concorrência, não depois.</p></div>
+      <div class="sol-card"><span class="sol-icon">🎯</span><h3>IA Validada</h3><p>99,9% de precisão na leitura de produtos, preços e condições. Sem erros de digitação, sem dados incompletos.</p></div>
+      <div class="sol-card"><span class="sol-icon">📊</span><h3>Insight Competitivo</h3><p>Saiba quem vende o quê, por quanto e em qual canal — tudo em um único painel consolidado.</p></div>
+      <div class="sol-card"><span class="sol-icon">🔗</span><h3>Vínculo Automático</h3><p>Match inteligente com seu catálogo para comparação direta com sua estratégia de preços.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="processo-wrap">
+  <div class="processo-inner">
+    <div class="reveal">
+      <div class="sec-label"><div class="label-line" style="background:rgba(255,255,255,.4)"></div><span class="label-text" style="color:rgba(255,255,255,.6)">Como Funciona</span></div>
+      <h2 class="sec-title" style="color:white">3 passos.<br>Tudo automatizado.</h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,.6)">Do monitoramento à entrega no seu painel — sem nenhuma intervenção da sua equipe.</p>
+    </div>
+    <div class="processo-steps reveal">
+      <div class="proc-step" data-n="01"><span class="proc-icon">🔍</span><h3>Captura</h3><p>A IA monitora continuamente encartes físicos e digitais, redes sociais e grupos de WhatsApp da concorrência.</p><span class="proc-badge">Automático</span></div>
+      <div class="proc-step" data-n="02"><span class="proc-icon">🧠</span><h3>Extração</h3><p>Extrai produtos, preços e condições com 99,9% de precisão. Nenhuma digitação manual, nenhum erro humano.</p><span class="proc-badge">99,9% Precisão</span></div>
+      <div class="proc-step" data-n="03"><span class="proc-icon">📬</span><h3>Entrega D+0</h3><p>Dados organizados no Zukkin Analytics no mesmo dia. Na manhã seguinte, você já tem o panorama completo.</p><span class="proc-badge">Mesmo Dia</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="canais-wrap">
+  <div class="canais-inner">
+    <div class="canais-header reveal">
+      <div>
+        <div class="sec-label"><div class="label-line"></div><span class="label-text">Canais Monitorados</span></div>
+        <h2 class="sec-title">Cobertura total.<br><em>Nenhuma oferta escapa.</em></h2>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number">24/7</div>
-        <div class="hero-stat-label">Monitoramento</div>
+      <p class="sec-desc">Todos os canais onde a concorrência publica promoções — físicos e digitais — monitorados de forma integrada e automática.</p>
+    </div>
+    <div class="canais-grid reveal">
+      <div class="canal"><div class="canal-icon-wrap">📰</div><div class="canal-body"><h3>Encartes Físicos</h3><p>Folhetos impressos de supermercados, atacarejos e farmácias capturados e digitalizados automaticamente.</p></div></div>
+      <div class="canal"><div class="canal-icon-wrap">💻</div><div class="canal-body"><h3>Encartes Digitais</h3><p>Ofertas publicadas em sites e aplicativos dos concorrentes monitoradas em tempo real.</p></div></div>
+      <div class="canal"><div class="canal-icon-wrap">📱</div><div class="canal-body"><h3>Redes Sociais</h3><p>Instagram, Facebook e outras plataformas com promoções coletadas e estruturadas automaticamente.</p></div></div>
+      <div class="canal"><div class="canal-icon-wrap">💬</div><div class="canal-body"><h3>WhatsApp</h3><p>Grupos e listas de transmissão com ofertas dos concorrentes incluídos no monitoramento contínuo.</p></div></div>
+    </div>
+    <div class="canais-note reveal">✦ &nbsp;Tudo integrado no <strong>Zukkin Analytics</strong> — sem ferramentas extras, sem logins adicionais, sem complexidade.</div>
+  </div>
+</div>
+
+<div class="comp-wrap">
+  <div class="comp-inner">
+    <div class="comp-header reveal">
+      <div class="sec-label"><div class="label-line"></div><span class="label-text">Por Que ZPromo</span></div>
+      <h2 class="sec-title">A diferença entre<br><em>liderar e reagir.</em></h2>
+    </div>
+    <div class="comp-table reveal">
+      <div class="comp-side sem">
+        <div class="comp-head">❌ &nbsp;Sem ZPromo</div>
+        <div class="comp-item"><span class="comp-x">✗</span> Coleta manual lenta e cara</div>
+        <div class="comp-item"><span class="comp-x">✗</span> Dados desatualizados e incompletos</div>
+        <div class="comp-item"><span class="comp-x">✗</span> Erros de digitação frequentes</div>
+        <div class="comp-item"><span class="comp-x">✗</span> Decisões por intuição e achismo</div>
+        <div class="comp-item"><span class="comp-x">✗</span> Equipe sobrecarregada com operacional</div>
+        <div class="comp-item"><span class="comp-x">✗</span> Reação sempre depois do concorrente</div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number">4</div>
-        <div class="hero-stat-label">Canais Integrados</div>
+      <div class="comp-side com">
+        <div class="comp-head">✅ &nbsp;Com ZPromo</div>
+        <div class="comp-item"><span class="comp-check">✓</span> IA coleta e processa automaticamente</div>
+        <div class="comp-item"><span class="comp-check">✓</span> Dados no mesmo dia — D+0</div>
+        <div class="comp-item"><span class="comp-check">✓</span> 99,9% de precisão garantida</div>
+        <div class="comp-item"><span class="comp-check">✓</span> Decisões baseadas em dados reais</div>
+        <div class="comp-item"><span class="comp-check">✓</span> Equipe focada em estratégia</div>
+        <div class="comp-item"><span class="comp-check">✓</span> Aja antes da concorrência</div>
       </div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Explorar
-  </div>
-</section>
+</div>
 
-<!-- PROBLEMA -->
-<section class="problema">
-  <div class="problema-header reveal">
-    <div class="section-tag">O Desafio</div>
-    <h2 class="section-title">Sua equipe ainda monitora<br>preços assim?</h2>
-    <p class="section-desc">A gestão manual é lenta, cara e cheia de brechas para erros. O resultado: decisões por intuição, perda de margem e reações sempre tarde demais.</p>
-  </div>
-  <div class="problema-grid">
-    <div class="problema-card reveal">
-      <div class="problema-icon">🕐</div>
-      <h3>Coleta Manual</h3>
-      <p>Equipes inteiras gastando horas coletando preços de encartes físicos e digitais — trabalho repetitivo que poderia ser automatizado.</p>
+<div class="kpis-wrap">
+  <div class="kpis-inner">
+    <div class="reveal">
+      <div class="sec-label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text" style="color:var(--gold)">Já em Produção</span></div>
+      <h2 class="sec-title" style="color:white">Resultados que<br><em style="color:var(--crimson-light)">falam por si.</em></h2>
     </div>
-    <div class="problema-card reveal">
-      <div class="problema-icon">📉</div>
-      <h3>Dados Atrasados</h3>
-      <p>As informações chegam quando a promoção do concorrente já acabou. Você reage tarde — e perde vendas que poderia ter conquistado.</p>
+    <div class="kpis-grid reveal">
+      <div class="kpi"><div class="kpi-val">D+0</div><div class="kpi-name">Entrega de Dados</div><div class="kpi-sub">Disponível no mesmo dia da captura</div></div>
+      <div class="kpi"><div class="kpi-val">99,9%</div><div class="kpi-name">Precisão da IA</div><div class="kpi-sub">Na leitura de ofertas, produtos e preços</div></div>
+      <div class="kpi"><div class="kpi-val">24/7</div><div class="kpi-name">Monitoramento</div><div class="kpi-sub">Automático, contínuo e sem interrupção</div></div>
     </div>
-    <div class="problema-card reveal">
-      <div class="problema-icon">⚠️</div>
-      <h3>Erros Humanos</h3>
-      <p>Digitação incorreta, produtos trocados, preços errados na planilha. Cada erro compromete a qualidade das suas decisões comerciais.</p>
-    </div>
-    <div class="problema-card reveal">
-      <div class="problema-icon">💸</div>
-      <h3>Perda de Margem</h3>
-      <p>Sem dados confiáveis em tempo real, decisões são tomadas por intuição — gerando perda de receita e erosão de margem evitáveis.</p>
+    <div class="depo reveal">
+      <div class="depo-mark">"</div>
+      <div>
+        <p class="depo-text">O grande diferencial é a velocidade. Antes levávamos dias para ter uma visão das ofertas da concorrência. Agora é quase instantâneo.</p>
+        <div class="depo-author">— Cliente em operação com o ZPromo</div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- SOLUÇÃO -->
-<section class="solucao">
-  <div class="solucao-header reveal">
-    <div class="section-tag">A Solução</div>
-    <h2 class="section-title" style="color:white">IA Monitorando<br>em Tempo Real</h2>
-    <p class="section-desc">O ZPromo coleta, lê e organiza automaticamente todas as ofertas da concorrência — entregando dados precisos e estruturados prontos para decisão.</p>
-  </div>
-  <div class="solucao-grid reveal">
-    <div class="solucao-card">
-      <div class="solucao-num">01</div>
-      <h3>Rapidez Extrema</h3>
-      <p>Coleta hoje, dados disponíveis no mesmo dia (D+0) — para você agir antes da concorrência.</p>
+<div class="cta-wrap" id="cta">
+  <div class="cta-inner">
+    <div class="cta-left reveal">
+      <div class="sec-label"><div class="label-line"></div><span class="label-text">Próximo Passo</span></div>
+      <h2 class="sec-title" style="font-size:clamp(2.5rem,4vw,4rem)">Pronto para<br><em>parar de perder</em><br>para a concorrência?</h2>
+      <p class="sec-desc" style="margin-top:20px">Condições especiais de lançamento para os primeiros clientes. Fale agora com nosso time e garanta a sua oferta exclusiva.</p>
     </div>
-    <div class="solucao-card">
-      <div class="solucao-num">02</div>
-      <h3>IA Validada</h3>
-      <p>99,9% de precisão na leitura de produtos, preços e condições das ofertas. Sem erros, sem dados incompletos.</p>
-    </div>
-    <div class="solucao-card">
-      <div class="solucao-num">03</div>
-      <h3>Insight Competitivo</h3>
-      <p>Monitore a concorrência em escala. Saiba quem vende o quê, por quanto, e em qual canal — em um único painel.</p>
-    </div>
-    <div class="solucao-card">
-      <div class="solucao-num">04</div>
-      <h3>Vínculo Automático</h3>
-      <p>Match inteligente de produtos com seu catálogo para comparação direta com sua estratégia de preços.</p>
+    <div class="cta-offer reveal">
+      <div class="offer-badge">🚀 Oferta de Lançamento 2026</div>
+      <h3 class="offer-title">Agende sua demonstração personalizada</h3>
+      <p class="offer-desc">Veja o ZPromo funcionando ao vivo com dados reais da sua concorrência. Nossa equipe monta uma apresentação personalizada para o seu segmento.</p>
+      <div class="offer-btns">
+        <a href="https://wa.me/5513981112221?text=Ol%C3%A1!%20Quero%20agendar%20uma%20demo%20do%20ZPromo%20e%20saber%20sobre%20as%20condi%C3%A7%C3%B5es%20de%20lan%C3%A7amento." target="_blank" class="btn-wa-main">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Quero Agendar uma Demo
+        </a>
+        <a href="https://wa.me/5513981112221?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20ZPromo%20e%20gostaria%20de%20conversar." target="_blank" class="btn-wa-sec">💬 &nbsp;Tirar Dúvidas pelo WhatsApp</a>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- COMO FUNCIONA -->
-<section class="como">
-  <div class="como-header reveal">
-    <div class="section-tag">Como Funciona</div>
-    <h2 class="section-title">3 Passos,<br>Tudo Automatizado</h2>
-    <p class="section-desc">Do monitoramento à entrega no seu painel, o ZPromo opera de forma completamente autônoma.</p>
-  </div>
-  <div class="como-flow reveal">
-    <div class="como-step">
-      <div class="como-step-num">Passo 01</div>
-      <span class="como-step-icon">🔍</span>
-      <h3>Captura</h3>
-      <p>IA monitora encartes físicos e digitais, redes sociais e grupos de WhatsApp continuamente.</p>
-    </div>
-    <div class="como-arrow">→</div>
-    <div class="como-step highlight">
-      <div class="como-step-num">Passo 02</div>
-      <span class="como-step-icon">⚡</span>
-      <h3>Extração</h3>
-      <p>Extrai produtos, preços e condições com 99,9% de precisão — sem intervenção manual.</p>
-    </div>
-    <div class="como-arrow" style="color:white">→</div>
-    <div class="como-step">
-      <div class="como-step-num">Passo 03</div>
-      <span class="como-step-icon">📊</span>
-      <h3>Entrega D+0</h3>
-      <p>Dados organizados no Zukkin Analytics no mesmo dia — prontos para decisão.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CANAIS -->
-<section class="canais">
-  <div class="canais-header reveal">
-    <div class="section-tag">Canais Monitorados</div>
-    <h2 class="section-title">Cobertura Total<br>de Ofertas</h2>
-    <p class="section-desc">Nenhum canal de promoção da concorrência passa despercebido.</p>
-  </div>
-  <div class="canais-grid reveal">
-    <div class="canal-card">
-      <span class="canal-icon">📰</span>
-      <h3>Encartes Físicos</h3>
-      <p>Folhetos impressos de supermercados, atacarejos e farmácias capturados e digitalizados automaticamente.</p>
-    </div>
-    <div class="canal-card">
-      <span class="canal-icon">💻</span>
-      <h3>Encartes Digitais</h3>
-      <p>Ofertas publicadas em sites e aplicativos dos concorrentes monitoradas em tempo real.</p>
-    </div>
-    <div class="canal-card">
-      <span class="canal-icon">📱</span>
-      <h3>Redes Sociais</h3>
-      <p>Instagram, Facebook e outras plataformas com promoções coletadas e estruturadas automaticamente.</p>
-    </div>
-    <div class="canal-card">
-      <span class="canal-icon">💬</span>
-      <h3>WhatsApp</h3>
-      <p>Grupos e listas de transmissão com ofertas dos concorrentes incluídos no monitoramento contínuo.</p>
-    </div>
-  </div>
-  <div class="canais-note reveal">
-    ✓ Tudo integrado dentro do <strong style="margin-left:4px;margin-right:4px">Zukkin Analytics</strong> — sem ferramentas extras, sem logins adicionais, sem complexidade.
-  </div>
-</section>
-
-<!-- COMPARATIVO -->
-<section class="comparativo">
-  <div class="comparativo-header reveal">
-    <div class="section-tag">Por que ZPromo</div>
-    <h2 class="section-title" style="color:white">Resultados que<br>Fazem a Diferença</h2>
-  </div>
-  <div class="comp-grid reveal">
-    <div class="comp-col sem">
-      <div class="comp-label">❌ Sem ZPromo</div>
-      <div class="comp-item"><span class="comp-icon">✗</span> Coleta manual lenta e cara</div>
-      <div class="comp-item"><span class="comp-icon">✗</span> Dados desatualizados e incompletos</div>
-      <div class="comp-item"><span class="comp-icon">✗</span> Erros de digitação frequentes</div>
-      <div class="comp-item"><span class="comp-icon">✗</span> Decisões por intuição e achismo</div>
-      <div class="comp-item"><span class="comp-icon">✗</span> Equipe operacional sobrecarregada</div>
-      <div class="comp-item"><span class="comp-icon">✗</span> Reação sempre depois do concorrente</div>
-    </div>
-    <div class="comp-col com">
-      <div class="comp-label">✅ Com ZPromo</div>
-      <div class="comp-item"><span class="comp-icon">✓</span> IA coleta e processa automaticamente</div>
-      <div class="comp-item"><span class="comp-icon">✓</span> Dados no mesmo dia — D+0</div>
-      <div class="comp-item"><span class="comp-icon">✓</span> 99,9% de precisão garantida</div>
-      <div class="comp-item"><span class="comp-icon">✓</span> Decisões baseadas em dados reais</div>
-      <div class="comp-item"><span class="comp-icon">✓</span> Equipe focada em estratégia</div>
-      <div class="comp-item"><span class="comp-icon">✓</span> Aja antes da concorrência</div>
-    </div>
-  </div>
-</section>
-
-<!-- RESULTADOS -->
-<section class="resultados">
-  <div class="resultados-header reveal">
-    <div class="section-tag">Já em Produção</div>
-    <h2 class="section-title">Clientes Já Usando<br>e Aprovando</h2>
-    <p class="section-desc">O ZPromo não é uma promessa — é uma solução em operação com resultados comprovados.</p>
-  </div>
-  <div class="kpis reveal">
-    <div class="kpi">
-      <div class="kpi-number">D+0</div>
-      <div class="kpi-label">Entrega de Dados</div>
-      <div class="kpi-sub">Disponível no mesmo dia</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-number">99,9%</div>
-      <div class="kpi-label">Precisão da IA</div>
-      <div class="kpi-sub">Na leitura de ofertas e preços</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-number">24/7</div>
-      <div class="kpi-label">Monitoramento</div>
-      <div class="kpi-sub">Automático e sem interrupção</div>
-    </div>
-  </div>
-  <div class="testemunho reveal">
-    <div class="testemunho-quote">"</div>
-    <div>
-      <p class="testemunho-text">O grande diferencial é a velocidade. Antes levávamos dias para ter uma visão das ofertas da concorrência. Agora é quase instantâneo.</p>
-      <div class="testemunho-author">— Cliente em operação com o ZPromo</div>
-    </div>
-  </div>
-</section>
-
-<!-- INTEGRAÇÃO -->
-<section class="integracao">
-  <div class="integracao-header reveal">
-    <div class="section-tag">Integração Nativa</div>
-    <h2 class="section-title">Zero Fricção para<br>Sua Equipe</h2>
-    <p class="section-desc">O ZPromo opera diretamente no mesmo painel do Zukkin Analytics. Sem instalações adicionais, sem novas senhas, sem treinamentos complexos.</p>
-  </div>
-  <div class="integracao-grid reveal">
-    <div class="integ-card">
-      <span class="integ-icon">🔌</span>
-      <p>Sem ferramentas extras</p>
-    </div>
-    <div class="integ-card">
-      <span class="integ-icon">📚</span>
-      <p>Sem curva de aprendizado</p>
-    </div>
-    <div class="integ-card">
-      <span class="integ-icon">🔄</span>
-      <p>Sem mudança de processo</p>
-    </div>
-    <div class="integ-card">
-      <span class="integ-icon">📍</span>
-      <p>Dados da concorrência no mesmo lugar</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="cta">
-  <div class="cta-content">
-    <div class="cta-tag">🚀 Oferta de Lançamento</div>
-    <h2>Vamos Começar?</h2>
-    <p>Agende uma demonstração personalizada e veja o ZPromo funcionando com os dados reais da sua concorrência. Condições exclusivas para os primeiros clientes.</p>
-    <div class="cta-buttons">
-      <a href="https://www.zukkin.com.br" target="_blank" class="btn-primary">Agendar Demo →</a>
-      <a href="https://www.zukkin.com.br" target="_blank" class="btn-secondary">Fale com Nosso Time</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <p><strong>Zukkin Brasil</strong> · Uma solução da plataforma Zukkin Analytics · <a href="https://www.zukkin.com.br" target="_blank">www.zukkin.com.br</a></p>
-  <p style="margin-top: 8px;">© 2026 Zukkin Brasil — Todos os direitos reservados</p>
+  <p><strong>Zukkin Brasil</strong> · Plataforma Zukkin Analytics · <a href="https://www.zukkin.com.br" target="_blank">www.zukkin.com.br</a></p>
+  <p style="margin-top:8px">© 2026 Zukkin Brasil — Todos os direitos reservados</p>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*100);obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
