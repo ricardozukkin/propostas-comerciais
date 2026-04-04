@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zukkin — Slides de Produtos</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1C2F48; --bg-outer: #0D1B2A;
+      --surface: #253A56; --surface-hover: #2D4462;
+      --border: rgba(2, 56, 90, 0.28); --border-accent: rgba(2, 56, 90, 0.4);
+      --text: #EEF4FA; --text-secondary: rgba(180, 210, 245, 0.6); --text-muted: rgba(180, 210, 245, 0.35);
+      --vermelho: #CF110D; --azul: #02385A; --branco: #FFFFFF; --cinza: #71869D;
+      --pricing: #02385A; --analytics: #EE8625; --promo: #FF4D6A; --robot: #6B2246; --go: #78AE3F; --consulting: #8C9BAB;
+      --market: #7C6EF6;
+      --gradient-vibrant: linear-gradient(135deg, #7C6EF6, #00D4FF, #FF6B9D);
+      --gradient-warm: linear-gradient(135deg, #EE8625, #FF4D6A);
+      --positive: #10B981; --negative: #EF4444; --warning: #F59E0B;
+      --slide-padding: 48px; --radius: 16px;
+      --font: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      --zk-safe-top: 72px; --zk-safe-bottom: 40px; --zk-safe-side: var(--slide-padding); --zk-title-gap: 32px;
+    }
+    :root[data-theme="light"] {
+      --bg: #F8FAFC; --bg-outer: #E2E8F0;
+      --surface: #FFFFFF; --surface-hover: #F1F5F9;
+      --border: rgba(2,56,90,0.12); --border-accent: rgba(2,56,90,0.22);
+      --text: #1C2F48; --text-secondary: rgba(28,47,72,0.6); --text-muted: rgba(28,47,72,0.35);
+      --gradient-vibrant: linear-gradient(135deg, #6B5CE7, #0099CC, #E8456B);
+      --gradient-warm: linear-gradient(135deg, #D4730F, #D42A4C);
+    }
+    :root {
+      --ck-bg: var(--bg-outer, #0D1B2A); --ck-surface: rgba(255,255,255,0.04); --ck-border: rgba(255,255,255,0.08);
+      --ck-text: rgba(255,255,255,0.5); --ck-text-strong: rgba(255,255,255,0.85); --ck-bar-h: 44px;
+    }
+    :root[data-theme="light"] {
+      --ck-surface: rgba(0,0,0,0.04); --ck-border: rgba(0,0,0,0.08);
+      --ck-text: rgba(0,0,0,0.45); --ck-text-strong: rgba(0,0,0,0.8);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; }
+    body { font-family: var(--font); background: var(--ck-bg); display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; color: var(--text); line-height: 1.6; }
+
+    .zk-expiration { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg,#3B82F6,#2563EB); color: white; text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 600; letter-spacing: .02em; transform: translateY(-100%); transition: transform .4s cubic-bezier(.4,0,.2,1); }
+    .zk-expiration.visible { transform: translateY(0); }
+    .zk-expired-block { position: fixed; inset: 0; z-index: 99999; background: var(--bg-outer); display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px; }
+    .zk-expired-block.active { display: flex; }
+
+    .ck-viewport { flex: 1; display: flex; justify-content: center; align-items: center; padding: 12px 48px 0; min-height: 0; position: relative; }
+    .ck-frame { width: 90%; max-width: 1400px; aspect-ratio: 16/9; max-height: calc(100vh - var(--ck-bar-h) - 24px); border-radius: 10px; overflow: hidden; position: relative; background: var(--bg); box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04); }
+    :root[data-theme="light"] .ck-frame { box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06); }
+    .ck-frame::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none; background-image:radial-gradient(circle,rgba(255,255,255,0.045) 1px,transparent 1px); background-size:28px 28px; }
+    .ck-frame::after { content:''; position:absolute; inset:0; z-index:0; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:128px; opacity:.03; }
+    :root[data-theme="light"] .ck-frame::before { background-image:repeating-linear-gradient(45deg,rgba(2,56,90,.05) 0,rgba(2,56,90,.05) 1px,transparent 1px,transparent 48px); background-size:auto; }
+
+    .ck-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:36px; height:72px; border-radius:8px; background:var(--ck-surface); border:1px solid var(--ck-border); color:rgba(255,255,255,0.25); font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .25s; font-family:var(--font); padding:0; }
+    .ck-arrow:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); color:rgba(255,255,255,.7); }
+    .ck-arrow:disabled { opacity:0; pointer-events:none; }
+    .ck-arrow-prev { left:6px; } .ck-arrow-next { right:6px; }
+
+    .ck-bar { height:var(--ck-bar-h); position:relative; display:flex; align-items:center; justify-content:space-between; padding:0 28px; background:var(--ck-bg); border-top:1px solid var(--ck-border); flex-shrink:0; }
+    .ck-bar-left, .ck-bar-right { display:flex; align-items:center; gap:12px; z-index:1; }
+    .ck-bar button { width:28px; height:28px; min-height:28px; max-height:28px; border-radius:7px; background:var(--ck-surface); border:1px solid var(--ck-border); color:var(--ck-text); font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; font-family:var(--font); box-sizing:border-box; padding:0; }
+    .ck-bar button:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); color:var(--ck-text-strong); }
+    .ck-bar button:disabled { opacity:.2; cursor:not-allowed; }
+    .ck-bar span { font-size:11px; font-weight:600; color:var(--ck-text); font-variant-numeric:tabular-nums; }
+    .ck-progress-wrap { width:140px; height:3px; background:rgba(255,255,255,.06); border-radius:2px; overflow:hidden; }
+    .ck-progress { height:100%; width:0%; background:var(--vermelho); border-radius:2px; box-shadow:0 0 8px rgba(207,17,13,.3); transition:width .4s cubic-bezier(.4,0,.2,1); }
+    .zk-theme-dot { width:16px; height:16px; border-radius:50%; border:2px solid transparent; cursor:pointer; transition:all .2s; }
+    .zk-theme-dot.active { border-color:#fff; transform:scale(1.2); }
+    .zk-theme-dot.needs-border { border-color:rgba(0,0,0,.2); }
+    #zkThemeLabel { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ck-text); }
+    #zkThemeSwitcher { display:flex; gap:6px; align-items:center; }
+
+    /* SLIDES */
+    .zk-slide { position:absolute; inset:0; display:flex; flex-direction:column; padding:var(--zk-safe-top) var(--zk-safe-side) var(--zk-safe-bottom); overflow:hidden; opacity:0; pointer-events:none; transition:opacity .5s ease,transform .5s ease; transform:translateX(40px); z-index:1; }
+    .zk-slide.active { opacity:1; pointer-events:auto; transform:translateX(0); }
+    .zk-slide h2 { font-size:clamp(24px,3vw,36px); font-weight:800; line-height:1.15; margin-bottom:var(--zk-title-gap); }
+    .zk-animate { opacity:0; }
+    .zk-animate.zk-entering { animation:zkFadeInUp .5s ease forwards; }
+    @keyframes zkFadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes orbSpin { to { transform:translate(-50%,-50%) rotate(360deg); } }
+
+    /* COVER */
+    .zk-slide.cover { padding:var(--zk-safe-bottom) var(--zk-safe-side) var(--zk-safe-bottom) !important; justify-content:center; align-items:center; text-align:center; }
+    .zk-slide.cover::before { content:''; position:absolute; width:400px; height:400px; border-radius:50%; background:conic-gradient(from 0deg,rgba(207,17,13,.2),rgba(2,56,90,.2),rgba(238,134,37,.2),rgba(207,17,13,.2)); filter:blur(80px); top:50%; left:50%; transform:translate(-50%,-50%); animation:orbSpin 20s linear infinite; }
+    .zk-slide.cover::after { content:''; position:absolute; z-index:0; pointer-events:none; width:350px; height:350px; bottom:-80px; right:-60px; background:radial-gradient(circle,rgba(238,134,37,.12) 0%,rgba(255,77,106,.08) 40%,transparent 70%); border-radius:50%; filter:blur(60px); }
+    .zk-slide.cover > * { position:relative; z-index:2; }
+    .zk-slide.cover .zk-logo { margin-bottom:40px; }
+    .zk-slide.cover .zk-logo svg { height:40px; }
+    .zk-slide.cover h1 { font-family:'Plus Jakarta Sans','Montserrat',sans-serif; font-size:clamp(36px,6vw,72px); font-weight:800; line-height:1.05; margin-bottom:16px; color:var(--text); letter-spacing:-.02em; }
+    .zk-slide.cover h2 { font-size:clamp(16px,2vw,24px); font-weight:400; color:var(--text-secondary); max-width:600px; margin-bottom:0; }
+    .zk-slide.cover .zk-meta { margin-top:48px; font-size:12px; color:var(--text-muted); font-weight:500; letter-spacing:.08em; text-transform:uppercase; }
+
+    /* CONTENT */
+    .zk-slide.content { justify-content:flex-start; }
+    .zk-slide.content::after { content:''; position:absolute; z-index:0; pointer-events:none; width:500px; height:500px; bottom:-150px; right:-100px; background:radial-gradient(circle,rgba(2,56,90,.18) 0%,rgba(207,17,13,.06) 40%,transparent 70%); border-radius:50%; filter:blur(60px); }
+    .zk-slide.content > * { position:relative; z-index:1; }
+
+    /* SECTION DIVIDER */
+    .zk-slide.section-divider { justify-content:center; align-items:center; text-align:center; }
+    .zk-slide.section-divider::after { content:''; position:absolute; z-index:0; pointer-events:none; width:600px; height:600px; top:50%; left:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(124,110,246,.08) 0%,rgba(0,212,255,.05) 35%,transparent 60%); border-radius:50%; filter:blur(80px); }
+    .zk-slide.section-divider > * { position:relative; z-index:2; }
+    .zk-slide.section-divider h2 { font-size:clamp(30px,4.5vw,56px); font-weight:900; margin-bottom:16px; }
+    .zk-slide.section-divider p { font-size:clamp(14px,1.6vw,20px); color:var(--text-secondary); max-width:500px; }
+
+    /* CLOSING */
+    .zk-slide.closing { padding:var(--zk-safe-bottom) var(--zk-safe-side) var(--zk-safe-bottom) !important; justify-content:center; align-items:center; text-align:center; }
+    .zk-slide.closing::after { content:''; position:absolute; z-index:0; pointer-events:none; width:600px; height:600px; top:50%; left:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(124,110,246,.1) 0%,rgba(0,212,255,.06) 35%,rgba(255,107,157,.04) 60%,transparent 75%); border-radius:50%; filter:blur(80px); }
+    .zk-slide.closing > * { position:relative; z-index:2; }
+    .zk-slide.closing h2 { font-size:clamp(36px,5vw,64px); font-weight:900; color:var(--text); margin-bottom:var(--zk-title-gap); }
+    .zk-slide.closing p { font-size:18px; color:var(--text-secondary); margin-bottom:8px; }
+    .zk-logo svg { height:40px; width:auto; }
+
+    /* ─── PRODUCT SLIDE COMPONENTS ─── */
+
+    .zk-prod-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 28px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .zk-prod-hero {
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .zk-prod-hero::before {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .zk-prod-hero::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .zk-prod-hero > * { position: relative; z-index: 1; }
+
+    .zk-prod-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .zk-prod-name {
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .zk-prod-tagline {
+      font-size: clamp(12px, 1.3vw, 15px);
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .zk-prod-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(4px);
+    }
+
+    .zk-prod-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-content: start;
+    }
+    .zk-prod-feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s;
+    }
+    .zk-prod-feature:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-accent);
+    }
+    .zk-prod-feature::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .zk-prod-feature .feat-icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .zk-prod-feature .feat-title {
+      font-size: clamp(11px, 1.2vw, 14px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .zk-prod-feature .feat-desc {
+      font-size: clamp(9px, 1vw, 12px);
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Highlight card (spans 2 cols) */
+    .zk-prod-highlight {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .zk-prod-highlight .hl-number {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 900;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .zk-prod-highlight .hl-text {
+      font-size: clamp(11px, 1.2vw, 14px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .zk-prod-highlight .hl-sub {
+      font-size: clamp(9px, 1vw, 11px);
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* Light theme overrides for product slides */
+    :root[data-theme="light"] .zk-prod-feature { background: #fff; border-color: rgba(2,56,90,0.12); }
+    :root[data-theme="light"] .zk-prod-feature:hover { border-color: rgba(2,56,90,0.25); }
+    :root[data-theme="light"] .zk-prod-highlight { background: #fff; border-color: rgba(2,56,90,0.12); }
+    :root[data-theme="light"] .zk-slide.cover::before { background:conic-gradient(from 0deg,rgba(207,17,13,.08),rgba(2,56,90,.08),rgba(238,134,37,.08),rgba(207,17,13,.08)); }
+
+    /* Subtitle under H2 */
+    .zk-prod-sub {
+      font-size: clamp(12px, 1.3vw, 16px);
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-top: -24px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<div class="zk-expiration" id="zkExpiration"></div>
+<div class="zk-expired-block" id="zkExpiredBlock">
+  <div class="zk-expired-icon">🔒</div>
+  <h2>Apresentação expirada</h2>
+  <p>Esta apresentação atingiu sua data de validade.</p>
+  <div class="zk-expired-date" id="zkExpiredDate"></div>
+</div>
+
+<div class="ck-viewport">
+  <button class="ck-arrow ck-arrow-prev" id="ckArrowPrev">&#8249;</button>
+  <div class="ck-frame">
+    <div class="zk-deck" id="zkDeck">
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 1 — CAPA
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide cover active zk-animate">
+        <div class="zk-logo zk-animate"></div>
+        <h1 class="zk-animate">Nossos Produtos</h1>
+        <h2 class="zk-animate">7 soluções integradas para cada etapa da precificação do varejo</h2>
+        <div class="zk-meta zk-animate">Zukkin · Ecossistema de Inteligência de Preços</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 2 — SECTION DIVIDER: COLETA
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide section-divider">
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; color:var(--text-muted); margin-bottom:12px;" class="zk-animate">Fontes de dados</div>
+        <h2 class="zk-animate">De onde vêm<br>os <span style="color:var(--vermelho)">dados</span></h2>
+        <p class="zk-animate">4 formas de coletar preços da concorrência — online, campo, encartes e big data</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 3 — ZROBOT
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide content">
+        <h2 class="zk-animate"><span style="color:var(--robot)">ZRobot</span></h2>
+        <div class="zk-prod-sub zk-animate">Monitoramento automático de preços em e-commerces — 24 horas, 7 dias por semana</div>
+
+        <div class="zk-prod-layout zk-animate">
+          <!-- HERO -->
+          <div class="zk-prod-hero" style="background:linear-gradient(135deg,#6B2246,#8E3060);">
+            <div>
+              <div class="zk-prod-icon">🤖</div>
+              <div class="zk-prod-name">ZRobot</div>
+              <div class="zk-prod-tagline">Crawler inteligente que varre os sites dos seus concorrentes e traz os preços atualizados automaticamente. Sem pesquisador, sem planilha.</div>
+            </div>
+            <div class="zk-prod-badge">Pesquisa Online Automática</div>
+          </div>
+
+          <!-- FEATURES -->
+          <div class="zk-prod-features">
+            <div class="zk-prod-feature" style="--accent:var(--robot);">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--robot);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🔍</div>
+              <div class="feat-title">Varredura automática</div>
+              <div class="feat-desc">Monitora múltiplos sites de concorrentes com frequência configurável — diária, semanal ou sob demanda.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--robot);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🔗</div>
+              <div class="feat-title">Associação automática</div>
+              <div class="feat-desc">A Zukkin associa seus produtos com os links de cada site. Você não precisa fazer nada manualmente.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--robot);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📸</div>
+              <div class="feat-title">Print como evidência</div>
+              <div class="feat-desc">Captura e armazena screenshots de cada coleta para comprovação e auditoria dos dados coletados.</div>
+            </div>
+            <div class="zk-prod-highlight" style="border-left:4px solid var(--robot);">
+              <div class="hl-number" style="color:var(--robot);">95%</div>
+              <div>
+                <div class="hl-text">Redução no tempo de pesquisa de preços</div>
+                <div class="hl-sub">98,9% de precisão na coleta · Sortimento completo dos concorrentes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 4 — ZPROMO
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide content">
+        <h2 class="zk-animate"><span style="color:var(--promo)">ZPromo</span></h2>
+        <div class="zk-prod-sub zk-animate">Monitoramento diário de encartes, tabloides e promoções de todos os seus concorrentes</div>
+
+        <div class="zk-prod-layout zk-animate">
+          <div class="zk-prod-hero" style="background:linear-gradient(135deg,#FF4D6A,#E83A5A);">
+            <div>
+              <div class="zk-prod-icon">🏷️</div>
+              <div class="zk-prod-name">ZPromo</div>
+              <div class="zk-prod-tagline">Saiba exatamente o que cada concorrente está ofertando — antes mesmo do seu cliente ver. Encartes, WhatsApp, sites e redes sociais monitorados diariamente.</div>
+            </div>
+            <div class="zk-prod-badge">Inteligência Promocional</div>
+          </div>
+
+          <div class="zk-prod-features">
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📋</div>
+              <div class="feat-title">Encartes e tabloides</div>
+              <div class="feat-desc">Captura completa dos encartes impressos e digitais de cada concorrente da sua praça.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📱</div>
+              <div class="feat-title">WhatsApp e redes</div>
+              <div class="feat-desc">Monitora promoções enviadas via WhatsApp, Instagram e sites dos concorrentes automaticamente.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">⚡</div>
+              <div class="feat-title">Frequência diária</div>
+              <div class="feat-desc">Atualização de segunda a sexta com todas as ofertas do dia. Você reage rápido a qualquer movimento.</div>
+            </div>
+            <div class="zk-prod-highlight" style="border-left:4px solid var(--promo);">
+              <div class="hl-number" style="color:var(--promo);">Seg–Sex</div>
+              <div>
+                <div class="hl-text">Monitoramento diário de todas as ofertas</div>
+                <div class="hl-sub">Nunca mais seja pego de surpresa por uma promoção da concorrência</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 5 — ZGO
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide content">
+        <h2 class="zk-animate"><span style="color:var(--go)">ZGO</span></h2>
+        <div class="zk-prod-sub zk-animate">Aplicativo de pesquisa de campo — seu time coleta preços na gôndola com o próprio celular</div>
+
+        <div class="zk-prod-layout zk-animate">
+          <div class="zk-prod-hero" style="background:linear-gradient(135deg,#78AE3F,#5C8F2E);">
+            <div>
+              <div class="zk-prod-icon">📱</div>
+              <div class="zk-prod-name">ZGO</div>
+              <div class="zk-prod-tagline">App que transforma o time da sua rede em pesquisadores profissionais. Agenda, rota, coleta e validação em tempo real — tudo no celular.</div>
+            </div>
+            <div class="zk-prod-badge">App de Coleta em Campo</div>
+          </div>
+
+          <div class="zk-prod-features">
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📅</div>
+              <div class="feat-title">Agenda inteligente</div>
+              <div class="feat-desc">Programa a agenda de pesquisa por loja, dia e pesquisador. Roteiro otimizado para máxima eficiência.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">✅</div>
+              <div class="feat-title">Validação em tempo real</div>
+              <div class="feat-desc">O app valida os dados no momento da coleta — preços fora do padrão são alertados automaticamente.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📊</div>
+              <div class="feat-title">Dashboard de gestão</div>
+              <div class="feat-desc">Acompanhe em tempo real o andamento das pesquisas, produtividade dos pesquisadores e status por loja.</div>
+            </div>
+            <div class="zk-prod-highlight" style="border-left:4px solid var(--go);">
+              <div class="hl-number" style="color:var(--go);">100%</div>
+              <div>
+                <div class="hl-text">Digital e em tempo real</div>
+                <div class="hl-sub">Elimina papel, planilhas e retrabalho · Dados direto no ZAnalytics</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 6 — ZMARKET
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide content">
+        <h2 class="zk-animate"><span style="color:var(--market)">ZMarket</span></h2>
+        <div class="zk-prod-sub zk-animate">Painel de preços baseado em cupom fiscal — dados reais de NF-e do varejo nacional</div>
+
+        <div class="zk-prod-layout zk-animate">
+          <div class="zk-prod-hero" style="background:linear-gradient(135deg,#7C6EF6,#5A4FD4);">
+            <div>
+              <div class="zk-prod-icon">🌐</div>
+              <div class="zk-prod-name">ZMarket</div>
+              <div class="zk-prod-tagline">Acesse a maior base de preços do varejo brasileiro. Dados reais de notas fiscais eletrônicas para posicionar todo o seu sortimento com inteligência.</div>
+            </div>
+            <div class="zk-prod-badge">Big Data de Preços</div>
+          </div>
+
+          <div class="zk-prod-features">
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--market);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🧾</div>
+              <div class="feat-title">Dados de NF-e</div>
+              <div class="feat-desc">Preços reais extraídos de notas fiscais eletrônicas — não é estimativa, é o preço que o consumidor pagou.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--market);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🗺️</div>
+              <div class="feat-title">Cobertura nacional</div>
+              <div class="feat-desc">Dados de todo o Brasil com filtros por estado, cidade, bandeira e canal. Visão completa do mercado.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--market);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📈</div>
+              <div class="feat-title">Posicionamento de sortimento</div>
+              <div class="feat-desc">Compare seus preços com o mercado inteiro. Entenda se está caro ou barato em cada categoria e região.</div>
+            </div>
+            <div class="zk-prod-highlight" style="border-left:4px solid var(--market);">
+              <div class="hl-number" style="color:var(--market);">5Bi+</div>
+              <div>
+                <div class="hl-text">Preços coletados na base Zukkin Market</div>
+                <div class="hl-sub">A maior base de preços de cupom fiscal do varejo alimentar brasileiro</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 7 — SECTION DIVIDER: PLATAFORMAS
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide section-divider">
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; color:var(--text-muted); margin-bottom:12px;" class="zk-animate">Plataformas centrais</div>
+        <h2 class="zk-animate">Onde o dado vira<br><span style="color:var(--analytics)">decisão</span></h2>
+        <p class="zk-animate">Análise, precificação e consultoria — do insight ao preço na gôndola</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 8 — ZANALYTICS
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide content">
+        <h2 class="zk-animate"><span style="color:var(--analytics)">ZAnalytics</span></h2>
+        <div class="zk-prod-sub zk-animate">Central de inteligência competitiva — todos os dados de preço em dashboards estratégicos</div>
+
+        <div class="zk-prod-layout zk-animate">
+          <div class="zk-prod-hero" style="background:linear-gradient(135deg,#EE8625,#D4730F);">
+            <div>
+              <div class="zk-prod-icon">📊</div>
+              <div class="zk-prod-name">ZAnalytics</div>
+              <div class="zk-prod-tagline">A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, região e concorrente. O coração do ecossistema Zukkin.</div>
+            </div>
+            <div class="zk-prod-badge">Análise &amp; Inteligência</div>
+          </div>
+
+          <div class="zk-prod-features">
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📈</div>
+              <div class="feat-title">Dashboards estratégicos</div>
+              <div class="feat-desc">Visão completa de competitividade por categoria, produto, loja e concorrente. Filtros inteligentes em tempo real.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🔔</div>
+              <div class="feat-title">Alertas automáticos</div>
+              <div class="feat-desc">Receba alertas quando um concorrente mudar preço em itens estratégicos. Nunca mais perca um movimento.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📥</div>
+              <div class="feat-title">Relatórios e exportação</div>
+              <div class="feat-desc">Exporte dados para Excel, PDF ou integre diretamente com seu ERP. Relatórios programados automaticamente.</div>
+            </div>
+            <div class="zk-prod-highlight" style="border-left:4px solid var(--analytics);">
+              <div class="hl-number" style="color:var(--analytics);">360°</div>
+              <div>
+                <div class="hl-text">Visão completa da competitividade</div>
+                <div class="hl-sub">Todos os dados de ZRobot, ZPromo, ZGO e ZMarket centralizados em um só lugar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 9 — ZPRICING IA
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide content">
+        <h2 class="zk-animate"><span style="color:var(--pricing)">ZPricing</span> <span style="font-size:clamp(16px,2vw,24px); font-weight:400; color:var(--text-secondary);">IA</span></h2>
+        <div class="zk-prod-sub zk-animate">Motor de precificação com inteligência artificial — sugere e executa ajustes automáticos de preço</div>
+
+        <div class="zk-prod-layout zk-animate">
+          <div class="zk-prod-hero" style="background:linear-gradient(135deg,#02385A,#0A4F7A);">
+            <div>
+              <div class="zk-prod-icon">🧠</div>
+              <div class="zk-prod-name">ZPricing IA</div>
+              <div class="zk-prod-tagline">O cérebro do ecossistema. Analisa competitividade, margem, elasticidade e regras do negócio para sugerir o preço ideal — produto a produto, loja a loja.</div>
+            </div>
+            <div class="zk-prod-badge">Precificação Inteligente</div>
+          </div>
+
+          <div class="zk-prod-features">
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--pricing);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">⚙️</div>
+              <div class="feat-title">Regras de negócio</div>
+              <div class="feat-desc">Cadastre seus parâmetros: margem mínima, posicionamento vs concorrente, teto e piso de preço por categoria.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--pricing);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🤖</div>
+              <div class="feat-title">Sugestão automática</div>
+              <div class="feat-desc">A IA calcula o preço ideal considerando concorrência, custo, margem e elasticidade. Você aprova ou ajusta.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--pricing);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🔄</div>
+              <div class="feat-title">Execução automática</div>
+              <div class="feat-desc">Integra com seu ERP para enviar os preços direto para o PDV. Do cálculo à gôndola sem trabalho manual.</div>
+            </div>
+            <div class="zk-prod-highlight" style="border-left:4px solid var(--pricing);">
+              <div class="hl-number" style="color:var(--pricing);">IA</div>
+              <div>
+                <div class="hl-text">Precificação por produto, dia e loja</div>
+                <div class="hl-sub">Ganho médio de margem desde o primeiro mês · Resultados mensuráveis</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 10 — ZCONSULTING
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide content">
+        <h2 class="zk-animate"><span style="color:var(--consulting)">ZConsulting</span></h2>
+        <div class="zk-prod-sub zk-animate">Consultoria estratégica de pricing — especialistas Zukkin trabalhando lado a lado com sua equipe</div>
+
+        <div class="zk-prod-layout zk-animate">
+          <div class="zk-prod-hero" style="background:linear-gradient(135deg,#8C9BAB,#6B7A8A);">
+            <div>
+              <div class="zk-prod-icon">🎯</div>
+              <div class="zk-prod-name">ZConsulting</div>
+              <div class="zk-prod-tagline">Mais do que tecnologia — pessoas. Consultores de pricing com experiência no varejo alimentar atuam junto ao seu time para estruturar e evoluir sua estratégia de preço.</div>
+            </div>
+            <div class="zk-prod-badge">Consultoria de Pricing</div>
+          </div>
+
+          <div class="zk-prod-features">
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">📐</div>
+              <div class="feat-title">Diagnóstico de pricing</div>
+              <div class="feat-desc">Análise completa da estratégia atual: posicionamento, margem, percepção de preço e oportunidades de ganho.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">🗓️</div>
+              <div class="feat-title">Plano de ação</div>
+              <div class="feat-desc">Construção de um plano prático com metas, cronograma e indicadores claros. Resultados desde as primeiras semanas.</div>
+            </div>
+            <div class="zk-prod-feature">
+              <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
+              <div class="feat-icon">👥</div>
+              <div class="feat-title">Treinamento do time</div>
+              <div class="feat-desc">Capacitação da equipe de pricing e comercial. Seu time aprende a usar os dados para tomar decisões melhores.</div>
+            </div>
+            <div class="zk-prod-highlight" style="border-left:4px solid var(--consulting);">
+              <div class="hl-number" style="color:var(--consulting);">10+</div>
+              <div>
+                <div class="hl-text">Anos de experiência no varejo alimentar</div>
+                <div class="hl-sub">Metodologia testada em mais de 100 redes · Consultores dedicados</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SLIDE 11 — CLOSING
+           ══════════════════════════════════════════ -->
+      <div class="zk-slide closing">
+        <div class="zk-logo zk-animate"></div>
+        <h2 class="zk-animate" style="margin-bottom:8px;">7 produtos.<br><span style="font-size:clamp(18px,2.5vw,30px); font-weight:400; color:var(--text-secondary);">1 ecossistema. Do dado à decisão.</span></h2>
+        <p class="zk-animate" style="margin-top:16px;">Quer ver como funciona na prática?</p>
+        <div class="zk-animate" style="margin-top:24px;">
+          <a href="https://wa.me/5513981112221" target="_blank"
+             style="display:inline-flex; align-items:center; gap:10px; background:var(--vermelho); color:#fff; border:none; padding:16px 36px; border-radius:14px; font-family:var(--font); font-size:clamp(14px,1.6vw,18px); font-weight:800; letter-spacing:.02em; box-shadow:0 4px 24px rgba(207,17,13,0.35); cursor:pointer; transition:all .2s; text-decoration:none;">
+            Falar com a Zukkin →
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /zk-deck -->
+  </div><!-- /ck-frame -->
+  <button class="ck-arrow ck-arrow-next" id="ckArrowNext">&#8250;</button>
+</div><!-- /ck-viewport -->
+
+<div class="ck-bar">
+  <div class="ck-bar-left">
+    <button id="ckBtnPrev">‹</button>
+    <span id="ckCurrent">1</span> / <span id="ckTotal">1</span>
+    <button id="ckBtnNext">›</button>
+  </div>
+  <div class="ck-progress-wrap"><div class="ck-progress" id="ckProgress"></div></div>
+  <div class="ck-bar-right">
+    <span id="zkThemeLabel">TEMA: Claro</span>
+    <div id="zkThemeSwitcher"></div>
+  </div>
+</div>
+
+<script>
+const THEME_COCKPIT = {
+  azul_aberto: { bg:'#0D1B2A', bar:'#112233', border:'rgba(28,47,72,0.25)' },
+  light:       { bg:'#E2E8F0', bar:'#D8DEE8', border:'rgba(0,0,0,0.08)' },
+  warm:        { bg:'#0F0A0C', bar:'#140E10', border:'rgba(26,18,21,0.3)' },
+  midnight:    { bg:'#050810', bar:'#080C16', border:'rgba(10,14,26,0.3)' },
+  sand:        { bg:'#E5E0D9', bar:'#DBD5CC', border:'rgba(0,0,0,0.08)' },
+  silver:      { bg:'#CBD0D8', bar:'#C0C6CF', border:'rgba(0,0,0,0.08)' },
+  analytics:   { bg:'#714518', bar:'#7D4F1E', border:'rgba(238,134,37,0.2)' },
+  zgo:         { bg:'#365A22', bar:'#3E6428', border:'rgba(120,174,63,0.2)' },
+  consulting:  { bg:'#506070', bar:'#5A6A7A', border:'rgba(140,155,171,0.2)' },
+  promo:       { bg:'#712E48', bar:'#7D3450', border:'rgba(255,77,106,0.2)' },
+  robot:       { bg:'#5E2240', bar:'#6B2A4A', border:'rgba(107,34,70,0.3)' },
+  vermelho:    { bg:'#711E1C', bar:'#7D2422', border:'rgba(207,17,13,0.2)' }
+};
+
+function ckApplyTheme(themeId) {
+  const id = themeId || 'azul_aberto';
+  const colors = THEME_COCKPIT[id];
+  if (!colors) return;
+  document.body.style.background = colors.bg;
+  document.documentElement.style.setProperty('--ck-bg', colors.bg);
+  document.documentElement.style.setProperty('--ck-border', colors.border);
+  const bar = document.querySelector('.ck-bar');
+  if (bar) bar.style.background = colors.bar;
+}
+
+let ckCurrent = 0;
+const ckSlides = document.querySelectorAll('.zk-slide');
+const ckTotalCount = ckSlides.length;
+
+function ckNext() { if (ckCurrent < ckTotalCount - 1) { ckCurrent++; ckUpdateSlide(); } }
+function ckPrev() { if (ckCurrent > 0) { ckCurrent--; ckUpdateSlide(); } }
+
+function ckUpdateSlide() {
+  ckSlides.forEach((s, i) => {
+    const isActive = i === ckCurrent;
+    s.classList.toggle('active', isActive);
+    const animEls = s.querySelectorAll('.zk-animate');
+    if (isActive) {
+      animEls.forEach((el, idx) => {
+        el.classList.remove('zk-entering');
+        el.style.animationDelay = '';
+        void el.offsetWidth;
+        el.style.animationDelay = `${idx * 0.1}s`;
+        el.classList.add('zk-entering');
+      });
+    } else {
+      animEls.forEach(el => { el.classList.remove('zk-entering'); el.style.animationDelay = ''; });
+    }
+  });
+  const curEl = document.getElementById('ckCurrent');
+  const totEl = document.getElementById('ckTotal');
+  if (curEl) curEl.textContent = ckCurrent + 1;
+  if (totEl) totEl.textContent = ckTotalCount;
+  const progEl = document.getElementById('ckProgress');
+  if (progEl) progEl.style.width = `${((ckCurrent + 1) / ckTotalCount) * 100}%`;
+  document.getElementById('ckBtnPrev').disabled = ckCurrent === 0;
+  document.getElementById('ckBtnNext').disabled = ckCurrent === ckTotalCount - 1;
+  document.getElementById('ckArrowPrev').disabled = ckCurrent === 0;
+  document.getElementById('ckArrowNext').disabled = ckCurrent === ckTotalCount - 1;
+}
+
+function ckCheckExpiration() {
+  if (!METADATA.expires_at) return true;
+  const expiresAt = new Date(METADATA.expires_at);
+  const daysLeft = Math.ceil((expiresAt - new Date()) / 86400000);
+  if (daysLeft < 0) {
+    document.getElementById('zkExpiredBlock').classList.add('active');
+    document.querySelector('.ck-viewport').style.display = 'none';
+    document.querySelector('.ck-bar').style.display = 'none';
+    return false;
+  }
+  return true;
+}
+
+function ckInit() {
+  ckApplyTheme(METADATA.theme || 'azul_aberto');
+  if (ckCheckExpiration() === false) return;
+  ckUpdateSlide();
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); ckNext(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); ckPrev(); }
+    if (e.key === 'Home') { ckCurrent = 0; ckUpdateSlide(); }
+    if (e.key === 'End') { ckCurrent = ckTotalCount - 1; ckUpdateSlide(); }
+  });
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? ckNext() : ckPrev(); }
+  });
+  document.getElementById('ckBtnPrev').addEventListener('click', ckPrev);
+  document.getElementById('ckBtnNext').addEventListener('click', ckNext);
+  document.getElementById('ckArrowPrev').addEventListener('click', ckPrev);
+  document.getElementById('ckArrowNext').addEventListener('click', ckNext);
+}
+
+const METADATA = { theme: 'light', title: "Zukkin — Produtos", expires_at: null };
+
+const ZK_LOGO_RED = `<svg viewBox="0 0 991.8 225.4" fill="none"><defs><linearGradient id="zg1" x1="19.3" y1="67.2" x2="171.1" y2="-20.5" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"/><stop offset="1" stop-color="#A11E21"/></linearGradient><linearGradient id="zg2" x1="179.7" y1="141.3" x2="62.7" y2="258.3" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"/><stop offset="1" stop-color="#A11E21"/></linearGradient></defs><path fill="#CF110D" d="M814.9,7.2C810.2,2.4,804.4,0,797.7,0h-25.7v40.6h50.1V24.4C822.1,17.7,819.7,11.9,814.9,7.2z"/><path fill="url(#zg1)" d="M182.7,0h-0.2H0v27.3C0,40.4,10.6,51,23.7,51h101.7h6.5h51V0C182.9,0,182.8,0,182.7,0z"/><path fill="url(#zg2)" d="M86.3,174.3h-5.6h-51v51c0.1,0,0.2,0,0.3,0h0.2h182.5v-51H86.3z"/><path fill="#CF110D" d="M183.5,0.1c-0.2,0-0.3-0.1-0.5-0.1l-30.4,30.4L131.9,51l-2.1,2.1l-0.1-0.1L9,173.8l-0.4,0.4c-5.3,5.4-8.6,12.8-8.6,21c0,16.3,13,29.5,29.2,30c0.2,0,0.3,0.1,0.5,0.1l30.4-30.4l20.6-20.6l2.1-2.1l0.1,0.1L203.6,51.5l0.4-0.4c5.3-5.4,8.6-12.8,8.6-21C212.7,13.8,199.7,0.6,183.5,0.1z"/><path fill="#CF110D" d="M360.2,56.7c-6.3,0-11.5,2.1-15.5,6.3c-4,4.2-6,9.3-6,15.2v6.3v70.3c0-0.1-0.1-0.1-0.1-0.2c-1.1,15.2-13.8,27.3-29.4,27.3c-15.5,0-28.2-12-29.4-27.3c0,0.1-0.1,0.1-0.1,0.2V84.3V56.7h-44.4l0,95.1v0c0,32,20.5,59.3,49.1,69.4c7.7,2.7,15.9,4.2,24.5,4.2c40.6,0,73.6-32.9,73.6-73.6V56.7H360.2z"/><path fill="#CF110D" d="M866.9,225.4c6.3,0,11.5-2.1,15.5-6.3c4-4.2,6-9.3,6-15.2v-6.3v-70.3c0,0.1,0.1,0.1,0.1,0.2c1.1-15.2,13.8-27.3,29.4-27.3c15.5,0,28.2,12,29.4,27.3c0-0.1,0.1-0.1,0.1-0.2v70.6v27.6h44.4l0-95.1v0c0-32-20.5-59.3-49.1-69.4c-7.7-2.7-15.9-4.2-24.5-4.2c-40.6,0-73.6,32.9-73.6,73.6v95.1H866.9z"/><path fill="#CF110D" d="M508.5,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C443.1,2.4,437.3,0,430.6,0H405v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L508.5,115.5z"/><path fill="#CF110D" d="M692,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C626.6,2.4,620.8,0,614.2,0h-25.7v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L692,115.5z"/><path fill="#CF110D" d="M814.9,63.9c-4.8-4.8-10.6-7.2-17.2-7.2h-25.7v34.1v2.8v131.7h50.1V93.7v-2.8v-9.7C822.1,74.4,819.7,68.6,814.9,63.9z"/></svg>`;
+const ZK_LOGO_WHITE = ZK_LOGO_RED.replace(/#CF110D/g,'#FFFFFF').replace(/#EE2D2B/g,'#FFFFFF').replace(/#A11E21/g,'#DCDBDB');
+
+const LIGHT_THEMES = ['light','sand','silver'];
+const THEMES = [
+  { id:'azul_aberto', name:'Pricing', color:'#1C2F48' },
+  { id:'light', name:'Claro', color:'#F8FAFC', needsBorder:true },
+  { id:'warm', name:'Warm', color:'#1A1215' },
+  { id:'midnight', name:'Midnight', color:'#0A0E1A' },
+  { id:'sand', name:'Sand', color:'#F0EDE8', needsBorder:true },
+  { id:'silver', name:'Silver', color:'#DFE3E8', needsBorder:true },
+  { id:'analytics', name:'Analytics', color:'#EE8625' },
+  { id:'zgo', name:'ZGo', color:'#78AE3F' },
+  { id:'consulting', name:'Consulting', color:'#8C9BAB', needsBorder:true },
+  { id:'promo', name:'Promo', color:'#FF4D6A' },
+  { id:'robot', name:'Robot', color:'#6B2246' },
+  { id:'vermelho', name:'Vermelho', color:'#CF110D' }
+];
+
+// Auto-inject logos
+const isLightTheme = LIGHT_THEMES.includes(METADATA.theme);
+const slideLogo = isLightTheme ? ZK_LOGO_RED : ZK_LOGO_WHITE;
+document.querySelectorAll('.zk-logo').forEach(el => { el.innerHTML = slideLogo; });
+
+// Brand validator
+(function validateBrand() {
+  const slides = document.querySelectorAll('.zk-slide');
+  if (!slides.length) return;
+  slides[0].classList.add('active');
+  const coverSlide = slides[0];
+  if (!coverSlide.querySelector('.zk-logo')) {
+    const logoDiv = document.createElement('div');
+    logoDiv.className = 'zk-logo zk-animate';
+    logoDiv.innerHTML = slideLogo;
+    coverSlide.insertBefore(logoDiv, coverSlide.firstChild);
+  }
+  slides.forEach(slide => {
+    Array.from(slide.children).forEach(child => {
+      if (!child.classList.contains('zk-animate') && !child.classList.contains('zk-orb')) {
+        child.classList.add('zk-animate');
+      }
+    });
+  });
+})();
+
+// Theme switcher
+function initThemeSwitcher() {
+  const switcher = document.getElementById('zkThemeSwitcher');
+  if (!switcher) return;
+  THEMES.forEach(theme => {
+    const dot = document.createElement('button');
+    dot.className = 'zk-theme-dot';
+    dot.style.backgroundColor = theme.color;
+    dot.title = theme.name;
+    if (theme.needsBorder) dot.classList.add('needs-border');
+    if (!METADATA.theme && theme.id === 'azul_aberto' || METADATA.theme === theme.id) dot.classList.add('active');
+    dot.onclick = () => switchTheme(theme.id, dot);
+    switcher.appendChild(dot);
+  });
+}
+
+function switchTheme(themeId, dotEl) {
+  METADATA.theme = themeId === 'azul_aberto' ? null : themeId;
+  if (themeId === 'azul_aberto') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', themeId);
+  }
+  document.querySelectorAll('.zk-theme-dot').forEach(d => d.classList.remove('active'));
+  dotEl.classList.add('active');
+  document.getElementById('zkThemeLabel').textContent = `TEMA: ${THEMES.find(t=>t.id===themeId).name}`;
+  const newIsLight = LIGHT_THEMES.includes(themeId);
+  const newLogo = newIsLight ? ZK_LOGO_RED : ZK_LOGO_WHITE;
+  document.querySelectorAll('.zk-logo').forEach(el => { el.innerHTML = newLogo; });
+  if (typeof ckApplyTheme === 'function') ckApplyTheme(themeId);
+}
+
+ckInit();
+initThemeSwitcher();
+
+// Safe zone enforcer
+(function enforceSafeZones() {
+  const slides = document.querySelectorAll('.zk-slide');
+  const root = getComputedStyle(document.documentElement);
+  const safeTop = root.getPropertyValue('--zk-safe-top').trim();
+  const safeBottom = root.getPropertyValue('--zk-safe-bottom').trim();
+  const CENTERED = ['cover','section-divider','closing','quote','big-number','stats-row','checklist','process-steps'];
+  slides.forEach(slide => {
+    const cs = getComputedStyle(slide);
+    const classes = Array.from(slide.classList);
+    if (classes.includes('image-text')) return;
+    const isCentered = CENTERED.some(c => classes.includes(c));
+    if (cs.overflow !== 'hidden') slide.style.overflow = 'hidden';
+    const expectedTop = isCentered ? safeBottom : safeTop;
+    if (parseInt(cs.paddingTop) < parseInt(expectedTop) - 2) slide.style.paddingTop = expectedTop;
+    if (parseInt(cs.paddingBottom) < parseInt(safeBottom) - 2) slide.style.paddingBottom = safeBottom;
+  });
+})();
+</script>
+</body>
+</html>
