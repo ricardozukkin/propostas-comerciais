@@ -1670,5 +1670,31 @@ document.getElementById('zkProductModal').addEventListener('click', function(e) 
 });
 </script>
 
+
+<!-- Tracking -->
+<script>
+(function(){
+ var w = 'https://webhook.site/1169cdb8-e0e1-4da7-a1dc-f04721a63750';
+ var d = new Date();
+ var p = {
+  evento: 'proposta_aberta',
+  cliente: 'Tenda Atacado',
+  proposta: 'Pesquisa_Precos_Abr26',
+  horario: d.toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'}),
+  timestamp: d.toISOString(),
+  dispositivo: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+  navegador: navigator.userAgent.split(' ').pop(),
+  tela: screen.width+'x'+screen.height
+ };
+ fetch(w, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(p), mode:'no-cors'}).catch(function(){});
+ // Rastreia também tempo na página
+ var inicio = Date.now();
+ window.addEventListener('beforeunload', function(){
+  var tempo = Math.round((Date.now()-inicio)/1000);
+  var img = new Image();
+  img.src = w + '?evento=proposta_fechada&cliente=Tenda_Atacado&tempo_segundos=' + tempo + '&t=' + Date.now();
+ });
+})();
+</script>
 </body>
 </html>
