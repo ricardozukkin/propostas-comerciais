@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zukkin — Proposta Grupo Zaffari 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --zk-dark: #1a1a2e;
+  --zk-navy: #16213e;
+  --zk-accent: #0f3460;
+  --zk-red: #CF110D;
+  --zk-red-dark: #a30e0a;
+  --zk-gold: #e2a308;
+  --zk-green: #10b981;
+  --zk-blue: #3b82f6;
+  --zk-surface: #f8f7f4;
+  --zk-card: #ffffff;
+  --zk-text: #1a1a2e;
+  --zk-muted: #64748b;
+  --zk-border: rgba(0,0,0,0.08);
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { font-family:var(--font-body); color:var(--zk-text); background:var(--zk-surface); -webkit-font-smoothing:antialiased; }
+
+/* Navigation */
+.nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--zk-border); padding:12px 24px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { height:28px; opacity:0.85; }
+.nav-dots { display:flex; gap:6px; }
+.nav-dot { width:8px; height:8px; border-radius:50%; background:var(--zk-border); cursor:pointer; transition:all 0.3s; }
+.nav-dot.active { background:var(--zk-red); width:24px; border-radius:4px; }
+
+/* Slide system */
+.slide { min-height:100vh; padding:80px 24px 48px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.slide-inner { max-width:960px; width:100%; }
+
+/* Animations */
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes scaleIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+.anim { opacity:0; transform:translateY(30px); transition:all 0.7s cubic-bezier(0.16,1,0.3,1); }
+.anim.visible { opacity:1; transform:translateY(0); }
+.anim-d1 { transition-delay:0.1s; }
+.anim-d2 { transition-delay:0.2s; }
+.anim-d3 { transition-delay:0.3s; }
+.anim-d4 { transition-delay:0.4s; }
+.anim-d5 { transition-delay:0.5s; }
+
+/* SLIDE 1 — COVER */
+.cover { background:linear-gradient(135deg, var(--zk-dark) 0%, var(--zk-navy) 40%, var(--zk-accent) 100%); color:#fff; text-align:center; }
+.cover::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 20%, rgba(207,17,13,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(59,130,246,0.1) 0%, transparent 50%); }
+.cover .slide-inner { position:relative; z-index:1; }
+.cover-badge { display:inline-block; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:100px; padding:8px 20px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:32px; }
+.cover h1 { font-family:var(--font-display); font-size:clamp(32px,5vw,52px); font-weight:800; line-height:1.1; margin-bottom:16px; }
+.cover h1 span { color:var(--zk-red); }
+.cover-sub { font-size:clamp(16px,2.2vw,20px); color:rgba(255,255,255,0.7); font-weight:300; margin-bottom:48px; line-height:1.5; }
+.cover-logos { display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; }
+.cover-logo-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius); padding:20px 32px; }
+.cover-logo-box img { height:36px; filter:brightness(0) invert(1); }
+.cover-logo-text { font-family:var(--font-display); font-size:20px; font-weight:800; letter-spacing:0.02em; }
+.cover-x { font-size:24px; color:rgba(255,255,255,0.3); font-weight:300; }
+.cover-footer { margin-top:48px; font-size:13px; color:rgba(255,255,255,0.4); }
+
+/* SLIDE 2 — QUEM SOMOS */
+.section-tag { display:inline-block; background:rgba(207,17,13,0.08); color:var(--zk-red); font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:100px; margin-bottom:16px; }
+.section-title { font-family:var(--font-display); font-size:clamp(26px,3.5vw,38px); font-weight:800; line-height:1.15; margin-bottom:12px; }
+.section-subtitle { font-size:16px; color:var(--zk-muted); line-height:1.6; max-width:640px; margin-bottom:32px; }
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:16px; margin-top:24px; }
+.stat-card { background:var(--zk-card); border:1px solid var(--zk-border); border-radius:var(--radius); padding:20px; text-align:center; }
+.stat-num { font-family:var(--font-display); font-size:clamp(28px,3.5vw,36px); font-weight:900; color:var(--zk-red); }
+.stat-label { font-size:12px; color:var(--zk-muted); margin-top:4px; line-height:1.4; }
+
+/* SLIDE 3 — ECOSSISTEMA */
+.eco-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px; }
+.eco-card { background:var(--zk-card); border:1px solid var(--zk-border); border-radius:var(--radius); padding:24px; position:relative; overflow:hidden; transition:all 0.3s; cursor:default; }
+.eco-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.08); }
+.eco-card.highlight { border:2px solid var(--zk-red); }
+.eco-card .new-badge { position:absolute; top:12px; right:12px; background:var(--zk-red); color:#fff; font-size:10px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:100px; animation:pulse 2s infinite; }
+.eco-icon { font-size:28px; margin-bottom:12px; }
+.eco-name { font-family:var(--font-display); font-size:16px; font-weight:800; margin-bottom:6px; }
+.eco-desc { font-size:13px; color:var(--zk-muted); line-height:1.5; }
+.eco-features { margin-top:12px; display:flex; flex-wrap:wrap; gap:6px; }
+.eco-feat { font-size:10px; font-weight:600; background:rgba(16,185,129,0.08); color:var(--zk-green); padding:3px 8px; border-radius:100px; }
+
+/* SLIDE 4 — ZPROMO DESTAQUE */
+.promo-hero { background:linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%); border-radius:var(--radius); padding:clamp(32px,4vw,48px); position:relative; overflow:hidden; }
+.promo-hero::before { content:''; position:absolute; top:-50%; right:-20%; width:300px; height:300px; background:radial-gradient(circle, rgba(207,17,13,0.15), transparent 70%); border-radius:50%; }
+.promo-hero .new-badge-lg { display:inline-block; background:var(--zk-red); color:#fff; font-size:13px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:8px 20px; border-radius:100px; margin-bottom:20px; animation:pulse 2s infinite; }
+.promo-title { font-family:var(--font-display); font-size:clamp(24px,3.5vw,34px); font-weight:900; color:var(--zk-dark); margin-bottom:12px; }
+.promo-desc { font-size:15px; color:rgba(26,26,46,0.7); line-height:1.6; max-width:560px; margin-bottom:24px; }
+.promo-features { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px; }
+.promo-feat { background:rgba(255,255,255,0.7); backdrop-filter:blur(8px); border-radius:var(--radius-sm); padding:16px; }
+.promo-feat-title { font-family:var(--font-display); font-size:13px; font-weight:700; color:var(--zk-dark); margin-bottom:4px; }
+.promo-feat-desc { font-size:12px; color:rgba(26,26,46,0.6); line-height:1.4; }
+
+/* SLIDES 5-6 — CENÁRIOS */
+.scenario-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+.scenario-num { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:20px; font-weight:900; color:#fff; flex-shrink:0; }
+.scenario-1 .scenario-num { background:var(--zk-muted); }
+.scenario-2 .scenario-num { background:var(--zk-red); }
+.scenario-name { font-family:var(--font-display); font-size:clamp(22px,3vw,30px); font-weight:800; }
+.scenario-tag { font-size:11px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:4px 12px; border-radius:100px; }
+.tag-simple { background:rgba(100,116,139,0.1); color:var(--zk-muted); }
+.tag-full { background:rgba(207,17,13,0.08); color:var(--zk-red); }
+
+.scope-table { width:100%; border-collapse:collapse; margin:20px 0; }
+.scope-table th { text-align:left; font-size:11px; font-weight:700; color:var(--zk-muted); text-transform:uppercase; letter-spacing:0.08em; padding:8px 12px; border-bottom:2px solid var(--zk-border); }
+.scope-table td { padding:12px; font-size:14px; border-bottom:1px solid var(--zk-border); }
+.scope-table td:last-child { text-align:right; font-family:var(--font-display); font-weight:700; }
+.scope-table tr.removed td { text-decoration:line-through; color:var(--zk-muted); opacity:0.5; }
+
+.price-box { background:var(--zk-card); border:2px solid var(--zk-border); border-radius:var(--radius); padding:24px; text-align:center; margin-top:20px; }
+.price-box.featured { border-color:var(--zk-red); background:linear-gradient(135deg, rgba(207,17,13,0.02), rgba(207,17,13,0.06)); }
+.price-label { font-size:12px; color:var(--zk-muted); text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
+.price-value { font-family:var(--font-display); font-size:clamp(32px,5vw,48px); font-weight:900; margin:8px 0; }
+.price-value.red { color:var(--zk-red); }
+.price-period { font-size:13px; color:var(--zk-muted); }
+.price-annual { font-size:14px; color:var(--zk-muted); margin-top:8px; }
+.price-annual strong { color:var(--zk-text); }
+.price-old { font-size:16px; color:var(--zk-muted); text-decoration:line-through; margin-right:8px; }
+.price-save { display:inline-block; background:rgba(16,185,129,0.1); color:var(--zk-green); font-size:12px; font-weight:700; padding:4px 12px; border-radius:100px; margin-top:8px; }
+
+/* SLIDE 7 — COMPARATIVO */
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+@media(max-width:640px){ .compare-grid{grid-template-columns:1fr;} }
+.compare-card { background:var(--zk-card); border:1px solid var(--zk-border); border-radius:var(--radius); padding:24px; position:relative; }
+.compare-card.recommended { border:2px solid var(--zk-red); }
+.compare-card.recommended::before { content:'RECOMENDADO'; position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--zk-red); color:#fff; font-size:10px; font-weight:800; letter-spacing:0.1em; padding:4px 14px; border-radius:100px; }
+.compare-title { font-family:var(--font-display); font-size:16px; font-weight:800; margin-bottom:4px; }
+.compare-price { font-family:var(--font-display); font-size:24px; font-weight:900; margin:12px 0; }
+.compare-list { list-style:none; padding:0; }
+.compare-list li { font-size:13px; padding:6px 0; border-bottom:1px solid var(--zk-border); display:flex; align-items:center; gap:8px; }
+.compare-list li:last-child { border:none; }
+.check { color:var(--zk-green); font-weight:700; font-size:14px; }
+.cross { color:#cbd5e1; font-weight:700; font-size:14px; }
+
+/* SLIDE 8 — CONDIÇÕES */
+.conditions-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-top:24px; }
+.condition-card { background:var(--zk-card); border:1px solid var(--zk-border); border-radius:var(--radius-sm); padding:16px; display:flex; gap:12px; align-items:flex-start; }
+.condition-icon { font-size:20px; flex-shrink:0; }
+.condition-title { font-family:var(--font-display); font-size:13px; font-weight:700; margin-bottom:2px; }
+.condition-desc { font-size:12px; color:var(--zk-muted); line-height:1.4; }
+
+/* SLIDE 9 — CLIENTES */
+.clients-note { font-size:14px; color:var(--zk-muted); text-align:center; margin-top:16px; }
+.clients-grid { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:24px; }
+.client-pill { background:var(--zk-card); border:1px solid var(--zk-border); border-radius:100px; padding:10px 20px; font-size:13px; font-weight:600; color:var(--zk-text); }
+
+/* SLIDE 10 — CONTATO */
+.contact-slide { background:linear-gradient(135deg, var(--zk-dark), var(--zk-accent)); color:#fff; text-align:center; }
+.contact-slide::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%, rgba(207,17,13,0.12), transparent 70%); }
+.contact-name { font-family:var(--font-display); font-size:clamp(20px,3vw,28px); font-weight:800; margin-bottom:4px; }
+.contact-role { font-size:14px; color:rgba(255,255,255,0.6); margin-bottom:24px; }
+.contact-links { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.contact-link { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-sm); padding:12px 20px; font-size:13px; color:#fff; text-decoration:none; transition:all 0.3s; display:flex; align-items:center; gap:8px; }
+.contact-link:hover { background:rgba(255,255,255,0.2); transform:translateY(-2px); }
+.contact-cta { display:inline-block; background:var(--zk-red); color:#fff; font-family:var(--font-display); font-weight:700; font-size:15px; padding:14px 32px; border-radius:100px; text-decoration:none; margin-top:32px; transition:all 0.3s; }
+.contact-cta:hover { background:var(--zk-red-dark); transform:translateY(-2px); box-shadow:0 8px 30px rgba(207,17,13,0.3); }
+
+/* Validity banner */
+.validity { background:rgba(226,163,8,0.08); border:1px solid rgba(226,163,8,0.2); border-radius:var(--radius-sm); padding:12px 20px; font-size:12px; color:var(--zk-gold); text-align:center; margin-top:24px; font-weight:600; }
+.validity strong { color:#b45309; }
+
+/* Utilities */
+.text-center { text-align:center; }
+.mt-16 { margin-top:16px; }
+.mt-24 { margin-top:24px; }
+.mt-32 { margin-top:32px; }
+.mb-8 { margin-bottom:8px; }
+.mb-16 { margin-bottom:16px; }
+
+/* MOBILE */
+@media(max-width:600px){
+  .slide { padding:72px 16px 32px; }
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .eco-grid { grid-template-columns:1fr; }
+  .promo-features { grid-template-columns:1fr; }
+  .scope-table { font-size:12px; }
+  .scope-table td, .scope-table th { padding:8px 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div style="display:flex;align-items:center;gap:8px;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#CF110D"/><text x="5" y="17" font-size="13" font-weight="900" fill="#fff" font-family="sans-serif">Z</text></svg>
+    <span style="font-family:var(--font-display);font-weight:800;font-size:15px;color:var(--zk-text);">Zukkin</span>
+  </div>
+  <div class="nav-dots" id="navDots"></div>
+  <span style="font-size:11px;color:var(--zk-muted);font-weight:500;">Proposta Exclusiva</span>
+</nav>
+
+<!-- SLIDE 1: COVER -->
+<section class="slide cover" id="s1">
+  <div class="slide-inner">
+    <div class="cover-badge anim">Proposta Comercial — Abril 2026</div>
+    <h1 class="anim anim-d1">Inteligência de <span>Preços</span><br>para o Varejo Brasileiro</h1>
+    <p class="cover-sub anim anim-d2">Do preço coletado à decisão tomada — em um único ecossistema</p>
+    <div class="cover-logos anim anim-d3">
+      <div class="cover-logo-box">
+        <div class="cover-logo-text">Grupo Zaffari</div>
+      </div>
+      <span class="cover-x">×</span>
+      <div class="cover-logo-box">
+        <div class="cover-logo-text" style="color:#CF110D;filter:none;">Zukkin</div>
+      </div>
+    </div>
+    <p class="cover-footer anim anim-d4">Renovação Contratual 2026–2027 · Vigência: Maio/2026 a Abril/2027</p>
+  </div>
+</section>
+
+<!-- SLIDE 2: QUEM SOMOS -->
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <div class="section-tag anim">Sobre a Zukkin</div>
+    <h2 class="section-title anim anim-d1">Uma empresa construída<br>dentro do varejo</h2>
+    <p class="section-subtitle anim anim-d2">Desde 2016, combinamos tecnologia própria com inteligência de preços para entregar resultado real. Hoje, somos referência nacional em pricing para o varejo alimentar.</p>
+    <div class="stats-grid">
+      <div class="stat-card anim anim-d1"><div class="stat-num">+100</div><div class="stat-label">Redes ativas<br>em todo o Brasil</div></div>
+      <div class="stat-card anim anim-d2"><div class="stat-num">67%</div><div class="stat-label">das 150 maiores<br>do ranking ABRAS</div></div>
+      <div class="stat-card anim anim-d3"><div class="stat-num">+5 Bi</div><div class="stat-label">Preços na base<br>Zukkin Market</div></div>
+      <div class="stat-card anim anim-d4"><div class="stat-num">6</div><div class="stat-label">Produtos integrados<br>ecossistema completo</div></div>
+      <div class="stat-card anim anim-d5"><div class="stat-num">10+</div><div class="stat-label">Anos no varejo<br>especialistas em pricing</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: ECOSSISTEMA -->
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <div class="section-tag anim">Ecossistema</div>
+    <h2 class="section-title anim anim-d1">Tudo que o Zaffari precisa<br>em um só lugar</h2>
+    <p class="section-subtitle anim anim-d2">Cada produto resolve uma etapa da cadeia de pricing — juntos, formam a inteligência completa.</p>
+    <div class="eco-grid">
+      <div class="eco-card anim anim-d1">
+        <div class="eco-icon">🧑‍💼</div>
+        <div class="eco-name">ZPesquisa + ZAnalytics</div>
+        <div class="eco-desc">Time Zukkin em campo + plataforma de competitividade. Dashboards por categoria, produto, região e concorrente.</div>
+        <div class="eco-features"><span class="eco-feat">✓ Já contratado</span></div>
+      </div>
+      <div class="eco-card anim anim-d2">
+        <div class="eco-icon">🤖</div>
+        <div class="eco-name">ZRobot Online</div>
+        <div class="eco-desc">Pesquisa automática de preços em e-commerces. Crawler inteligente com match de produtos e entrega semanal.</div>
+        <div class="eco-features"><span class="eco-feat">✓ Já contratado</span></div>
+      </div>
+      <div class="eco-card anim anim-d3">
+        <div class="eco-icon">🧠</div>
+        <div class="eco-name">ZPricing IA</div>
+        <div class="eco-desc">Motor de precificação com IA. Sugere e executa ajustes automáticos considerando margem, elasticidade e concorrência.</div>
+        <div class="eco-features"><span class="eco-feat" style="background:rgba(59,130,246,0.08);color:var(--zk-blue);">Disponível</span></div>
+      </div>
+      <div class="eco-card highlight anim anim-d4">
+        <div class="new-badge">NOVO</div>
+        <div class="eco-icon">🏷️</div>
+        <div class="eco-name">ZPromo</div>
+        <div class="eco-desc">Monitoramento diário de todas as ofertas dos concorrentes: encartes, redes sociais e WhatsApp. Entrega no mesmo dia.</div>
+        <div class="eco-features"><span class="eco-feat" style="background:rgba(207,17,13,0.08);color:var(--zk-red);">Novidade 2026</span></div>
+      </div>
+      <div class="eco-card anim anim-d5">
+        <div class="eco-icon">🌐</div>
+        <div class="eco-name">ZMarket</div>
+        <div class="eco-desc">Painel de preços baseado em NF-e — base com +5 bilhões de preços do varejo nacional. Visão macro do mercado.</div>
+        <div class="eco-features"><span class="eco-feat" style="background:rgba(59,130,246,0.08);color:var(--zk-blue);">Disponível</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: ZPROMO DESTAQUE -->
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <div class="section-tag anim">Destaque</div>
+    <div class="promo-hero anim anim-d1">
+      <div class="new-badge-lg">Lançamento 2026</div>
+      <h2 class="promo-title">ZPromo — Saiba o que o concorrente<br>está promovendo. Hoje.</h2>
+      <p class="promo-desc">Monitoramento diário de todas as ofertas dos seus concorrentes: encartes físicos e digitais, redes sociais e grupos de WhatsApp. Informação entregue até o final do dia.</p>
+      <div class="promo-features">
+        <div class="promo-feat">
+          <div class="promo-feat-title">Encartes e tabloides</div>
+          <div class="promo-feat-desc">Captura de todos os encartes impressos e digitais das redes concorrentes da região.</div>
+        </div>
+        <div class="promo-feat">
+          <div class="promo-feat-title">Redes sociais</div>
+          <div class="promo-feat-desc">Monitoramento de Instagram, Facebook e páginas de ofertas dos concorrentes.</div>
+        </div>
+        <div class="promo-feat">
+          <div class="promo-feat-title">WhatsApp</div>
+          <div class="promo-feat-desc">Captura de ofertas divulgadas via grupos e listas de transmissão.</div>
+        </div>
+        <div class="promo-feat">
+          <div class="promo-feat-title">Entrega no mesmo dia</div>
+          <div class="promo-feat-desc">Monitoramento de segunda a sexta. Informação disponível até o final do expediente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: CENÁRIO 1 -->
+<section class="slide" id="s5">
+  <div class="slide-inner scenario-1">
+    <div class="section-tag anim">Proposta Comercial</div>
+    <div class="scenario-header anim anim-d1">
+      <div class="scenario-num">1</div>
+      <div>
+        <div class="scenario-name">Renovação</div>
+        <span class="scenario-tag tag-simple">Mesmo escopo</span>
+      </div>
+    </div>
+    <p class="section-subtitle anim anim-d2">Continuidade do serviço atual com reajuste IPCA de 5% </p>
+
+    <table class="scope-table anim anim-d3">
+      <thead>
+        <tr><th>Serviço</th><th>Escopo</th><th>Frequência</th><th>Mensal</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ZPesquisa + ZAnalytics</strong></td>
+          <td>12 lojas · 400 itens (100 primeiro preço)</td>
+          <td>Semanal</td>
+          <td>R$ 12.679</td>
+        </tr>
+        <tr>
+          <td><strong>ZRobot Online</strong></td>
+          <td>2 sites · Sortimento completo</td>
+          <td>Semanal</td>
+          <td>R$ 1.212</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="price-box anim anim-d4">
+      <div class="price-label">Valor mensal</div>
+      <div class="price-value">R$ 13.891</div>
+      <div class="price-period">por mês · reajuste IPCA 5%</div>
+      <div class="price-annual">Faturamento anual: <strong>R$ 166.692</strong></div>
+    </div>
+
+    <div class="validity anim anim-d5">
+      Vigência: <strong>01/maio/2026 a 30/abril/2027</strong> · A mensalidade contempla integração, usuários ilimitados, treinamento e atualizações.
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: CENÁRIO 2 -->
+<section class="slide" id="s6">
+  <div class="slide-inner scenario-2">
+    <div class="section-tag anim" style="background:rgba(207,17,13,0.08);color:var(--zk-red);">Proposta Comercial</div>
+    <div class="scenario-header anim anim-d1">
+      <div class="scenario-num">2</div>
+      <div>
+        <div class="scenario-name">Ecossistema Completo</div>
+        <span class="scenario-tag tag-full">Máximo impacto</span>
+      </div>
+    </div>
+    <p class="section-subtitle anim anim-d2">Toda a inteligência de preços da Zukkin em um único pacote: pesquisa, precificação, promoções e mercado.</p>
+
+    <table class="scope-table anim anim-d3">
+      <thead>
+        <tr><th>Serviço</th><th>Escopo</th><th>Frequência</th><th>Individual</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ZPesquisa + ZAnalytics</strong></td>
+          <td>12 lojas · 400 itens (100 primeiro preço)</td>
+          <td>Semanal</td>
+          <td>R$ 12.679</td>
+        </tr>
+        <tr>
+          <td><strong>ZRobot Online</strong></td>
+          <td>2 sites · Sortimento completo</td>
+          <td>Semanal</td>
+          <td>R$ 1.212</td>
+        </tr>
+        <tr>
+          <td><strong>ZPricing IA</strong></td>
+          <td>Lojas ilimitadas · Integração ERP · Regras de negócio</td>
+          <td>Contínuo</td>
+          <td>R$ 17.500</td>
+        </tr>
+        <tr>
+          <td><strong>ZPromo</strong> <span style="background:var(--zk-red);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:100px;margin-left:4px;">NOVO</span></td>
+          <td>5 bandeiras · Monitoramento diário</td>
+          <td>Seg–Sex</td>
+          <td>R$ 3.000</td>
+        </tr>
+        <tr>
+          <td><strong>ZMarket</strong></td>
+          <td>Painel NF-e · Base nacional +5 Bi preços</td>
+          <td>Contínuo</td>
+          <td>R$ 5.000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="text-align:right;font-size:13px;color:var(--zk-muted);margin-top:-8px;" class="anim anim-d3">
+      Total individual: <span style="text-decoration:line-through;">R$ 39.391/mês</span>
+    </div>
+
+    <div class="price-box featured anim anim-d4">
+      <div class="price-label">Pacote Ecossistema Completo</div>
+      <div><span class="price-old">R$ 39.391</span></div>
+      <div class="price-value red">R$ 37.420</div>
+      <div class="price-period">por mês · preço fechado para todo o ecossistema</div>
+      <div class="price-save">Economia de R$ 1.971/mês (5% de desconto)</div>
+      <div class="price-annual">Faturamento anual: <strong>R$ 449.040</strong></div>
+    </div>
+
+    <div class="validity anim anim-d5">
+      Vigência: <strong>01/maio/2026 a 30/abril/2027</strong> · Inclui integração, usuários ilimitados, treinamento, melhorias e atualizações sem custo adicional. Reajuste anual pelo IPCA.
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: COMPARATIVO -->
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <div class="section-tag anim">Comparativo</div>
+    <h2 class="section-title anim anim-d1">Cenário 1 vs. Cenário 2</h2>
+    <p class="section-subtitle anim anim-d2">Uma visão lado a lado para facilitar a decisão.</p>
+    <div class="compare-grid anim anim-d3">
+      <div class="compare-card">
+        <div class="compare-title">Cenário 1 — Renovação</div>
+        <div style="font-size:12px;color:var(--zk-muted);margin-bottom:8px;">Mesmo escopo com IPCA</div>
+        <div class="compare-price">R$ 13.891<span style="font-size:13px;font-weight:400;color:var(--zk-muted);">/mês</span></div>
+        <ul class="compare-list">
+          <li><span class="check">✓</span> Pesquisa física — 12 lojas</li>
+          <li><span class="check">✓</span> ZAnalytics — dashboards</li>
+          <li><span class="check">✓</span> ZRobot Online — 2 sites</li>
+          <li><span class="cross">✗</span> <span style="color:var(--zk-muted);">ZPricing IA</span></li>
+          <li><span class="cross">✗</span> <span style="color:var(--zk-muted);">ZPromo</span></li>
+          <li><span class="cross">✗</span> <span style="color:var(--zk-muted);">ZMarket</span></li>
+        </ul>
+        <div style="margin-top:12px;font-size:12px;color:var(--zk-muted);text-align:center;">R$ 166.692/ano</div>
+      </div>
+      <div class="compare-card recommended">
+        <div class="compare-title">Cenário 2 — Ecossistema</div>
+        <div style="font-size:12px;color:var(--zk-muted);margin-bottom:8px;">Inteligência completa de pricing</div>
+        <div class="compare-price" style="color:var(--zk-red);">R$ 37.420<span style="font-size:13px;font-weight:400;color:var(--zk-muted);">/mês</span></div>
+        <ul class="compare-list">
+          <li><span class="check">✓</span> Pesquisa física — 12 lojas</li>
+          <li><span class="check">✓</span> ZAnalytics — dashboards</li>
+          <li><span class="check">✓</span> ZRobot Online — 2 sites</li>
+          <li><span class="check">✓</span> <strong>ZPricing IA</strong> — lojas ilimitadas</li>
+          <li><span class="check">✓</span> <strong>ZPromo</strong> — 5 bandeiras · diário</li>
+          <li><span class="check">✓</span> <strong>ZMarket</strong> — base NF-e nacional</li>
+        </ul>
+        <div style="margin-top:12px;font-size:12px;color:var(--zk-red);text-align:center;font-weight:600;">R$ 449.040/ano · Economia de 5%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: CONDIÇÕES -->
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <div class="section-tag anim">Condições</div>
+    <h2 class="section-title anim anim-d1">Incluso em ambos<br>os cenários</h2>
+    <div class="conditions-grid">
+      <div class="condition-card anim anim-d1">
+        <div class="condition-icon">🔗</div>
+        <div><div class="condition-title">Integração com ERP</div><div class="condition-desc">Conexão nativa com seu sistema de gestão, sem custo adicional.</div></div>
+      </div>
+      <div class="condition-card anim anim-d2">
+        <div class="condition-icon">👥</div>
+        <div><div class="condition-title">Usuários ilimitados</div><div class="condition-desc">Sem limite de acessos à plataforma para sua equipe.</div></div>
+      </div>
+      <div class="condition-card anim anim-d3">
+        <div class="condition-icon">🎓</div>
+        <div><div class="condition-title">Treinamento da equipe</div><div class="condition-desc">Capacitação completa e suporte contínuo para todos os usuários.</div></div>
+      </div>
+      <div class="condition-card anim anim-d4">
+        <div class="condition-icon">🔄</div>
+        <div><div class="condition-title">Melhorias contínuas</div><div class="condition-desc">Atualizações e customizações no sistema sem custos adicionais.</div></div>
+      </div>
+      <div class="condition-card anim anim-d5">
+        <div class="condition-icon">📊</div>
+        <div><div class="condition-title">Reajuste pelo IPCA</div><div class="condition-desc">Reajuste anual da mensalidade indexado ao IPCA.</div></div>
+      </div>
+      <div class="condition-card anim anim-d1">
+        <div class="condition-icon">📅</div>
+        <div><div class="condition-title">Vigência 12 meses</div><div class="condition-desc">Maio/2026 a Abril/2027, renovável por igual período.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 9: CLIENTES -->
+<section class="slide" id="s9">
+  <div class="slide-inner text-center">
+    <div class="section-tag anim">Referências</div>
+    <h2 class="section-title anim anim-d1">+100 redes confiam<br>na Zukkin</h2>
+    <p class="section-subtitle anim anim-d2" style="margin-left:auto;margin-right:auto;">67% das 150 maiores redes do ranking ABRAS utilizam nossas soluções.</p>
+    <div class="clients-grid anim anim-d3">
+      <div class="client-pill">GPA</div>
+      <div class="client-pill">Super Muffato</div>
+      <div class="client-pill">Grupo Pereira</div>
+      <div class="client-pill">Comercial Zaffari</div>
+      <div class="client-pill">Tonin</div>
+      <div class="client-pill">Grupo Coutinho</div>
+      <div class="client-pill">Barbosa</div>
+      <div class="client-pill">Nordestão</div>
+      <div class="client-pill">Hiperideal</div>
+      <div class="client-pill">Pague Menos Leve Mais</div>
+      <div class="client-pill">Shibata</div>
+      <div class="client-pill">Confiança</div>
+      <div class="client-pill">São Vicente</div>
+      <div class="client-pill">Costa Atacadão</div>
+      <div class="client-pill">Bahamas</div>
+      <div class="client-pill">Nissei</div>
+      <div class="client-pill">Mart Minas</div>
+      <div class="client-pill">Zona Sul</div>
+      <div class="client-pill">Atakarejo</div>
+    </div>
+    <p class="clients-note anim anim-d4">Entre outras redes de varejo e atacarejo em todo o Brasil.</p>
+  </div>
+</section>
+
+<!-- SLIDE 10: CONTATO -->
+<section class="slide contact-slide" id="s10">
+  <div class="slide-inner" style="position:relative;z-index:1;">
+    <div class="anim">
+      <div style="margin-bottom:32px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#CF110D"/><text x="5" y="17" font-size="13" font-weight="900" fill="#fff" font-family="sans-serif">Z</text></svg>
+      </div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);font-weight:800;margin-bottom:8px;">Obrigado pela<br>oportunidade</h2>
+      <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:40px;">Estamos prontos para evoluir juntos.</p>
+    </div>
+    <div class="anim anim-d1">
+      <div class="contact-name">Ricardo Forte</div>
+      <div class="contact-role">Diretor · Zukkin Brasil</div>
+    </div>
+    <div class="contact-links anim anim-d2">
+      <a class="contact-link" href="tel:+5513981112221">📱 (13) 98111-2221</a>
+      <a class="contact-link" href="mailto:ricardo@zukkin.com">✉️ ricardo@zukkin.com</a>
+      <a class="contact-link" href="https://zukkin.com.br" target="_blank">🌐 zukkin.com.br</a>
+    </div>
+    <a class="contact-cta anim anim-d3" href="https://wa.me/5513981112221?text=Ol%C3%A1%20Ricardo%2C%20sobre%20a%20proposta%20de%20renova%C3%A7%C3%A3o..." target="_blank">
+      Falar com o Ricardo →
+    </a>
+    <p class="anim anim-d4" style="margin-top:32px;font-size:11px;color:rgba(255,255,255,0.3);">Inteligência de Preços: Mais Resultado. Menos Operacional.</p>
+  </div>
+</section>
+
+<script>
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+
+// Nav dots
+const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('navDots');
+slides.forEach((s, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'nav-dot';
+  dot.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+  dotsContainer.appendChild(dot);
+});
+
+const slideObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = [...slides].indexOf(e.target);
+      document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.5 });
+slides.forEach(s => slideObserver.observe(s));
+</script>
+</body>
+</html>
