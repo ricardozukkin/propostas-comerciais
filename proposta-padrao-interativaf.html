@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Zukkin — Proposta Comercial Padrão do Fonseca 2026 (Interativa)</title>
+ <title>Zukkin — Proposta Comercial (Interativa)</title>
  <meta name="robots" content="noindex, nofollow">
  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
  <style>
@@ -235,7 +235,7 @@
   .zk-eco-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); text-align:center; margin-bottom:8px; }
 
   /* Slide 4: Clients grid */
-  .zk-clients-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px; }
+  .zk-clients-grid { display:grid; grid-template-columns:repeat(8,1fr); gap:8px; margin-bottom:18px; }
   .zk-client-badge {
    background:var(--surface); border:1px solid var(--border);
    border-radius:12px; padding:14px 10px; text-align:center;
@@ -243,6 +243,18 @@
    transition:border-color .2s,transform .2s;
   }
   .zk-client-badge:hover { border-color:var(--border-accent); transform:translateY(-2px); }
+  .zk-client-logo {
+   background:#fff; border:1px solid rgba(2,56,90,0.12);
+   border-radius:12px; height:64px; padding:8px;
+   display:flex; align-items:center; justify-content:center;
+   transition:border-color .2s,transform .2s,box-shadow .2s;
+  }
+  .zk-client-logo:hover { border-color:rgba(207,17,13,0.3); transform:translateY(-2px); box-shadow:0 4px 12px rgba(2,56,90,0.08); }
+  .zk-client-logo img { max-width:100%; max-height:100%; object-fit:contain; }
+  .zk-client-logo .zk-logo-fallback {
+   font-size:clamp(9px,1vw,11px); font-weight:800; color:var(--text);
+   text-align:center; line-height:1.1; letter-spacing:.01em;
+  }
   .zk-reasons { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
   .zk-reason {
    background:var(--surface); border:1px solid var(--border);
@@ -459,7 +471,7 @@
     <div class="zk-logo zk-animate"></div>
     <h1 class="zk-animate">Inteligência de Preços<br>para o Varejo Brasileiro</h1>
     <h2 class="zk-animate">Do preço coletado à decisão tomada — em um único ecossistema</h2>
-    <div class="zk-meta zk-animate">Padrão do Fonseca · Bandeira Supermarket · Abril 2026</div>
+    <div class="zk-meta zk-animate">Proposta Comercial Zukkin</div>
    </div>
 
    <!-- ══════════════════════════════════════════
@@ -491,23 +503,23 @@
      </div>
      <div class="zk-timeline-item">
       <div class="phase">2024–26</div>
-      <strong>100+ redes no Brasil</strong>
+      <strong>+100 redes no Brasil</strong>
       <div class="desc">Mais de 100 redes varejistas ativas. Referência nacional em inteligência de pricing para o varejo alimentar e atacarejo.</div>
      </div>
     </div>
 
     <!-- Destaque ABRAS -->
     <div class="zk-animate" style="margin-top:18px; background:linear-gradient(135deg,rgba(207,17,13,0.1),rgba(2,56,90,0.06)); border:1px solid rgba(207,17,13,0.22); border-radius:var(--radius); padding:14px 22px; display:flex; align-items:center; gap:20px;">
-     <div style="font-size:clamp(30px,4.5vw,48px); font-weight:900; color:var(--vermelho); line-height:1; flex-shrink:0;">67%</div>
+     <div style="font-size:clamp(30px,4.5vw,48px); font-weight:900; color:var(--vermelho); line-height:1; flex-shrink:0;">+67%</div>
      <div>
-      <div style="font-size:clamp(12px,1.4vw,15px); font-weight:700; color:var(--text); margin-bottom:3px;">das 150 maiores redes do Ranking ABRAS confiam nas soluções Zukkin</div>
+      <div style="font-size:clamp(12px,1.4vw,15px); font-weight:700; color:var(--text); margin-bottom:3px;">das +150 maiores redes do Ranking ABRAS confiam nas soluções Zukkin</div>
       <div style="font-size:clamp(10px,1.1vw,12px); color:var(--text-secondary);">Referência consolidada no varejo alimentar brasileiro — de redes regionais a grupos nacionais.</div>
      </div>
     </div>
 
     <div style="margin-top:14px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px;" class="zk-animate">
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
-      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--vermelho); line-height:1; margin-bottom:4px;">100+</div>
+      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--vermelho); line-height:1; margin-bottom:4px;">+100</div>
       <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Redes ativas</div>
       <div style="font-size:10px; color:var(--text-secondary);">em todo o Brasil</div>
      </div>
@@ -517,7 +529,7 @@
       <div style="font-size:10px; color:var(--text-secondary);">ecossistema completo</div>
      </div>
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
-      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--go); line-height:1; margin-bottom:4px;">5Bi+</div>
+      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--go); line-height:1; margin-bottom:4px;">+5Bi</div>
       <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Preços coletados</div>
       <div style="font-size:10px; color:var(--text-secondary);">base Zukkin Market</div>
      </div>
@@ -530,113 +542,7 @@
    </div>
 
    <!-- ══════════════════════════════════════════
-      SLIDE 3 — ECOSSISTEMA DE PRODUTOS
-      ══════════════════════════════════════════ -->
-   <div class="zk-slide content">
-    <h2 class="zk-animate">O ecossistema <span style="color:var(--vermelho)">completo</span> de precificação</h2>
-
-    <!-- Layout: feeders à esquerda, seta central, plataformas à direita -->
-    <div style="display:grid; grid-template-columns:1fr 60px 1fr; gap:0; flex:1; align-items:center;" class="zk-animate">
-
-     <!-- COLUNA ESQUERDA: Feeders -->
-     <div style="display:flex; flex-direction:column; gap:10px;">
-      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Fontes de dados</div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--robot);">
-       <span style="font-size:20px;">🤖</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZRobot</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Pesquisa online automática</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--promo);">
-       <span style="font-size:20px;">🏷️</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPromo</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Encartes e promoções dos concorrentes</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--vermelho);">
-       <span style="font-size:20px;">🧑‍💼</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPesquisa</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Time Zukkin em campo — físico</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--go);">
-       <span style="font-size:20px;">📱</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZGO</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">App de Pesquisa de Preços para o seu time</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--consulting);">
-       <span style="font-size:20px;">🔗</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ERP</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Integração com seu sistema de gestão</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid #7C6EF6;">
-       <span style="font-size:20px;">🌐</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">Zukkin Market</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Base com 5Bi+ preços do varejo nacional</div>
-       </div>
-      </div>
-     </div>
-
-     <!-- COLUNA CENTRAL: Seta de fluxo -->
-     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px; padding:0 4px;">
-      <div style="flex:1; width:2px; background:linear-gradient(to bottom, transparent, rgba(207,17,13,0.4)); border-radius:2px;"></div>
-      <div style="width:36px; height:36px; border-radius:50%; background:var(--vermelho); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 0 4px rgba(207,17,13,0.15),0 0 16px rgba(207,17,13,0.3);">
-       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 H12 M8 3 L12 7 L8 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div style="flex:1; width:2px; background:linear-gradient(to bottom, rgba(207,17,13,0.4), transparent); border-radius:2px;"></div>
-     </div>
-
-     <!-- COLUNA DIREITA: Plataformas centrais -->
-     <div style="display:flex; flex-direction:column; gap:16px;">
-      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Plataformas centrais</div>
-
-      <!-- ZAnalytics -->
-      <div style="background:linear-gradient(135deg,rgba(238,134,37,0.12),rgba(238,134,37,0.04)); border:2px solid rgba(238,134,37,0.35); border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
-       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:var(--analytics); border-radius:16px 16px 0 0;"></div>
-       <div style="display:flex; align-items:flex-start; gap:14px;">
-        <div style="font-size:28px; flex-shrink:0;">📊</div>
-        <div style="flex:1;">
-         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:var(--analytics); margin-bottom:5px;">ZAnalytics</div>
-         <div style="font-size:clamp(10px,1.1vw,13px); color:var(--text-secondary); line-height:1.5;">Central de inteligência. Dashboards estratégicos por categoria, produto, região e concorrente. Onde o dado vira decisão.</div>
-         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(238,134,37,0.15); color:var(--analytics); text-transform:uppercase; letter-spacing:.06em;">Análise &amp; Inteligência</div>
-        </div>
-       </div>
-      </div>
-
-      <!-- ZPricing IA -->
-      <div style="background:linear-gradient(135deg,#02385A,#0A4F7A); border:2px solid #02385A; border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
-       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#02385A,#1C6EA4); border-radius:16px 16px 0 0;"></div>
-       <div style="position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,0.04);"></div>
-       <div style="display:flex; align-items:flex-start; gap:14px; position:relative; z-index:1;">
-        <div style="font-size:28px; flex-shrink:0;">🧠</div>
-        <div style="flex:1;">
-         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:#FFFFFF; margin-bottom:5px;">ZPricing IA</div>
-         <div style="font-size:clamp(10px,1.1vw,13px); color:rgba(255,255,255,0.75); line-height:1.5;">Motor de precificação com IA. Sugere e executa ajustes automáticos considerando margem, elasticidade e concorrência.</div>
-         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,0.15); color:#FFFFFF; text-transform:uppercase; letter-spacing:.06em;">Precificação Inteligente</div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-
-
-   <!-- ══════════════════════════════════════════
-      SLIDE — PRODUTOS INTERATIVOS (clique para ver detalhes)
+      SLIDE 3 — CONHEÇA NOSSOS PRODUTOS
       ══════════════════════════════════════════ -->
    <div class="zk-slide content">
     <h2 class="zk-animate">Conheça nossos <span style="color:var(--vermelho)">produtos</span></h2>
@@ -694,7 +600,7 @@
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--market);border-radius:var(--radius) var(--radius) 0 0;"></div>
       <div class="pc-icon" style="background:rgba(124,110,246,0.12);">🌐</div>
       <div class="pc-name" style="color:var(--market);">ZMarket</div>
-      <div class="pc-tag">Painel de preços de NF-e — base com 5Bi+ preços do varejo</div>
+      <div class="pc-tag">Painel de preços de NF-e — base com +5Bi preços do varejo</div>
       <div class="pc-cta" style="color:var(--market);">Ver detalhes →</div>
      </div>
      <div class="zk-prod-card" onclick="zkOpenProduct('zanalytics')">
@@ -715,16 +621,122 @@
    </div>
 
    <!-- ══════════════════════════════════════════
-      SLIDE 4 — POR QUE ZUKKIN?
+      SLIDE 4 — ECOSSISTEMA DE PRODUTOS
       ══════════════════════════════════════════ -->
    <div class="zk-slide content">
-    <h2 class="zk-animate">Por que a <span style="color:var(--vermelho)">Zukkin</span>?</h2>
+    <h2 class="zk-animate">O ecossistema <span style="color:var(--vermelho)">completo</span> de precificação</h2>
+
+    <!-- Layout: feeders à esquerda, seta central, plataformas à direita -->
+    <div style="display:grid; grid-template-columns:1fr 60px 1fr; gap:0; flex:1; align-items:center;" class="zk-animate">
+
+     <!-- COLUNA ESQUERDA: Feeders -->
+     <div style="display:flex; flex-direction:column; gap:10px;">
+      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Fontes de dados</div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--robot);">
+       <span style="font-size:20px;">🤖</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZRobot</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Pesquisa online automática</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--promo);">
+       <span style="font-size:20px;">🏷️</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPromo</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Encartes e promoções dos concorrentes</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--vermelho);">
+       <span style="font-size:20px;">🧑‍💼</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPesquisa</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Time Zukkin em campo — físico</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--go);">
+       <span style="font-size:20px;">📱</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZGO</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">App de Pesquisa de Preços para o seu time</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--consulting);">
+       <span style="font-size:20px;">🔗</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ERP</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Integração com seu sistema de gestão</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid #7C6EF6;">
+       <span style="font-size:20px;">🌐</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">Zukkin Market</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Base com +5Bi preços do varejo nacional</div>
+       </div>
+      </div>
+     </div>
+
+     <!-- COLUNA CENTRAL: Seta de fluxo -->
+     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px; padding:0 4px;">
+      <div style="flex:1; width:2px; background:linear-gradient(to bottom, transparent, rgba(207,17,13,0.4)); border-radius:2px;"></div>
+      <div style="width:36px; height:36px; border-radius:50%; background:var(--vermelho); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 0 4px rgba(207,17,13,0.15),0 0 16px rgba(207,17,13,0.3);">
+       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 H12 M8 3 L12 7 L8 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div style="flex:1; width:2px; background:linear-gradient(to bottom, rgba(207,17,13,0.4), transparent); border-radius:2px;"></div>
+     </div>
+
+     <!-- COLUNA DIREITA: Plataformas centrais -->
+     <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Plataformas centrais</div>
+
+      <!-- ZAnalytics -->
+      <div style="background:linear-gradient(135deg,rgba(238,134,37,0.12),rgba(238,134,37,0.04)); border:2px solid rgba(238,134,37,0.35); border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
+       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:var(--analytics); border-radius:16px 16px 0 0;"></div>
+       <div style="display:flex; align-items:flex-start; gap:14px;">
+        <div style="font-size:28px; flex-shrink:0;">📊</div>
+        <div style="flex:1;">
+         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:var(--analytics); margin-bottom:5px;">ZAnalytics</div>
+         <div style="font-size:clamp(10px,1.1vw,13px); color:var(--text-secondary); line-height:1.5;">Central de inteligência. Dashboards estratégicos por categoria, produto, região e concorrente. Onde o dado vira decisão.</div>
+         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(238,134,37,0.15); color:var(--analytics); text-transform:uppercase; letter-spacing:.06em;">Análise &amp; Inteligência</div>
+        </div>
+       </div>
+      </div>
+
+      <!-- ZPricing IA -->
+      <div style="background:linear-gradient(135deg,#02385A,#0A4F7A); border:2px solid #02385A; border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
+       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#02385A,#1C6EA4); border-radius:16px 16px 0 0;"></div>
+       <div style="position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,0.04);"></div>
+       <div style="display:flex; align-items:flex-start; gap:14px; position:relative; z-index:1;">
+        <div style="font-size:28px; flex-shrink:0;">🧠</div>
+        <div style="flex:1;">
+         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:#FFFFFF; margin-bottom:5px;">ZPricing IA</div>
+         <div style="font-size:clamp(10px,1.1vw,13px); color:rgba(255,255,255,0.75); line-height:1.5;">Motor de precificação com IA. Sugere e executa ajustes automáticos considerando margem, elasticidade e concorrência.</div>
+         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,0.15); color:#FFFFFF; text-transform:uppercase; letter-spacing:.06em;">Precificação Inteligente</div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 5 — POR QUE ZUKKIN?
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">Por que o <span style="color:var(--vermelho)">Zukkin</span>?</h2>
 
     <!-- Stats row -->
     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px;" class="zk-animate">
      <div class="zk-kpi" style="--accent-color:var(--vermelho)">
       <div class="label">Redes no Brasil</div>
-      <div class="value">100+</div>
+      <div class="value">+100</div>
       <div class="trend up">↑ Em crescimento</div>
      </div>
      <div class="zk-kpi" style="--accent-color:var(--analytics)">
@@ -734,24 +746,36 @@
      </div>
      <div class="zk-kpi" style="--accent-color:var(--go)">
       <div class="label">Especialização</div>
-      <div class="value">10+ anos</div>
+      <div class="value">+10 anos</div>
       <div class="trend up">Só varejo alimentar</div>
      </div>
     </div>
 
     <!-- Clientes grid -->
-    <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:10px;" class="zk-animate">Algumas redes que confiam na Zukkin</div>
+    <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:10px;" class="zk-animate">Algumas redes que confiam no Zukkin</div>
+    <!--
+      LOGOS DOS CLIENTES — para mostrar os logos visuais:
+      1) Crie uma pasta "assets/logos/" no repositório do GitHub Pages
+      2) Faça upload de cada arquivo PNG/SVG com o nome do slug abaixo (ex: gpa.png, muffato.png)
+      3) Quando o arquivo existir, o logo aparece automaticamente; quando não existir, mostra o nome em texto como fallback
+    -->
     <div class="zk-clients-grid zk-animate">
-     <div class="zk-client-badge">Grupo Muffato</div>
-     <div class="zk-client-badge">Grupo Pereira</div>
-     <div class="zk-client-badge">Zona Sul</div>
-     <div class="zk-client-badge">Savegnago</div>
-     <div class="zk-client-badge">Tonin Atacadista</div>
-     <div class="zk-client-badge">Arco-Mix</div>
-     <div class="zk-client-badge">Nordestão</div>
-     <div class="zk-client-badge">Comercial Zaffari</div>
-     <div class="zk-client-badge">GPA</div>
-     <div class="zk-client-badge">Grupo Coutinho</div>
+     <div class="zk-client-logo"><img src="assets/logos/gpa.png" alt="GPA" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">GPA</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/muffato.png" alt="Grupo Muffato" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Grupo<br>Muffato</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/pereira.png" alt="Grupo Pereira" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Grupo<br>Pereira</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/savegnago.png" alt="Savegnago" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Savegnago</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/vila-nova.png" alt="Grupo Vila Nova" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Grupo<br>Vila Nova</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/zona-sul.png" alt="Zona Sul" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Zona Sul</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/tonin.png" alt="Tonin Atacadista" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Tonin</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/arco-mix.png" alt="Arco-Mix" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Arco-Mix</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/nordestao.png" alt="Nordestão" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Nordestão</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/zaffari.png" alt="Comercial Zaffari" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Comercial<br>Zaffari</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/coutinho.png" alt="Grupo Coutinho" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Grupo<br>Coutinho</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/lider.png" alt="Líder Atacadista" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Líder</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/moniari.png" alt="Moniari" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Moniari</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/dalben.png" alt="Dalben" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Dalben</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/supernosso.png" alt="Supernosso" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Supernosso</span></div>
+     <div class="zk-client-logo"><img src="assets/logos/barbosa.png" alt="Barbosa" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="zk-logo-fallback" style="display:none;">Barbosa</span></div>
     </div>
 
     <!-- Razões -->
@@ -769,23 +793,23 @@
      <div class="zk-reason" style="border-left-color:var(--go)">
       <div class="r-icon">📐</div>
       <div class="r-title">Varejos de todos os tamanhos</div>
-      <div class="r-desc">De redes com 5 lojas a grupos com 500+ unidades. Produto escalável, preço justo e escopo adaptado à realidade de cada operação.</div>
+      <div class="r-desc">De redes com 5 lojas a grupos com +500 unidades. Produto escalável, preço justo e escopo adaptado à realidade de cada operação.</div>
      </div>
     </div>
    </div>
 
    <!-- ══════════════════════════════════════════
-      SLIDE 5 — PROJETO ZUKKIN × SUPERMARKET
+      SLIDE 6 — PROJETO ZUKKIN × CLIENTE
       ══════════════════════════════════════════ -->
    <div class="zk-slide content" style="padding-top:52px; padding-bottom:28px;">
-    <h2 class="zk-animate" style="margin-bottom:14px;">Projeto <span style="color:var(--vermelho)">Zukkin × Padrão do Fonseca</span></h2>
+    <h2 class="zk-animate" style="margin-bottom:14px;">Projeto <span style="color:var(--vermelho)">Zukkin × sua empresa</span></h2>
 
     <!-- Header do projeto -->
     <div class="zk-project-header zk-animate" style="padding:11px 16px; margin-bottom:12px;">
      <div class="proj-icon" style="font-size:24px;">🤝</div>
      <div>
-      <div class="proj-title" style="font-size:clamp(11px,1.3vw,14px);">Implementação personalizada para o Padrão do Fonseca</div>
-      <div class="proj-sub" style="font-size:clamp(9px,1vw,11px);">Projeto exclusivo para o Padrão do Fonseca: escopo customizado, concorrentes da sua praça e módulos adequados à sua operação.</div>
+      <div class="proj-title" style="font-size:clamp(11px,1.3vw,14px);">Implementação personalizada para sua empresa</div>
+      <div class="proj-sub" style="font-size:clamp(9px,1vw,11px);">Projeto exclusivo para sua empresa: escopo customizado, concorrentes da sua praça e módulos adequados à sua operação.</div>
      </div>
     </div>
 
@@ -827,7 +851,7 @@
       <ul class="zk-phase-items">
        <li>Acompanhamento semanal com CSM dedicado</li>
        <li>Expansão para novas categorias</li>
-       <li>Benchmark regional — praça do Padrão do Fonseca</li>
+       <li>Benchmark regional — praça do seu negócio</li>
        <li>QBR trimestral com time Zukkin</li>
       </ul>
      </div>
@@ -862,122 +886,104 @@
    </div>
 
    <!-- ══════════════════════════════════════════
-      SLIDE 6 — PROPOSTA OPÇÃO 1: POR REDE
+      SLIDE 7 — PROPOSTA COMERCIAL
       ══════════════════════════════════════════ -->
    <div class="zk-slide content" style="padding-top:52px; padding-bottom:28px;">
     <div class="zk-animate" style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
-    <h2 style="margin-bottom:0;">Proposta <span style="color:var(--vermelho)">Comercial</span> — Padrão do Fonseca</h2>
+    <h2 style="margin-bottom:0;">Proposta <span style="color:var(--vermelho)">Comercial</span></h2>
      <button onclick="zkOpenModal()" style="flex-shrink:0; display:inline-flex; align-items:center; gap:6px; background:var(--vermelho); color:#fff; border:none; padding:10px 20px; border-radius:10px; font-family:var(--font); font-size:12px; font-weight:800; letter-spacing:.02em; cursor:pointer; box-shadow:0 3px 16px rgba(207,17,13,0.3); transition:all .2s; white-space:nowrap;">Avançar com a Proposta →</button>
     </div>
 
     <div class="zk-animate" style="background:linear-gradient(135deg,#02385A,#0A4F7A); border-radius:10px; padding:10px 18px; margin-bottom:10px; display:flex; align-items:center; gap:12px;">
      <div style="font-size:22px; flex-shrink:0;">🏪</div>
-     <div style="font-size:clamp(13px,1.6vw,16px); font-weight:800; color:#FFFFFF; line-height:1.4;">Proposta exclusiva para o Padrão do Fonseca &nbsp;·&nbsp; Escopo e valores customizados para sua operação</div>
+     <div style="font-size:clamp(13px,1.6vw,16px); font-weight:800; color:#FFFFFF; line-height:1.4;">Proposta exclusiva para sua empresa &nbsp;·&nbsp; Escopo e valores customizados para sua operação</div>
     </div>
 
-    <!-- Grid 3 cards -->
-    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:8px;">
+    <!-- Coleta de Dados -->
+    <div class="zk-animate" style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:6px;">Coleta de dados</div>
+    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
 
-     <!-- ZAnalytics + ZGO -->
-     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--analytics);">
-      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--analytics); margin-bottom:4px;">📊 ZAnalytics + App ZGO</div>
-      <div style="font-size:10px; color:var(--text-secondary); margin-bottom:6px; line-height:1.4;"><em>Plataforma de análise competitiva + app de coleta pelo time da própria rede</em></div>
-      <div style="font-size:clamp(20px,2.6vw,26px); font-weight:900; color:var(--analytics); line-height:1; margin-bottom:4px;">R$ 1.800<span style="font-size:11px; font-weight:600; color:var(--text-muted);">/mês</span></div>
-      <div style="font-size:10px; color:var(--positive); font-weight:600;">✓ Lojas, itens e frequência ilimitados</div>
+     <!-- Pesquisa Presencial -->
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--vermelho);">
+      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--vermelho); margin-bottom:4px;">🚶 Pesquisa Presencial</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Pesquisadores Zukkin treinados em campo coletam preços nas lojas dos concorrentes — cobertura, padronização e auditoria garantidas</em></div>
      </div>
 
      <!-- ZRobot -->
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--robot);">
       <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--robot); margin-bottom:4px;">🤖 ZRobot</div>
-      <div style="font-size:10px; color:var(--text-secondary); margin-bottom:6px; line-height:1.4;"><em>Monitoramento automático de e-commerces — captura preços de concorrentes online </em></div>
-      <div style="font-size:clamp(20px,2.6vw,26px); font-weight:900; color:var(--robot); line-height:1; margin-bottom:4px;">R$ 400<span style="font-size:11px; font-weight:600; color:var(--text-muted);">/site/mês</span> <span style="font-size:12px; font-weight:600; color:var(--text-muted); text-decoration:line-through;">500</span> <span style="font-size:9px; font-weight:800; color:var(--positive); background:rgba(16,185,129,0.15); border-radius:20px; padding:1px 6px; vertical-align:middle;">-20%</span></div>
-      <div style="font-size:10px; color:var(--positive); font-weight:600;">✓ Sortimento completo · Frequência semanal</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Monitoramento automático de e-commerces — captura preços de concorrentes online com sortimento completo e frequência configurável</em></div>
      </div>
 
      <!-- ZPromo -->
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--promo);">
       <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--promo); margin-bottom:4px;">🏷️ ZPromo</div>
-      <div style="font-size:10px; color:var(--text-secondary); margin-bottom:6px; line-height:1.4;"><em>Monitoramento diário de todas as Ofertas: Encartes, Redes sociais e WhatsApp. Entrega no mesmo dia via WhatsApp e sites</em></div>
-      <div style="font-size:clamp(20px,2.6vw,26px); font-weight:900; color:var(--promo); line-height:1; margin-bottom:4px;">R$ 500<span style="font-size:11px; font-weight:600; color:var(--text-muted);">/bandeira/mês</span></div>
-      <div style="font-size:10px; color:var(--positive); font-weight:600;">✓ Todas as ofertas · Diário (seg–sex)</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Captura diária de todas as ofertas: encartes, redes sociais e WhatsApp. Entrega no mesmo dia via app, WhatsApp e plataforma</em></div>
+     </div>
+
+     <!-- ZGO -->
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid #78AE3F;">
+      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:#78AE3F; margin-bottom:4px;">📱 ZGO</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>App de pesquisa para o seu time — agenda inteligente, validação por foto, dashboard de produtividade e integração direta no ecossistema</em></div>
+     </div>
+
+    </div>
+
+    <!-- Inteligência e Plataforma -->
+    <div class="zk-animate" style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:6px;">Inteligência, plataforma e serviços</div>
+    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
+
+     <!-- ZAnalytics -->
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--analytics);">
+      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--analytics); margin-bottom:4px;">📊 ZAnalytics</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Plataforma de análise competitiva — dashboards, alertas e relatórios com lojas, itens e frequência ilimitados</em></div>
+     </div>
+
+     <!-- ZPricing IA -->
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--pricing);">
+      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--pricing); margin-bottom:4px;">🧠 ZPricing IA</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Motor de precificação com IA — sugere e executa ajustes de preço considerando margem, elasticidade e movimentos da concorrência</em></div>
      </div>
 
      <!-- ZMarket -->
-     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid #7C6EF6;">
-      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:#7C6EF6; margin-bottom:4px;">🌐 ZMarket</div>
-      <div style="font-size:10px; color:var(--text-secondary); margin-bottom:6px; line-height:1.4;"><em>Painel de preços de cupom fiscal — dados de NF-e do varejo nacional</em></div>
-      <div style="font-size:clamp(20px,2.6vw,26px); font-weight:900; color:#7C6EF6; line-height:1; margin-bottom:4px;">R$ 1.500<span style="font-size:11px; font-weight:600; color:var(--text-muted);">/mês</span></div>
-      <div style="font-size:10px; color:var(--positive); font-weight:600;">✓ Base com 5Bi+ preços coletados</div>
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--market);">
+      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--market); margin-bottom:4px;">🌐 ZMarket</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Painel de preços de cupom fiscal — base com +5Bi de preços coletados de NF-e do varejo nacional</em></div>
+     </div>
+
+     <!-- ZConsulting -->
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--consulting);">
+      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--consulting); margin-bottom:4px;">🎯 ZConsulting</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Consultoria especializada em pricing — análises sob demanda, diagnóstico de operação e suporte estratégico contínuo</em></div>
      </div>
 
     </div>
 
-    <!-- ZPricing IA — linha inteira -->
-    <div class="zk-animate" style="background:linear-gradient(135deg,#02385A,#0A4F7A); border:2px solid #02385A; border-radius:12px; padding:10px 18px; margin-bottom:8px;">
-     <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,0.7); margin-bottom:4px;">🧠 ZPricing IA</div>
-     <div style="font-size:10px; color:rgba(255,255,255,0.6); margin-bottom:8px;"><em>Motor de precificação com IA — sugere e executa ajustes automáticos de preço considerando margem, elasticidade e movimentos da concorrência</em></div>
-     <div style="display:grid; grid-template-columns:1fr 1px 1fr; gap:0; align-items:center;">
-      <div style="padding-right:20px;">
-       <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px;">Setup por rede (único)</div>
-       <div style="position:relative; display:inline-block;">
-        <div style="font-size:clamp(20px,2.8vw,28px); font-weight:900; color:rgba(255,255,255,0.25); line-height:1; text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.4); text-decoration-thickness:1px;">R$ 12.000 <span style="font-size:10px; color:rgba(255,255,255,0.2);">(3× R$ 4.000)</span></div>
-        <div style="font-size:clamp(22px,3vw,32px); font-weight:900; color:#7de8c8; line-height:1; margin-top:4px; letter-spacing:.04em;">ISENTO</div>
-       </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.15); width:1px; height:50px; margin:0 auto;"></div>
-      <div style="padding-left:20px;">
-       <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px;">Mensalidade por loja</div>
-       <div style="display:flex; align-items:baseline; gap:8px;">
-        <div style="font-size:clamp(14px,1.6vw,16px); font-weight:600; color:rgba(255,255,255,0.35); text-decoration:line-through; line-height:1;">R$ 600</div>
-        <div style="font-size:clamp(20px,2.8vw,28px); font-weight:900; color:#fff; line-height:1;">R$ 480<span style="font-size:11px; color:rgba(255,255,255,0.6);">/loja/mês</span></div>
-        <div style="display:inline-block; background:rgba(125,232,200,0.2); border-radius:20px; padding:2px 8px; font-size:10px; font-weight:800; color:#7de8c8;">-20%</div>
-       </div>
-      </div>
+    <!-- Cancelamento + Incluso -->
+    <div class="zk-animate" style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:2px solid rgba(16,185,129,0.3); border-radius:10px; padding:8px 14px; margin-bottom:6px; display:flex; align-items:center; gap:10px;">
+     <div style="font-size:18px; flex-shrink:0;">🔓</div>
+     <div>
+      <div style="font-size:clamp(11px,1.2vw,13px); font-weight:800; color:var(--positive);">Sem multa de cancelamento</div>
+      <div style="font-size:10px; color:var(--text-secondary);">Cancele sem custo. Apenas aviso prévio de 30 dias.</div>
      </div>
     </div>
 
-    <!-- Condições especiais -->
-    <div class="zk-animate" style="background:linear-gradient(135deg,rgba(207,17,13,0.12),rgba(207,17,13,0.04)); border:2px solid rgba(207,17,13,0.35); border-radius:10px; padding:8px 16px; margin-bottom:6px; display:flex; align-items:center; gap:10px;">
-     <div style="font-size:20px; flex-shrink:0;">🔥</div>
-     <div style="font-size:clamp(12px,1.4vw,14px); font-weight:800; color:var(--vermelho); letter-spacing:.02em;">Condições especiais válidas para fechamento das 4 redes juntas (Padrão, GMAP, Alvorada e Barraoeste)</div>
-    </div>
-
-    <!-- Destaques carência + cancelamento -->
-    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:6px;">
-     <div style="background:linear-gradient(135deg,rgba(124,110,246,0.12),rgba(124,110,246,0.04)); border:2px solid rgba(124,110,246,0.3); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:8px;">
-      <div style="font-size:15px; flex-shrink:0;">🕐</div>
-      <div>
-       <div style="font-size:clamp(11px,1.2vw,13px); font-weight:800; color:#7C6EF6;">Carência de 3 meses no ZPricing</div>
-       <div style="font-size:10px; color:var(--text-secondary);">Primeira mensalidade apenas no 4° mês</div>
-      </div>
-     </div>
-     <div style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:2px solid rgba(16,185,129,0.3); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:8px;">
-      <div style="font-size:15px; flex-shrink:0;">🔓</div>
-      <div>
-       <div style="font-size:clamp(11px,1.2vw,13px); font-weight:800; color:var(--positive);">Sem multa de cancelamento</div>
-       <div style="font-size:10px; color:var(--text-secondary);">Cancele sem custo. Apenas aviso prévio de 30 dias.</div>
-      </div>
-     </div>
-    </div>
-
-    <!-- Incluso -->
     <div class="zk-animate" style="background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(16,185,129,0.03)); border:1px solid rgba(16,185,129,0.2); border-radius:10px; padding:6px 12px; display:flex; gap:16px; flex-wrap:wrap;">
-     <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--positive); width:100%;">✓ Incluso em todas as mensalidades</div>
+     <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--positive); width:100%;">✓ Sempre incluso em todas as soluções</div>
      <div style="font-size:10px; color:var(--text-secondary);">✓ Integração com ERP</div>
      <div style="font-size:10px; color:var(--text-secondary);">✓ Usuários ilimitados</div>
      <div style="font-size:10px; color:var(--text-secondary);">✓ Treinamento da equipe</div>
      <div style="font-size:10px; color:var(--text-secondary);">✓ Melhorias e atualizações sem custo adicional</div>
-     <div style="font-size:10px; color:var(--text-secondary);">✓ Reajuste anual pelo IPCA</div>
     </div>
    </div>
 
    <!-- ══════════════════════════════════════════
-      SLIDE 9 — ENCERRAMENTO + CTAs
+      SLIDE 8 — ENCERRAMENTO + CTAs
       ══════════════════════════════════════════ -->
    <div class="zk-slide closing">
     <div class="zk-logo zk-animate"></div>
 
-    <h2 class="zk-animate" style="margin-bottom:8px;">Obrigado pela oportunidade!<br><span style="font-size:clamp(18px,2.5vw,30px); font-weight:400; color:var(--text-secondary);">É uma honra poder fazer parte do crescimento<br>do Padrão do Fonseca.</span></h2>
+    <h2 class="zk-animate" style="margin-bottom:8px;">Obrigado pela oportunidade!<br><span style="font-size:clamp(18px,2.5vw,30px); font-weight:400; color:var(--text-secondary);">É uma honra poder fazer parte do crescimento<br>do seu negócio.</span></h2>
 
     <div class="zk-animate" style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:32px; margin-top:8px;">
      <button onclick="zkOpenModal()"
@@ -1102,7 +1108,7 @@ function ckInit() {
  document.getElementById('ckArrowNext').addEventListener('click', ckNext);
 }
 
-const METADATA = { theme: 'light', title: "Zukkin × Padrão do Fonseca 2026", expires_at: "2026-04-30" };
+const METADATA = { theme: 'light', title: "Zukkin × sua empresa" };
 
 const ZK_LOGO_RED = `<svg viewBox="0 0 991.8 225.4" fill="none"><defs><linearGradient id="zg1" x1="19.3" y1="67.2" x2="171.1" y2="-20.5" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"/><stop offset="1" stop-color="#A11E21"/></linearGradient><linearGradient id="zg2" x1="179.7" y1="141.3" x2="62.7" y2="258.3" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"/><stop offset="1" stop-color="#A11E21"/></linearGradient></defs><path fill="#CF110D" d="M814.9,7.2C810.2,2.4,804.4,0,797.7,0h-25.7v40.6h50.1V24.4C822.1,17.7,819.7,11.9,814.9,7.2z"/><path fill="url(#zg1)" d="M182.7,0h-0.2H0v27.3C0,40.4,10.6,51,23.7,51h101.7h6.5h51V0C182.9,0,182.8,0,182.7,0z"/><path fill="url(#zg2)" d="M86.3,174.3h-5.6h-51v51c0.1,0,0.2,0,0.3,0h0.2h182.5v-51H86.3z"/><path fill="#CF110D" d="M183.5,0.1c-0.2,0-0.3-0.1-0.5-0.1l-30.4,30.4L131.9,51l-2.1,2.1l-0.1-0.1L9,173.8l-0.4,0.4c-5.3,5.4-8.6,12.8-8.6,21c0,16.3,13,29.5,29.2,30c0.2,0,0.3,0.1,0.5,0.1l30.4-30.4l20.6-20.6l2.1-2.1l0.1,0.1L203.6,51.5l0.4-0.4c5.3-5.4,8.6-12.8,8.6-21C212.7,13.8,199.7,0.6,183.5,0.1z"/><path fill="#CF110D" d="M360.2,56.7c-6.3,0-11.5,2.1-15.5,6.3c-4,4.2-6,9.3-6,15.2v6.3v70.3c0-0.1-0.1-0.1-0.1-0.2c-1.1,15.2-13.8,27.3-29.4,27.3c-15.5,0-28.2-12-29.4-27.3c0,0.1-0.1,0.1-0.1,0.2V84.3V56.7h-44.4l0,95.1v0c0,32,20.5,59.3,49.1,69.4c7.7,2.7,15.9,4.2,24.5,4.2c40.6,0,73.6-32.9,73.6-73.6V56.7H360.2z"/><path fill="#CF110D" d="M866.9,225.4c6.3,0,11.5-2.1,15.5-6.3c4-4.2,6-9.3,6-15.2v-6.3v-70.3c0,0.1,0.1,0.1,0.1,0.2c1.1-15.2,13.8-27.3,29.4-27.3c15.5,0,28.2,12,29.4,27.3c0-0.1,0.1-0.1,0.1-0.2v70.6v27.6h44.4l0-95.1v0c0-32-20.5-59.3-49.1-69.4c-7.7-2.7-15.9-4.2-24.5-4.2c-40.6,0-73.6,32.9-73.6,73.6v95.1H866.9z"/><path fill="#CF110D" d="M508.5,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C443.1,2.4,437.3,0,430.6,0H405v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L508.5,115.5z"/><path fill="#CF110D" d="M692,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C626.6,2.4,620.8,0,614.2,0h-25.7v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L692,115.5z"/><path fill="#CF110D" d="M814.9,63.9c-4.8-4.8-10.6-7.2-17.2-7.2h-25.7v34.1v2.8v131.7h50.1V93.7v-2.8v-9.7C822.1,74.4,819.7,68.6,814.9,63.9z"/></svg>`;
 const ZK_LOGO_WHITE = ZK_LOGO_RED.replace(/#CF110D/g,'#FFFFFF').replace(/#EE2D2B/g,'#FFFFFF').replace(/#A11E21/g,'#DCDBDB');
@@ -1279,7 +1285,7 @@ function zkSubmitForm(e) {
     <div class="zk-modal-header">
      <div>
       <h3>Avançar com a Proposta</h3>
-      <p>Preencha os dados abaixo para iniciarmos o projeto no Padrão do Fonseca</p>
+      <p>Preencha os dados abaixo para iniciarmos o projeto na sua empresa</p>
      </div>
      <button class="zk-modal-close" onclick="zkCloseModal()">&times;</button>
     </div>
@@ -1418,10 +1424,10 @@ function zkSubmitForm(e) {
 <script>
 /* ═══ PRODUCT DATA & MODAL ═══ */
 var PRODUCTS = {
- zrobot: { icon:'\u{1F916}', name:'ZRobot', badge:'Pesquisa Online Autom\u00e1tica', gradient:'linear-gradient(135deg,#6B2246,#8E3060)', color:'#6B2246', desc:'Crawler inteligente que varre os sites dos seus concorrentes e traz os pre\u00e7os atualizados automaticamente. Sem pesquisador, sem planilha, sem retrabalho.', features:[{icon:'\u{1F50D}',title:'Varredura autom\u00e1tica',desc:'Monitora m\u00faltiplos sites com frequ\u00eancia configur\u00e1vel \u2014 di\u00e1ria, semanal ou sob demanda.'},{icon:'\u{1F517}',title:'Associa\u00e7\u00e3o autom\u00e1tica',desc:'A Zukkin associa seus produtos com os links de cada site. Pesquisa completa de todo o sortimento.'},{icon:'\u{1F4F8}',title:'Print como evid\u00eancia',desc:'Captura screenshots dos pre\u00e7os fora do range para comprova\u00e7\u00e3o e auditoria.'}], hlNum:'5mil+', hlText:'Ideal para fundo de sortimento', hlSub:'M\u00e9dia de mais de 5 mil produtos pesquisados' },
+ zrobot: { icon:'\u{1F916}', name:'ZRobot', badge:'Pesquisa Online Autom\u00e1tica', gradient:'linear-gradient(135deg,#6B2246,#8E3060)', color:'#6B2246', desc:'Crawler inteligente que varre os sites dos seus concorrentes e traz os pre\u00e7os atualizados automaticamente. Sem pesquisador, sem planilha, sem retrabalho.', features:[{icon:'\u{1F50D}',title:'Varredura autom\u00e1tica',desc:'Monitora m\u00faltiplos sites com frequ\u00eancia configur\u00e1vel \u2014 di\u00e1ria, semanal ou sob demanda.'},{icon:'\u{1F517}',title:'Associa\u00e7\u00e3o autom\u00e1tica',desc:'A Zukkin associa seus produtos com os links de cada site. Pesquisa completa de todo o sortimento.'},{icon:'\u{1F4F8}',title:'Print como evid\u00eancia',desc:'Captura screenshots dos pre\u00e7os fora do range para comprova\u00e7\u00e3o e auditoria.'}], hlNum:'+5mil', hlText:'Ideal para fundo de sortimento', hlSub:'M\u00e9dia de mais de 5 mil produtos pesquisados' },
  zpromo: { icon:'\u{1F3F7}\uFE0F', name:'ZPromo', badge:'Intelig\u00eancia Promocional', gradient:'linear-gradient(135deg,#FF4D6A,#E83A5A)', color:'#FF4D6A', desc:'Entrega no mesmo dia dos concorrentes: encartes, redes sociais e WhatsApp. Entrega no mesmo dia \u2014 voc\u00ea nunca mais \u00e9 pego de surpresa.', features:[{icon:'\u{1F4CB}',title:'Encartes e tabloides',desc:'Captura completa dos encartes impressos e digitais de cada concorrente.'},{icon:'\u{1F4F1}',title:'WhatsApp e redes',desc:'Monitora promo\u00e7\u00f5es via WhatsApp, Instagram e sites automaticamente.'},{icon:'\u26A1',title:'Frequ\u00eancia di\u00e1ria',desc:'Atualiza\u00e7\u00e3o seg\u2013sex com todas as ofertas do dia.'}], hlNum:'D+0', hlText:'Entrega no mesmo dia', hlSub:'Integrado ao ZPricing IA \u2014 voc\u00ea analisa os pre\u00e7os de combate das ofertas em poucos segundos' },
  zgo: { icon:'\u{1F4F1}', name:'ZGO', badge:'App de Coleta em Campo', gradient:'linear-gradient(135deg,#78AE3F,#5C8F2E)', color:'#78AE3F', desc:'App de Pesquisa de Pre\u00e7os para o seu time \u2014 sistema completo com lista, categoriza\u00e7\u00e3o e auditoria. Menos trabalho manual, mais resultado.', features:[{icon:'\u{1F4C5}',title:'Agenda inteligente',desc:'Programa pesquisa por loja, dia e pesquisador com roteiro otimizado.'},{icon:'\u2705',title:'Valida\u00e7\u00e3o e alertas',desc:'Foto autom\u00e1tica dos pre\u00e7os fora do range personalizado por produto. Alertas de pre\u00e7os em tempo real.'},{icon:'\u{1F4CA}',title:'Dashboard de gest\u00e3o',desc:'Acompanhe em tempo real o andamento e produtividade por pesquisador.'}], hlNum:'Tempo real', hlText:'Tudo integrado no ecossistema Zukkin', hlSub:'Pesquisa entra online, r\u00e1pido e autom\u00e1tico \u2014 direto no ZAnalytics e ZPricing' },
- zmarket: { icon:'\u{1F310}', name:'ZMarket', badge:'Big Data de Pre\u00e7os', gradient:'linear-gradient(135deg,#7C6EF6,#5A4FD4)', color:'#7C6EF6', desc:'A maior base de pre\u00e7os do varejo brasileiro. Dados de nota fiscal, e-commerce, g\u00f4ndola \u2014 um painel de pre\u00e7os completo para posicionar todo o sortimento com intelig\u00eancia.', features:[{icon:'\u{1F9FE}',title:'Dados de NF-e',desc:'Pre\u00e7os reais de notas fiscais \u2014 \u00e9 o pre\u00e7o que o consumidor pagou.'},{icon:'\u{1F5FA}\uFE0F',title:'Cobertura nacional',desc:'Dados de todo o Brasil com filtros por estado, cidade, bandeira e canal.'},{icon:'\u{1F4C8}',title:'Posicionamento',desc:'Compare seus pre\u00e7os com o mercado inteiro por categoria e regi\u00e3o.'}], hlNum:'5Bi+', hlText:'Pre\u00e7os coletados na base Zukkin Market', hlSub:'A maior base de pre\u00e7os de cupom fiscal do varejo alimentar' },
+ zmarket: { icon:'\u{1F310}', name:'ZMarket', badge:'Big Data de Pre\u00e7os', gradient:'linear-gradient(135deg,#7C6EF6,#5A4FD4)', color:'#7C6EF6', desc:'A maior base de pre\u00e7os do varejo brasileiro. Dados de nota fiscal, e-commerce, g\u00f4ndola \u2014 um painel de pre\u00e7os completo para posicionar todo o sortimento com intelig\u00eancia.', features:[{icon:'\u{1F9FE}',title:'Dados de NF-e',desc:'Pre\u00e7os reais de notas fiscais \u2014 \u00e9 o pre\u00e7o que o consumidor pagou.'},{icon:'\u{1F5FA}\uFE0F',title:'Cobertura nacional',desc:'Dados de todo o Brasil com filtros por estado, cidade, bandeira e canal.'},{icon:'\u{1F4C8}',title:'Posicionamento',desc:'Compare seus pre\u00e7os com o mercado inteiro por categoria e regi\u00e3o.'}], hlNum:'+5Bi', hlText:'Pre\u00e7os coletados na base Zukkin Market', hlSub:'A maior base de pre\u00e7os de cupom fiscal do varejo alimentar' },
  zanalytics: { icon:'\u{1F4CA}', name:'ZAnalytics', badge:'An\u00e1lise e Intelig\u00eancia', gradient:'linear-gradient(135deg,#EE8625,#D4730F)', color:'#EE8625', desc:'A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, regi\u00e3o e concorrente.', features:[{icon:'\u{1F4C8}',title:'Dashboards estrat\u00e9gicos',desc:'Vis\u00e3o completa de competitividade por categoria, produto, loja e concorrente.'},{icon:'\u{1F514}',title:'Alertas autom\u00e1ticos',desc:'Alertas de pre\u00e7os no WhatsApp, em tempo real \u2014 pre\u00e7o do concorrente com foto, direto no seu celular.'},{icon:'\u{1F947}',title:'Primeiro Pre\u00e7o',desc:'Veja o produto mais barato da categoria com pre\u00e7o, marca e associa\u00e7\u00e3o autom\u00e1tica com o seu mais barato.'}], hlNum:'360\u00b0', hlText:'Vis\u00e3o completa da competitividade', hlSub:'Todos os dados centralizados em um s\u00f3 lugar' },
  zpricing: { icon:'\u{1F9E0}', name:'ZPricing IA', badge:'Precifica\u00e7\u00e3o Inteligente', gradient:'linear-gradient(135deg,#02385A,#0A4F7A)', color:'#02385A', desc:'O c\u00e9rebro do ecossistema. Analisa competitividade, margem, elasticidade e regras do neg\u00f3cio para sugerir o pre\u00e7o ideal.<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;"><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4C8} Aumente sua Margem</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4CA} Elasticidade de pre\u00e7os</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u2699\uFE0F Automatiza\u00e7\u00e3o completa</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F517} Integrado com o ERP</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F3C6} +100 Redes j\u00e1 usam</span></div>', features:[{icon:'\u2699\uFE0F',title:'Regras de neg\u00f3cio',desc:'Cadastre margem m\u00ednima, posicionamento, teto e piso por categoria.'},{icon:'\u{1F916}',title:'Sugest\u00e3o autom\u00e1tica',desc:'A IA calcula o pre\u00e7o ideal considerando concorr\u00eancia, custo e margem.'},{icon:'\u{1F504}',title:'Execu\u00e7\u00e3o autom\u00e1tica',desc:'Integra com ERP para enviar pre\u00e7os direto ao PDV sem esfor\u00e7o.'}], hlNum:'IA', hlText:'Precifica\u00e7\u00e3o por produto, dia e loja', hlSub:'Ganho m\u00e9dio de margem desde o primeiro m\u00eas' },
  zconsulting: { icon:'\u{1F3AF}', name:'ZConsulting', badge:'Consultoria de Pricing', gradient:'linear-gradient(135deg,#8C9BAB,#6B7A8A)', color:'#8C9BAB', desc:'Consultores de pricing com experi\u00eancia no varejo alimentar atuam junto ao seu time para evoluir sua estrat\u00e9gia.', features:[{icon:'\u{1F4DA}',title:'Base conceitual de Pricing',desc:'Primeiro, os conceitos: seu time aprende fundamentos de pricing, forma\u00e7\u00e3o de pre\u00e7o e posicionamento competitivo.'},{icon:'\u{1F5D3}\uFE0F',title:'Plano de a\u00e7\u00e3o',desc:'Depois da base conceitual, plano pr\u00e1tico com metas, cronograma e indicadores claros.'},{icon:'\u{1F465}',title:'Treinamento do time',desc:'Capacita\u00e7\u00e3o da equipe para decis\u00f5es baseadas em dados.'}], hlNum:'+10', hlText:'Anos de experi\u00eancia no varejo alimentar', hlSub:'Consultores que j\u00e1 viveram o varejo por dentro \u00b7 Do conceito \u00e0 execu\u00e7\u00e3o com seu time' }
