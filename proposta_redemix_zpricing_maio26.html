@@ -235,7 +235,7 @@
   .zk-eco-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); text-align:center; margin-bottom:8px; }
 
   /* Slide 4: Clients grid */
-  .zk-clients-grid { display:grid; grid-template-columns:repeat(9,1fr); gap:10px; margin-bottom:24px; }
+  .zk-clients-grid { display:grid; grid-template-columns:repeat(10,1fr); gap:6px; margin-bottom:0; }
   .zk-client-badge {
    background:var(--surface); border:1px solid var(--border);
    border-radius:12px; padding:14px 10px; text-align:center;
@@ -245,7 +245,7 @@
   .zk-client-badge:hover { border-color:var(--border-accent); transform:translateY(-2px); }
   .zk-client-logo {
    background:#fff; border:1px solid rgba(2,56,90,0.12);
-   border-radius:12px; aspect-ratio:1.15/1; padding:10px;
+   border-radius:8px; aspect-ratio:1.25/1; padding:5px;
    display:flex; align-items:center; justify-content:center;
    transition:border-color .2s,transform .2s,box-shadow .2s;
   }
@@ -255,15 +255,15 @@
    font-size:clamp(10px,1.1vw,13px); font-weight:800; color:var(--text);
    text-align:center; line-height:1.15; letter-spacing:.01em;
   }
-  .zk-reasons { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .zk-reasons { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:12px; }
   .zk-reason {
    background:var(--surface); border:1px solid var(--border);
-   border-radius:var(--radius); padding:16px;
+   border-radius:var(--radius); padding:11px 13px;
    border-left:3px solid var(--vermelho);
   }
-  .zk-reason .r-icon { font-size:20px; margin-bottom:8px; }
-  .zk-reason .r-title { font-size:clamp(12px,1.3vw,14px); font-weight:700; color:var(--text); margin-bottom:4px; }
-  .zk-reason .r-desc { font-size:clamp(10px,1.1vw,12px); color:var(--text-secondary); line-height:1.4; }
+  .zk-reason .r-icon { font-size:16px; margin-bottom:4px; }
+  .zk-reason .r-title { font-size:clamp(11px,1.25vw,13px); font-weight:700; color:var(--text); margin-bottom:3px; }
+  .zk-reason .r-desc { font-size:clamp(9px,1vw,11px); color:var(--text-secondary); line-height:1.35; }
 
   /* Slide 5: Project plan */
   .zk-project-header {
@@ -571,7 +571,7 @@
       ══════════════════════════════════════════ -->
    <div class="zk-slide cover active zk-animate">
     <div class="zk-logo zk-animate"></div>
-    <h1 class="zk-animate">Expansão de Ecossistema<br>Zukkin <span style="color:var(--vermelho)">×</span> RedeMix</h1>
+    <h1 class="zk-animate" style="font-size:clamp(28px,4.4vw,52px); line-height:1.08;">Expansão de Ecossistema<br><span style="color:var(--vermelho); font-size:0.92em;">Zukkin × RedeMix</span></h1>
     <h2 class="zk-animate">Do preço coletado à decisão tomada — agora com pricing automatizado, monitoramento online e captura de ofertas</h2>
     <div class="zk-meta zk-animate">Proposta Comercial · ZPricing IA + ZPromo + ZRobot</div>
    </div>
@@ -1325,7 +1325,7 @@
      <div style="font-size:clamp(12px,1.4vw,15px); font-weight:800; color:#FFFFFF; line-height:1.4;">Expansão de ecossistema · 20 lojas em Salvador, Lauro de Freitas e Simões Filho · ZPesquisa já ativo</div>
     </div>
 
-    <!-- LINHA 1: ZPromo + ZRobot (cards menores, valores unitários) -->
+    <!-- LINHA 1: ZPromo + ZRobot (cards de valores unitários) -->
     <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
 
      <!-- ZPromo -->
