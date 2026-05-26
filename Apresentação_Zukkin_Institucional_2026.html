@@ -448,6 +448,108 @@
   :root[data-theme="light"] .zk-pmod-body { background:#F1F5F9; }
   :root[data-theme="light"] .zk-pmod-body .pm-feat { background:#fff; border-color:rgba(2,56,90,0.1); }
   :root[data-theme="light"] .zk-pmod-body .pm-highlight { background:#fff; border-color:rgba(2,56,90,0.1); }
+
+  /* ─── SECTION DIVIDER ─── */
+  .zk-slide.section-divider { justify-content:center; align-items:center; text-align:center; }
+  .zk-slide.section-divider::after { content:''; position:absolute; z-index:0; pointer-events:none; width:600px; height:600px; top:50%; left:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,rgba(124,110,246,.08) 0%,rgba(0,212,255,.05) 35%,transparent 60%); border-radius:50%; filter:blur(80px); }
+  .zk-slide.section-divider > * { position:relative; z-index:2; }
+  .zk-slide.section-divider h2 { font-size:clamp(30px,4.5vw,56px); font-weight:900; margin-bottom:16px; }
+  .zk-slide.section-divider p { font-size:clamp(14px,1.6vw,20px); color:var(--text-secondary); max-width:500px; }
+
+  /* ─── PRODUCT SLIDE COMPONENTS ─── */
+  .zk-prod-layout {
+   display: grid;
+   grid-template-columns: 340px 1fr;
+   gap: 28px;
+   flex: 1;
+   min-height: 0;
+  }
+  .zk-prod-hero {
+   border-radius: var(--radius);
+   padding: 28px 24px;
+   position: relative;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+  }
+  .zk-prod-hero::before {
+   content: ''; position: absolute; bottom: -40px; right: -40px;
+   width: 160px; height: 160px; border-radius: 50%; background: rgba(255,255,255,0.06);
+  }
+  .zk-prod-hero::after {
+   content: ''; position: absolute; top: -30px; left: -30px;
+   width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.04);
+  }
+  .zk-prod-hero > * { position: relative; z-index: 1; }
+  .zk-prod-icon {
+   width: 56px; height: 56px; border-radius: 14px; background: rgba(255,255,255,0.15);
+   display: flex; align-items: center; justify-content: center;
+   font-size: 28px; margin-bottom: 20px; backdrop-filter: blur(8px);
+  }
+  .zk-prod-name {
+   font-size: clamp(22px, 2.8vw, 32px); font-weight: 900; color: #fff;
+   margin-bottom: 6px; letter-spacing: -0.01em;
+  }
+  .zk-prod-tagline {
+   font-size: clamp(12px, 1.3vw, 15px); color: rgba(255,255,255,0.8);
+   line-height: 1.5; margin-bottom: 20px;
+  }
+  .zk-prod-badge {
+   display: inline-flex; align-items: center; gap: 6px; font-size: 10px;
+   font-weight: 700; padding: 5px 12px; border-radius: 20px;
+   background: rgba(255,255,255,0.15); color: #fff; text-transform: uppercase;
+   letter-spacing: 0.06em; backdrop-filter: blur(4px);
+  }
+  .zk-prod-features {
+   display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start;
+  }
+  .zk-prod-feature {
+   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+   padding: 18px 16px; position: relative; overflow: hidden;
+   transition: transform .3s, border-color .3s;
+  }
+  .zk-prod-feature:hover { transform: translateY(-3px); border-color: var(--border-accent); }
+  .zk-prod-feature .feat-icon { font-size: 20px; margin-bottom: 8px; }
+  .zk-prod-feature .feat-title {
+   font-size: clamp(11px, 1.2vw, 14px); font-weight: 800; color: var(--text);
+   margin-bottom: 4px; line-height: 1.3;
+  }
+  .zk-prod-feature .feat-desc {
+   font-size: clamp(9px, 1vw, 12px); color: var(--text-secondary); line-height: 1.5;
+  }
+  .zk-prod-highlight {
+   grid-column: 1 / -1; display: flex; align-items: center; gap: 20px;
+   padding: 16px 20px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface);
+  }
+  .zk-prod-highlight .hl-number { font-size: clamp(28px, 3.5vw, 42px); font-weight: 900; line-height: 1; flex-shrink: 0; }
+  .zk-prod-highlight .hl-text { font-size: clamp(11px, 1.2vw, 14px); font-weight: 600; color: var(--text); line-height: 1.4; }
+  .zk-prod-highlight .hl-sub { font-size: clamp(9px, 1vw, 11px); color: var(--text-secondary); margin-top: 2px; }
+  :root[data-theme="light"] .zk-prod-feature { background: #fff; border-color: rgba(2,56,90,0.12); }
+  :root[data-theme="light"] .zk-prod-feature:hover { border-color: rgba(2,56,90,0.25); }
+  :root[data-theme="light"] .zk-prod-highlight { background: #fff; border-color: rgba(2,56,90,0.12); }
+  .zk-prod-sub {
+   font-size: clamp(12px, 1.3vw, 16px); color: var(--text-secondary); font-weight: 400;
+   margin-top: -24px; margin-bottom: 24px; line-height: 1.5;
+  }
+
+  /* ─── CTA "Saiba mais" destacado nos cards do Slide 3 ─── */
+  .zk-prod-card .pc-cta {
+   display: inline-flex !important; align-items: center; gap: 6px;
+   margin-top: auto; padding: 8px 16px; border-radius: 20px;
+   font-size: clamp(10px, 1.1vw, 12px); font-weight: 800;
+   background: var(--vermelho); color: #fff !important;
+   text-transform: uppercase; letter-spacing: .04em;
+   box-shadow: 0 3px 12px rgba(207,17,13,0.28);
+   transition: all .2s ease;
+   align-self: flex-start;
+   opacity: 1 !important;
+  }
+  .zk-prod-card:hover .pc-cta {
+   opacity: 1 !important;
+   transform: translateY(-2px);
+   box-shadow: 0 6px 18px rgba(207,17,13,0.45);
+  }
  </style>
 </head>
 <body>
@@ -529,9 +631,9 @@
       <div style="font-size:10px; color:var(--text-secondary);">ecossistema completo</div>
      </div>
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
-      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--go); line-height:1; margin-bottom:4px;">+5Bi</div>
-      <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Preços coletados</div>
-      <div style="font-size:10px; color:var(--text-secondary);">base Zukkin Market</div>
+      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--go); line-height:1; margin-bottom:4px;">+500</div>
+      <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Pesquisadores</div>
+      <div style="font-size:10px; color:var(--text-secondary);">Time Zukkin em campo</div>
      </div>
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
       <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--text); line-height:1; margin-bottom:4px;">+10</div>
@@ -546,7 +648,7 @@
       ══════════════════════════════════════════ -->
    <div class="zk-slide content">
     <h2 class="zk-animate">Conheça nossos <span style="color:var(--vermelho)">produtos</span></h2>
-    <div style="font-size:clamp(11px,1.2vw,14px); color:var(--text-secondary); margin-top:-24px; margin-bottom:20px;" class="zk-animate">Clique em cada produto para conhecer os detalhes</div>
+    <div style="font-size:clamp(11px,1.2vw,14px); color:var(--text-secondary); margin-top:-24px; margin-bottom:20px;" class="zk-animate">👆 Clique em cada produto e saiba mais</div>
 
     <div class="zk-prod-grid zk-animate">
      <div class="zk-prod-card" onclick="zkOpenProduct('zrobot')">
@@ -554,21 +656,21 @@
       <div class="pc-icon" style="background:rgba(107,34,70,0.12);">🤖</div>
       <div class="pc-name" style="color:var(--robot);">ZRobot</div>
       <div class="pc-tag">Pesquisa online automáticade preços em e-commerces</div>
-      <div class="pc-cta" style="color:var(--robot);">Ver detalhes →</div>
+      <div class="pc-cta">Saiba mais →</div>
      </div>
      <div class="zk-prod-card" onclick="zkOpenProduct('zpromo')">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
       <div class="pc-icon" style="background:rgba(255,77,106,0.12);">🏷️</div>
       <div class="pc-name" style="color:var(--promo);">ZPromo</div>
       <div class="pc-tag">Monitoramento diário de todas as Ofertas: Encartes, Redes sociais e WhatsApp. Entrega no mesmo dia</div>
-      <div class="pc-cta" style="color:var(--promo);">Ver detalhes →</div>
+      <div class="pc-cta">Saiba mais →</div>
      </div>
      <div class="zk-prod-card" onclick="zkOpenProduct('zgo')">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
       <div class="pc-icon" style="background:rgba(120,174,63,0.12);">📱</div>
       <div class="pc-name" style="color:var(--go);">ZGO</div>
       <div class="pc-tag">App de Pesquisa de Preços para o seu time — lista, categorização e auditoria</div>
-      <div class="pc-cta" style="color:var(--go);">Ver detalhes →</div>
+      <div class="pc-cta">Saiba mais →</div>
      </div>
      <div class="zk-prod-card card-span-row" onclick="zkOpenProduct('zpricing')" style="justify-content:center; align-items:center; text-align:center; background:linear-gradient(135deg,#02385A,#0A4F7A); border-color:#02385A;">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#02385A,#1C6EA4);border-radius:var(--radius) var(--radius) 0 0;"></div>
@@ -594,28 +696,375 @@
                 <span style="flex-shrink:0; width:22px; text-align:center;">🏆</span> +100 Redes já usam
               </div>
             </div>
-      <div class="pc-cta" style="color:rgba(255,255,255,0.6); justify-content:center;">Ver detalhes →</div>
+      <div class="pc-cta" style="background:rgba(255,255,255,0.22) !important; color:#fff !important; box-shadow:0 3px 12px rgba(0,0,0,0.2) !important; align-self:center;">Saiba mais →</div>
      </div>
-     <div class="zk-prod-card" onclick="zkOpenProduct('zmarket')">
-      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--market);border-radius:var(--radius) var(--radius) 0 0;"></div>
-      <div class="pc-icon" style="background:rgba(124,110,246,0.12);">🌐</div>
-      <div class="pc-name" style="color:var(--market);">ZMarket</div>
-      <div class="pc-tag">Painel de preços de NF-e — base com +5Bi preços do varejo</div>
-      <div class="pc-cta" style="color:var(--market);">Ver detalhes →</div>
+     <div class="zk-prod-card" onclick="zkOpenProduct('zpesquisa')">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--vermelho);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div class="pc-icon" style="background:rgba(207,17,13,0.12);">🚶</div>
+      <div class="pc-name" style="color:var(--vermelho);">ZPesquisa</div>
+      <div class="pc-tag">Pesquisa presencial nas lojas dos concorrentes — Time Zukkin treinado, cobertura nacional</div>
+      <div class="pc-cta">Saiba mais →</div>
      </div>
      <div class="zk-prod-card" onclick="zkOpenProduct('zanalytics')">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
       <div class="pc-icon" style="background:rgba(238,134,37,0.12);">📊</div>
       <div class="pc-name" style="color:var(--analytics);">ZAnalytics</div>
       <div class="pc-tag">Plataforma de Competitividade — posicionamento em tempo real</div>
-      <div class="pc-cta" style="color:var(--analytics);">Ver detalhes →</div>
+      <div class="pc-cta">Saiba mais →</div>
      </div>
      <div class="zk-prod-card" onclick="zkOpenProduct('zconsulting')">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
       <div class="pc-icon" style="background:rgba(140,155,171,0.12);">🎯</div>
       <div class="pc-name" style="color:var(--consulting);">ZConsulting</div>
       <div class="pc-tag">Consultoria estratégica de pricing para o varejo</div>
-      <div class="pc-cta" style="color:var(--consulting);">Ver detalhes →</div>
+      <div class="pc-cta">Saiba mais →</div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3A — SECTION DIVIDER: FONTES DE DADOS
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide section-divider">
+    <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; color:var(--text-muted); margin-bottom:12px;" class="zk-animate">Fontes de dados</div>
+    <h2 class="zk-animate">De onde vêm<br>os <span style="color:var(--vermelho)">dados</span></h2>
+    <p class="zk-animate">4 formas de coletar preços da concorrência — campo, online, encartes e seu próprio time</p>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3B — ZPESQUISA
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate"><span style="color:var(--vermelho)">ZPesquisa</span></h2>
+    <div class="zk-prod-sub zk-animate">Pesquisa presencial nas lojas dos concorrentes — Time Zukkin treinado, cobertura nacional</div>
+
+    <div class="zk-prod-layout zk-animate">
+     <div class="zk-prod-hero" style="background:linear-gradient(135deg,#CF110D,#A11E21);">
+      <div>
+       <div class="zk-prod-icon">🚶</div>
+       <div class="zk-prod-name">ZPesquisa</div>
+       <div class="zk-prod-tagline">O produto original da Zukkin. Pesquisadores treinados em campo coletam preços nas lojas dos concorrentes — cobertura, padronização e auditoria garantidas desde 2016.</div>
+      </div>
+      <div class="zk-prod-badge">Pesquisa Presencial em Campo</div>
+     </div>
+
+     <div class="zk-prod-features">
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--vermelho);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">👥</div>
+       <div class="feat-title">Time Zukkin em campo</div>
+       <div class="feat-desc">Pesquisadores treinados na metodologia Zukkin executam a coleta nas lojas dos concorrentes com padrão uniforme.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--vermelho);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📍</div>
+       <div class="feat-title">Cobertura nacional</div>
+       <div class="feat-desc">Presença em todos os principais estados do Brasil — atendemos redes regionais e grupos nacionais.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--vermelho);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📸</div>
+       <div class="feat-title">Auditoria e padronização</div>
+       <div class="feat-desc">Foto como evidência de preços fora do range. Rastreabilidade total da coleta com geolocalização e timestamp.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--vermelho);">
+       <div class="hl-number" style="color:var(--vermelho);">+10</div>
+       <div>
+        <div class="hl-text">Anos de história — nosso primeiro produto</div>
+        <div class="hl-sub">Carro-chefe da Zukkin desde 2016 · Já entregamos pesquisa para mais de 100 redes</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3C — ZROBOT
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate"><span style="color:var(--robot)">ZRobot</span></h2>
+    <div class="zk-prod-sub zk-animate">Monitoramento automático de preços em e-commerces de forma contínua e automatizada</div>
+
+    <div class="zk-prod-layout zk-animate">
+     <div class="zk-prod-hero" style="background:linear-gradient(135deg,#6B2246,#8E3060);">
+      <div>
+       <div class="zk-prod-icon">🤖</div>
+       <div class="zk-prod-name">ZRobot</div>
+       <div class="zk-prod-tagline">Crawler inteligente que varre os sites dos seus concorrentes e traz os preços atualizados automaticamente. Sem pesquisador, sem planilha.</div>
+      </div>
+      <div class="zk-prod-badge">Pesquisa Online Automática</div>
+     </div>
+
+     <div class="zk-prod-features">
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--robot);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">🔍</div>
+       <div class="feat-title">Varredura automática</div>
+       <div class="feat-desc">Monitora múltiplos sites de concorrentes com frequência configurável — diária, semanal ou sob demanda.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--robot);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">🔗</div>
+       <div class="feat-title">Associação automática</div>
+       <div class="feat-desc">A Zukkin associa seus produtos com os links de cada site. Pesquisa completa de todo o sortimento.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--robot);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📸</div>
+       <div class="feat-title">Print como evidência</div>
+       <div class="feat-desc">Captura screenshots dos preços fora do range para comprovação e auditoria.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--robot);">
+       <div class="hl-number" style="color:var(--robot);">+5mil</div>
+       <div>
+        <div class="hl-text">Ideal para fundo de sortimento</div>
+        <div class="hl-sub">Média de mais de 5 mil produtos pesquisados · Melhor custo-benefício</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3D — ZPROMO
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate"><span style="color:var(--promo)">ZPromo</span></h2>
+    <div class="zk-prod-sub zk-animate">Monitoramento diário de todas as Ofertas: Encartes, Redes sociais e WhatsApp dos concorrentes. Entrega no mesmo dia</div>
+
+    <div class="zk-prod-layout zk-animate">
+     <div class="zk-prod-hero" style="background:linear-gradient(135deg,#FF4D6A,#E83A5A);">
+      <div>
+       <div class="zk-prod-icon">🏷️</div>
+       <div class="zk-prod-name">ZPromo</div>
+       <div class="zk-prod-tagline">Entrega no mesmo dia dos concorrentes: encartes, redes sociais e WhatsApp. Você nunca mais é pego de surpresa.</div>
+      </div>
+      <div class="zk-prod-badge">Inteligência Promocional</div>
+     </div>
+
+     <div class="zk-prod-features">
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📋</div>
+       <div class="feat-title">Encartes e tabloides</div>
+       <div class="feat-desc">Captura completa dos encartes impressos e digitais de cada concorrente.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📱</div>
+       <div class="feat-title">WhatsApp e redes</div>
+       <div class="feat-desc">Monitora promoções via WhatsApp, Instagram e sites automaticamente.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">⚡</div>
+       <div class="feat-title">Frequência diária</div>
+       <div class="feat-desc">Atualização seg–sex com todas as ofertas do dia.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--promo);">
+       <div class="hl-number" style="color:var(--promo);">D+0</div>
+       <div>
+        <div class="hl-text">Entrega no mesmo dia</div>
+        <div class="hl-sub">Integrado ao ZPricing IA — você analisa os preços de combate das ofertas em poucos segundos</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3E — ZGO
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate"><span style="color:var(--go)">ZGO</span></h2>
+    <div class="zk-prod-sub zk-animate">App de Pesquisa de Preços para o seu time — sistema completo com lista, categorização e auditoria. Menos trabalho manual, mais resultado.</div>
+
+    <div class="zk-prod-layout zk-animate">
+     <div class="zk-prod-hero" style="background:linear-gradient(135deg,#78AE3F,#5C8F2E);">
+      <div>
+       <div class="zk-prod-icon">📱</div>
+       <div class="zk-prod-name">ZGO</div>
+       <div class="zk-prod-tagline">App de Pesquisa de Preços para o seu time — sistema completo com lista, categorização e auditoria. Menos trabalho manual, mais resultado.</div>
+      </div>
+      <div class="zk-prod-badge">App de Coleta em Campo</div>
+     </div>
+
+     <div class="zk-prod-features">
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📅</div>
+       <div class="feat-title">Agenda inteligente</div>
+       <div class="feat-desc">Programa a agenda de pesquisa por loja, dia e pesquisador. Roteiro otimizado para máxima eficiência.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">✅</div>
+       <div class="feat-title">Validação e alertas</div>
+       <div class="feat-desc">Foto automática dos preços fora do range personalizado por produto. Alertas de preços em tempo real para seu time.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📊</div>
+       <div class="feat-title">Dashboard de gestão</div>
+       <div class="feat-desc">Acompanhe em tempo real o andamento das pesquisas, produtividade dos pesquisadores e status por loja.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--go);">
+       <div class="hl-number" style="color:var(--go);">Tempo real</div>
+       <div>
+        <div class="hl-text">Tudo integrado no ecossistema Zukkin</div>
+        <div class="hl-sub">Pesquisa entra online, rápido e automático — direto no ZAnalytics e ZPricing</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3F — SECTION DIVIDER: PLATAFORMAS
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide section-divider">
+    <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; color:var(--text-muted); margin-bottom:12px;" class="zk-animate">Plataformas centrais</div>
+    <h2 class="zk-animate">Onde o dado vira<br><span style="color:var(--analytics)">decisão</span></h2>
+    <p class="zk-animate">Análise, precificação e consultoria — do insight ao preço na gôndola</p>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3G — ZANALYTICS
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate"><span style="color:var(--analytics)">ZAnalytics</span></h2>
+    <div class="zk-prod-sub zk-animate">Plataforma de Competitividade — acompanhe seu posicionamento no mercado em tempo real</div>
+
+    <div class="zk-prod-layout zk-animate">
+     <div class="zk-prod-hero" style="background:linear-gradient(135deg,#EE8625,#D4730F);">
+      <div>
+       <div class="zk-prod-icon">📊</div>
+       <div class="zk-prod-name">ZAnalytics</div>
+       <div class="zk-prod-tagline">A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, região e concorrente. O coração do ecossistema Zukkin.</div>
+      </div>
+      <div class="zk-prod-badge">Análise &amp; Inteligência</div>
+     </div>
+
+     <div class="zk-prod-features">
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📈</div>
+       <div class="feat-title">Dashboards estratégicos</div>
+       <div class="feat-desc">Visão completa de competitividade por categoria, produto, loja e concorrente.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">🔔</div>
+       <div class="feat-title">Alertas automáticos</div>
+       <div class="feat-desc">Alertas de preços no WhatsApp, em tempo real — preço do concorrente com foto, direto no seu celular.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">🥇</div>
+       <div class="feat-title">Primeiro Preço</div>
+       <div class="feat-desc">Veja o produto mais barato da categoria com preço, marca e associação automática com o seu mais barato.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--analytics);">
+       <div class="hl-number" style="color:var(--analytics);">360°</div>
+       <div>
+        <div class="hl-text">Visão completa da competitividade</div>
+        <div class="hl-sub">Todos os dados centralizados em um só lugar</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3H — ZPRICING IA
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate"><span style="color:var(--pricing)">ZPricing IA</span></h2>
+    <div class="zk-prod-sub zk-animate">Motor de precificação com IA — analisa competitividade, margem e elasticidade para sugerir o preço ideal</div>
+
+    <div class="zk-prod-layout zk-animate">
+     <div class="zk-prod-hero" style="background:linear-gradient(135deg,#02385A,#0A4F7A);">
+      <div>
+       <div class="zk-prod-icon">🧠</div>
+       <div class="zk-prod-name">ZPricing IA</div>
+       <div class="zk-prod-tagline">O cérebro do ecossistema. Analisa competitividade, margem, elasticidade e regras do negócio para sugerir o preço ideal — e executa direto no ERP.</div>
+      </div>
+      <div class="zk-prod-badge">Precificação Inteligente</div>
+     </div>
+
+     <div class="zk-prod-features">
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--pricing);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">⚙️</div>
+       <div class="feat-title">Regras de negócio</div>
+       <div class="feat-desc">Cadastre margem mínima, posicionamento, teto e piso por categoria. Você aprova ou ajusta.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--pricing);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">🤖</div>
+       <div class="feat-title">Sugestão automática</div>
+       <div class="feat-desc">A IA calcula o preço ideal considerando concorrência, custo e margem.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--pricing);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">🔄</div>
+       <div class="feat-title">Execução automática</div>
+       <div class="feat-desc">Integra com seu ERP para enviar os preços direto para o PDV. Do cálculo à gôndola sem trabalho manual.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--pricing);">
+       <div class="hl-number" style="color:var(--pricing);">IA</div>
+       <div>
+        <div class="hl-text">Precificação por produto, dia e loja</div>
+        <div class="hl-sub">Ganho médio de margem desde o primeiro mês · +100 redes já usam</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3I — ZCONSULTING
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate"><span style="color:var(--consulting)">ZConsulting</span></h2>
+    <div class="zk-prod-sub zk-animate">Consultoria estratégica de pricing — especialistas Zukkin trabalhando lado a lado com sua equipe</div>
+
+    <div class="zk-prod-layout zk-animate">
+     <div class="zk-prod-hero" style="background:linear-gradient(135deg,#8C9BAB,#6B7A8A);">
+      <div>
+       <div class="zk-prod-icon">🎯</div>
+       <div class="zk-prod-name">ZConsulting</div>
+       <div class="zk-prod-tagline">Mais do que tecnologia — pessoas. Consultores de pricing com experiência no varejo alimentar atuam junto ao seu time para evoluir sua estratégia.</div>
+      </div>
+      <div class="zk-prod-badge">Consultoria de Pricing</div>
+     </div>
+
+     <div class="zk-prod-features">
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">📚</div>
+       <div class="feat-title">Base conceitual de Pricing</div>
+       <div class="feat-desc">Primeiro, os conceitos: seu time aprende fundamentos de pricing, formação de preço e posicionamento competitivo.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">🗓️</div>
+       <div class="feat-title">Plano de ação</div>
+       <div class="feat-desc">Depois da base conceitual, plano prático com metas, cronograma e indicadores claros.</div>
+      </div>
+      <div class="zk-prod-feature">
+       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
+       <div class="feat-icon">👥</div>
+       <div class="feat-title">Treinamento do time</div>
+       <div class="feat-desc">Capacitação da equipe para decisões baseadas em dados.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--consulting);">
+       <div class="hl-number" style="color:var(--consulting);">+10</div>
+       <div>
+        <div class="hl-text">Anos de experiência no varejo alimentar</div>
+        <div class="hl-sub">Consultores que já viveram o varejo por dentro · Do conceito à execução com seu time</div>
+       </div>
+      </div>
      </div>
     </div>
    </div>
@@ -670,14 +1119,6 @@
        <div>
         <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ERP</div>
         <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Integração com seu sistema de gestão</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid #7C6EF6;">
-       <span style="font-size:20px;">🌐</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">Zukkin Market</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Base com +5Bi preços do varejo nacional</div>
        </div>
       </div>
      </div>
@@ -916,7 +1357,7 @@
 
     <!-- Inteligência e Plataforma -->
     <div class="zk-animate" style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:6px;">Inteligência, plataforma e serviços</div>
-    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
+    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
 
      <!-- ZAnalytics -->
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--analytics);">
@@ -928,12 +1369,6 @@
      <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--pricing);">
       <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--pricing); margin-bottom:4px;">🧠 ZPricing IA</div>
       <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Motor de precificação com IA — sugere e executa ajustes de preço considerando margem, elasticidade e movimentos da concorrência</em></div>
-     </div>
-
-     <!-- ZMarket -->
-     <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px; border-left:3px solid var(--market);">
-      <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--market); margin-bottom:4px;">🌐 ZMarket</div>
-      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4;"><em>Painel de preços de cupom fiscal — base com +5Bi de preços coletados de NF-e do varejo nacional</em></div>
      </div>
 
      <!-- ZConsulting -->
@@ -1412,7 +1847,7 @@ var PRODUCTS = {
  zrobot: { icon:'\u{1F916}', name:'ZRobot', badge:'Pesquisa Online Autom\u00e1tica', gradient:'linear-gradient(135deg,#6B2246,#8E3060)', color:'#6B2246', desc:'Crawler inteligente que varre os sites dos seus concorrentes e traz os pre\u00e7os atualizados automaticamente. Sem pesquisador, sem planilha, sem retrabalho.', features:[{icon:'\u{1F50D}',title:'Varredura autom\u00e1tica',desc:'Monitora m\u00faltiplos sites com frequ\u00eancia configur\u00e1vel \u2014 di\u00e1ria, semanal ou sob demanda.'},{icon:'\u{1F517}',title:'Associa\u00e7\u00e3o autom\u00e1tica',desc:'A Zukkin associa seus produtos com os links de cada site. Pesquisa completa de todo o sortimento.'},{icon:'\u{1F4F8}',title:'Print como evid\u00eancia',desc:'Captura screenshots dos pre\u00e7os fora do range para comprova\u00e7\u00e3o e auditoria.'}], hlNum:'+5mil', hlText:'Ideal para fundo de sortimento', hlSub:'M\u00e9dia de mais de 5 mil produtos pesquisados' },
  zpromo: { icon:'\u{1F3F7}\uFE0F', name:'ZPromo', badge:'Intelig\u00eancia Promocional', gradient:'linear-gradient(135deg,#FF4D6A,#E83A5A)', color:'#FF4D6A', desc:'Entrega no mesmo dia dos concorrentes: encartes, redes sociais e WhatsApp. Entrega no mesmo dia \u2014 voc\u00ea nunca mais \u00e9 pego de surpresa.', features:[{icon:'\u{1F4CB}',title:'Encartes e tabloides',desc:'Captura completa dos encartes impressos e digitais de cada concorrente.'},{icon:'\u{1F4F1}',title:'WhatsApp e redes',desc:'Monitora promo\u00e7\u00f5es via WhatsApp, Instagram e sites automaticamente.'},{icon:'\u26A1',title:'Frequ\u00eancia di\u00e1ria',desc:'Atualiza\u00e7\u00e3o seg\u2013sex com todas as ofertas do dia.'}], hlNum:'D+0', hlText:'Entrega no mesmo dia', hlSub:'Integrado ao ZPricing IA \u2014 voc\u00ea analisa os pre\u00e7os de combate das ofertas em poucos segundos' },
  zgo: { icon:'\u{1F4F1}', name:'ZGO', badge:'App de Coleta em Campo', gradient:'linear-gradient(135deg,#78AE3F,#5C8F2E)', color:'#78AE3F', desc:'App de Pesquisa de Pre\u00e7os para o seu time \u2014 sistema completo com lista, categoriza\u00e7\u00e3o e auditoria. Menos trabalho manual, mais resultado.', features:[{icon:'\u{1F4C5}',title:'Agenda inteligente',desc:'Programa pesquisa por loja, dia e pesquisador com roteiro otimizado.'},{icon:'\u2705',title:'Valida\u00e7\u00e3o e alertas',desc:'Foto autom\u00e1tica dos pre\u00e7os fora do range personalizado por produto. Alertas de pre\u00e7os em tempo real.'},{icon:'\u{1F4CA}',title:'Dashboard de gest\u00e3o',desc:'Acompanhe em tempo real o andamento e produtividade por pesquisador.'}], hlNum:'Tempo real', hlText:'Tudo integrado no ecossistema Zukkin', hlSub:'Pesquisa entra online, r\u00e1pido e autom\u00e1tico \u2014 direto no ZAnalytics e ZPricing' },
- zmarket: { icon:'\u{1F310}', name:'ZMarket', badge:'Big Data de Pre\u00e7os', gradient:'linear-gradient(135deg,#7C6EF6,#5A4FD4)', color:'#7C6EF6', desc:'A maior base de pre\u00e7os do varejo brasileiro. Dados de nota fiscal, e-commerce, g\u00f4ndola \u2014 um painel de pre\u00e7os completo para posicionar todo o sortimento com intelig\u00eancia.', features:[{icon:'\u{1F9FE}',title:'Dados de NF-e',desc:'Pre\u00e7os reais de notas fiscais \u2014 \u00e9 o pre\u00e7o que o consumidor pagou.'},{icon:'\u{1F5FA}\uFE0F',title:'Cobertura nacional',desc:'Dados de todo o Brasil com filtros por estado, cidade, bandeira e canal.'},{icon:'\u{1F4C8}',title:'Posicionamento',desc:'Compare seus pre\u00e7os com o mercado inteiro por categoria e regi\u00e3o.'}], hlNum:'+5Bi', hlText:'Pre\u00e7os coletados na base Zukkin Market', hlSub:'A maior base de pre\u00e7os de cupom fiscal do varejo alimentar' },
+ zpesquisa: { icon:'\u{1F6B6}', name:'ZPesquisa', badge:'Pesquisa Presencial em Campo', gradient:'linear-gradient(135deg,#CF110D,#A11E21)', color:'#CF110D', desc:'Pesquisa presencial nas lojas dos concorrentes. Time Zukkin treinado em campo coleta pre\u00e7os com padroniza\u00e7\u00e3o, cobertura e auditoria garantidas \u2014 o produto original que originou a Zukkin em 2016.', features:[{icon:'\u{1F465}',title:'Time Zukkin em campo',desc:'Pesquisadores treinados na metodologia Zukkin executam a coleta nas lojas dos concorrentes com padr\u00e3o uniforme.'},{icon:'\u{1F4CD}',title:'Cobertura nacional',desc:'Presen\u00e7a em todos os principais estados do Brasil \u2014 atendemos redes regionais e grupos nacionais.'},{icon:'\u{1F4F8}',title:'Auditoria e padroniza\u00e7\u00e3o',desc:'Foto como evid\u00eancia de pre\u00e7os fora do range. Rastreabilidade total da coleta com geolocaliza\u00e7\u00e3o e timestamp.'}], hlNum:'+10', hlText:'Anos de hist\u00f3ria \u2014 nosso primeiro produto', hlSub:'Carro-chefe da Zukkin desde 2016 \u00b7 J\u00e1 entregamos pesquisa para mais de 100 redes' },
  zanalytics: { icon:'\u{1F4CA}', name:'ZAnalytics', badge:'An\u00e1lise e Intelig\u00eancia', gradient:'linear-gradient(135deg,#EE8625,#D4730F)', color:'#EE8625', desc:'A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, regi\u00e3o e concorrente.', features:[{icon:'\u{1F4C8}',title:'Dashboards estrat\u00e9gicos',desc:'Vis\u00e3o completa de competitividade por categoria, produto, loja e concorrente.'},{icon:'\u{1F514}',title:'Alertas autom\u00e1ticos',desc:'Alertas de pre\u00e7os no WhatsApp, em tempo real \u2014 pre\u00e7o do concorrente com foto, direto no seu celular.'},{icon:'\u{1F947}',title:'Primeiro Pre\u00e7o',desc:'Veja o produto mais barato da categoria com pre\u00e7o, marca e associa\u00e7\u00e3o autom\u00e1tica com o seu mais barato.'}], hlNum:'360\u00b0', hlText:'Vis\u00e3o completa da competitividade', hlSub:'Todos os dados centralizados em um s\u00f3 lugar' },
  zpricing: { icon:'\u{1F9E0}', name:'ZPricing IA', badge:'Precifica\u00e7\u00e3o Inteligente', gradient:'linear-gradient(135deg,#02385A,#0A4F7A)', color:'#02385A', desc:'O c\u00e9rebro do ecossistema. Analisa competitividade, margem, elasticidade e regras do neg\u00f3cio para sugerir o pre\u00e7o ideal.<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;"><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4C8} Aumente sua Margem</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4CA} Elasticidade de pre\u00e7os</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u2699\uFE0F Automatiza\u00e7\u00e3o completa</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F517} Integrado com o ERP</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F3C6} +100 Redes j\u00e1 usam</span></div>', features:[{icon:'\u2699\uFE0F',title:'Regras de neg\u00f3cio',desc:'Cadastre margem m\u00ednima, posicionamento, teto e piso por categoria.'},{icon:'\u{1F916}',title:'Sugest\u00e3o autom\u00e1tica',desc:'A IA calcula o pre\u00e7o ideal considerando concorr\u00eancia, custo e margem.'},{icon:'\u{1F504}',title:'Execu\u00e7\u00e3o autom\u00e1tica',desc:'Integra com ERP para enviar pre\u00e7os direto ao PDV sem esfor\u00e7o.'}], hlNum:'IA', hlText:'Precifica\u00e7\u00e3o por produto, dia e loja', hlSub:'Ganho m\u00e9dio de margem desde o primeiro m\u00eas' },
  zconsulting: { icon:'\u{1F3AF}', name:'ZConsulting', badge:'Consultoria de Pricing', gradient:'linear-gradient(135deg,#8C9BAB,#6B7A8A)', color:'#8C9BAB', desc:'Consultores de pricing com experi\u00eancia no varejo alimentar atuam junto ao seu time para evoluir sua estrat\u00e9gia.', features:[{icon:'\u{1F4DA}',title:'Base conceitual de Pricing',desc:'Primeiro, os conceitos: seu time aprende fundamentos de pricing, forma\u00e7\u00e3o de pre\u00e7o e posicionamento competitivo.'},{icon:'\u{1F5D3}\uFE0F',title:'Plano de a\u00e7\u00e3o',desc:'Depois da base conceitual, plano pr\u00e1tico com metas, cronograma e indicadores claros.'},{icon:'\u{1F465}',title:'Treinamento do time',desc:'Capacita\u00e7\u00e3o da equipe para decis\u00f5es baseadas em dados.'}], hlNum:'+10', hlText:'Anos de experi\u00eancia no varejo alimentar', hlSub:'Consultores que j\u00e1 viveram o varejo por dentro \u00b7 Do conceito \u00e0 execu\u00e7\u00e3o com seu time' }
