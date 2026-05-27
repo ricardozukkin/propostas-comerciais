@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta de Expansão — Barbosa Supermercados | Zukkin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --zk-primary: #1a3a5c;
+  --zk-secondary: #2d5a8a;
+  --zk-accent: #f0a500;
+  --zk-success: #2d8659;
+  --zk-danger: #c73e3a;
+  --zk-light: #f5f7fa;
+  --zk-white: #ffffff;
+  --zk-text: #1a1a1a;
+  --zk-text-muted: #6b7280;
+  --zk-border: #e5e7eb;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--zk-light);
+  color: var(--zk-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--zk-border);
+  z-index: 100;
+  padding: 12px 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--zk-primary);
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: var(--zk-accent); }
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--zk-text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--zk-primary); }
+
+/* Slide structure */
+.slide {
+  min-height: 100vh;
+  padding: 100px 24px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.slide-label {
+  display: inline-block;
+  background: var(--zk-primary);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.slide-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--zk-primary);
+  margin-bottom: 16px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.slide-subtitle {
+  font-size: 18px;
+  color: var(--zk-text-muted);
+  margin-bottom: 40px;
+  max-width: 800px;
+}
+
+/* Hero slide */
+.hero {
+  background: linear-gradient(135deg, var(--zk-primary) 0%, var(--zk-secondary) 100%);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(240, 165, 0, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  background: rgba(240, 165, 0, 0.2);
+  border: 1px solid var(--zk-accent);
+  color: var(--zk-accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.hero-title span { color: var(--zk-accent); }
+
+.hero-subtitle {
+  font-size: clamp(18px, 2vw, 22px);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 40px;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-meta-item .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.hero-meta-item .value {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Context slide */
+.context-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.context-card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid var(--zk-border);
+  border-left: 4px solid var(--zk-primary);
+}
+
+.context-card.accent { border-left-color: var(--zk-accent); }
+.context-card.success { border-left-color: var(--zk-success); }
+
+.context-card-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--zk-text-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.context-card-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--zk-primary);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.context-card-desc {
+  font-size: 14px;
+  color: var(--zk-text-muted);
+  line-height: 1.5;
+}
+
+/* Competitors slide */
+.competitors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.competitors-column {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid var(--zk-border);
+}
+
+.competitors-column h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--zk-primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.priority-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priority-primary {
+  background: #fff4e6;
+  color: #b45309;
+}
+
+.priority-secondary {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.competitors-count {
+  font-size: 13px;
+  color: var(--zk-text-muted);
+  margin-bottom: 20px;
+}
+
+.competitor-list {
+  list-style: none;
+}
+
+.competitor-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--zk-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.competitor-item:last-child { border-bottom: none; }
+
+.competitor-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--zk-light);
+  color: var(--zk-primary);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.competitor-info {
+  flex: 1;
+}
+
+.competitor-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--zk-text);
+}
+
+.competitor-location {
+  font-size: 13px;
+  color: var(--zk-text-muted);
+}
+
+.new-tag {
+  background: var(--zk-success);
+  color: white;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Scenarios slides */
+.scenario-hero {
+  background: linear-gradient(135deg, var(--zk-primary) 0%, var(--zk-secondary) 100%);
+  color: white;
+  padding: 50px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scenario-hero.scenario-2 {
+  background: linear-gradient(135deg, #2d5a8a 0%, #4a7ba8 100%);
+}
+
+.scenario-hero::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(240, 165, 0, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.scenario-tag {
+  display: inline-block;
+  background: rgba(240, 165, 0, 0.2);
+  border: 1px solid var(--zk-accent);
+  color: var(--zk-accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.scenario-title {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+  position: relative;
+  z-index: 2;
+}
+
+.scenario-desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.scenario-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid var(--zk-border);
+  text-align: center;
+}
+
+.stat-card.highlight {
+  background: var(--zk-primary);
+  color: white;
+  border: none;
+}
+
+.stat-card.highlight .stat-label { color: rgba(255, 255, 255, 0.8); }
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--zk-text-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--zk-primary);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.stat-card.highlight .stat-value { color: var(--zk-accent); }
+
+.stat-sublabel {
+  font-size: 13px;
+  color: var(--zk-text-muted);
+  margin-top: 6px;
+}
+
+.stat-card.highlight .stat-sublabel { color: rgba(255, 255, 255, 0.7); }
+
+/* Pricing table */
+.pricing-table-container {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--zk-border);
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pricing-table thead {
+  background: var(--zk-light);
+}
+
+.pricing-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--zk-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--zk-border);
+}
+
+.pricing-table th:nth-child(2),
+.pricing-table th:nth-child(3),
+.pricing-table th:nth-child(4) {
+  text-align: right;
+}
+
+.pricing-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--zk-border);
+  font-size: 15px;
+}
+
+.pricing-table td:nth-child(2),
+.pricing-table td:nth-child(3),
+.pricing-table td:nth-child(4) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.pricing-table tbody tr:last-child td { border-bottom: none; }
+
+.pricing-table tfoot td {
+  font-weight: 700;
+  background: var(--zk-primary);
+  color: white;
+  font-size: 16px;
+}
+
+.pricing-row-current {
+  background: #fafbfc;
+}
+
+.pricing-row-new {
+  background: #f0f9f4;
+}
+
+.pricing-savings {
+  color: var(--zk-success);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Comparison slide */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.comparison-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  border: 2px solid var(--zk-border);
+  position: relative;
+}
+
+.comparison-card.recommended {
+  border-color: var(--zk-accent);
+  background: linear-gradient(135deg, #fffdf7 0%, white 100%);
+}
+
+.recommended-badge {
+  position: absolute;
+  top: -12px;
+  left: 30px;
+  background: var(--zk-accent);
+  color: var(--zk-primary);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.comparison-header {
+  border-bottom: 1px solid var(--zk-border);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.comparison-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--zk-primary);
+  margin-bottom: 6px;
+}
+
+.comparison-coverage {
+  font-size: 14px;
+  color: var(--zk-text-muted);
+}
+
+.comparison-price {
+  margin: 24px 0;
+}
+
+.comparison-price-value {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--zk-primary);
+  letter-spacing: -1px;
+}
+
+.comparison-price-period {
+  font-size: 16px;
+  color: var(--zk-text-muted);
+  font-weight: 400;
+}
+
+.comparison-features {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.comparison-features li {
+  padding: 10px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--zk-text);
+}
+
+.comparison-features li::before {
+  content: '✓';
+  color: var(--zk-success);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Investment summary */
+.investment-summary {
+  background: linear-gradient(135deg, var(--zk-primary) 0%, var(--zk-secondary) 100%);
+  border-radius: 16px;
+  padding: 50px;
+  color: white;
+  margin-top: 40px;
+}
+
+.investment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.investment-item .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 6px;
+}
+
+.investment-item .value {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+}
+
+.investment-item .value.accent { color: var(--zk-accent); }
+
+/* Methodology slide */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.method-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid var(--zk-border);
+  text-align: center;
+}
+
+.method-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--zk-light);
+  color: var(--zk-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.method-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--zk-primary);
+  margin-bottom: 10px;
+}
+
+.method-desc {
+  font-size: 14px;
+  color: var(--zk-text-muted);
+  line-height: 1.5;
+}
+
+/* Next steps */
+.next-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.next-step {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid var(--zk-border);
+  position: relative;
+}
+
+.next-step-number {
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--zk-accent);
+  color: var(--zk-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.next-step-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--zk-primary);
+  margin-bottom: 10px;
+  margin-top: 12px;
+}
+
+.next-step-desc {
+  font-size: 14px;
+  color: var(--zk-text-muted);
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  background: var(--zk-primary);
+  color: white;
+  padding: 60px 24px 40px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.footer-logo span { color: var(--zk-accent); }
+
+.footer-tagline {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30px;
+}
+
+.footer-contact {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-contact-item {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-contact-item strong {
+  display: block;
+  color: white;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .competitors-grid,
+  .comparison-grid { grid-template-columns: 1fr; }
+  .scenario-hero,
+  .investment-summary { padding: 30px; }
+  .pricing-table th,
+  .pricing-table td { padding: 12px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-container">
+    <div class="nav-logo">Z<span>u</span>kkin</div>
+    <ul class="nav-links">
+      <li><a href="#contexto">Contexto</a></li>
+      <li><a href="#concorrentes">Concorrentes</a></li>
+      <li><a href="#cenario1">Cenário 1</a></li>
+      <li><a href="#cenario2">Cenário 2</a></li>
+      <li><a href="#comparativo">Comparativo</a></li>
+      <li><a href="#proximos">Próximos Passos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Proposta Comercial Confidencial</div>
+    <h1 class="hero-title">Expansão da Inteligência<br>Competitiva <span>Barbosa</span></h1>
+    <p class="hero-subtitle">Ampliação da cobertura de monitoramento competitivo com nova estrutura comercial — 2 cenários de expansão para análise da liderança</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">Cliente</div>
+        <div class="value">Barbosa Supermercados</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Apresentação</div>
+        <div class="value">28 de Maio de 2025</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Proposta válida até</div>
+        <div class="value">30 de Junho de 2025</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Preparado por</div>
+        <div class="value">Ricardo Forte — Zukkin Brasil</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section class="slide" id="contexto" style="background: var(--zk-light);">
+  <div class="slide-content">
+    <div class="slide-label">Situação Atual</div>
+    <h2 class="slide-title">Onde estamos hoje</h2>
+    <p class="slide-subtitle">A parceria Barbosa × Zukkin atualmente cobre 10 concorrentes estratégicos com pesquisa semanal de 500 SKUs. A solicitação de expansão reflete o amadurecimento da estratégia competitiva da rede.</p>
+
+    <div class="context-grid">
+      <div class="context-card">
+        <div class="context-card-label">Concorrentes Monitorados</div>
+        <div class="context-card-value">10</div>
+        <div class="context-card-desc">Base atual de cobertura competitiva</div>
+      </div>
+      <div class="context-card accent">
+        <div class="context-card-label">Investimento Mensal Atual</div>
+        <div class="context-card-value">R$ 9.761,19</div>
+        <div class="context-card-desc">Equivalente a R$ 976,12 por concorrente</div>
+      </div>
+      <div class="context-card">
+        <div class="context-card-label">SKUs por Coleta</div>
+        <div class="context-card-value">500</div>
+        <div class="context-card-desc">Coleta semanal com curadoria estratégica</div>
+      </div>
+      <div class="context-card success">
+        <div class="context-card-label">Novos Concorrentes Solicitados</div>
+        <div class="context-card-value">+13</div>
+        <div class="context-card-desc">10 primários e 3 secundários para análise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCORRENTES -->
+<section class="slide" id="concorrentes" style="background: white;">
+  <div class="slide-content">
+    <div class="slide-label">Cobertura Solicitada</div>
+    <h2 class="slide-title">Novos concorrentes para monitoramento</h2>
+    <p class="slide-subtitle">Distribuição estratégica dos 13 novos pontos de coleta solicitados, segmentados por nível de prioridade competitiva.</p>
+
+    <div class="competitors-grid">
+      <div class="competitors-column">
+        <h3>Concorrentes Primários <span class="priority-badge priority-primary">Alta Prioridade</span></h3>
+        <p class="competitors-count">10 novos pontos de coleta</p>
+        <ul class="competitor-list">
+          <li class="competitor-item"><div class="competitor-number">1</div><div class="competitor-info"><div class="competitor-name">Fonte Nova <span class="new-tag">Novo</span></div><div class="competitor-location">Vila Florida</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">2</div><div class="competitor-info"><div class="competitor-name">Ayumi <span class="new-tag">Novo</span></div><div class="competitor-location">Vila Joaniza</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">3</div><div class="competitor-info"><div class="competitor-name">Lopes Supermercados <span class="new-tag">Novo</span></div><div class="competitor-location">São Bernardo do Campo</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">4</div><div class="competitor-info"><div class="competitor-name">Lopes Supermercados <span class="new-tag">Novo</span></div><div class="competitor-location">Jandira</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">5</div><div class="competitor-info"><div class="competitor-name">Carrefour <span class="new-tag">Novo</span></div><div class="competitor-location">Raposo Tavares</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">6</div><div class="competitor-info"><div class="competitor-name">Super Cotia <span class="new-tag">Novo</span></div><div class="competitor-location">Cotia</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">7</div><div class="competitor-info"><div class="competitor-name">Serrano Supermercados <span class="new-tag">Novo</span></div><div class="competitor-location">Caucaia do Alto</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">8</div><div class="competitor-info"><div class="competitor-name">Roldão Atacadista <span class="new-tag">Novo</span></div><div class="competitor-location">Pirituba</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">9</div><div class="competitor-info"><div class="competitor-name">São Vicente <span class="new-tag">Novo</span></div><div class="competitor-location">Sorocaba</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">10</div><div class="competitor-info"><div class="competitor-name">Coop <span class="new-tag">Novo</span></div><div class="competitor-location">Sorocaba</div></div></li>
+        </ul>
+      </div>
+
+      <div class="competitors-column">
+        <h3>Concorrentes Secundários <span class="priority-badge priority-secondary">Apoio Estratégico</span></h3>
+        <p class="competitors-count">3 novos pontos de coleta</p>
+        <ul class="competitor-list">
+          <li class="competitor-item"><div class="competitor-number">1</div><div class="competitor-info"><div class="competitor-name">Public <span class="new-tag">Novo</span></div><div class="competitor-location">Jardim Ângela</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">2</div><div class="competitor-info"><div class="competitor-name">Violeta Supermercados <span class="new-tag">Novo</span></div><div class="competitor-location">Pirituba</div></div></li>
+          <li class="competitor-item"><div class="competitor-number">3</div><div class="competitor-info"><div class="competitor-name">Nagumo <span class="new-tag">Novo</span></div><div class="competitor-location">São José dos Campos</div></div></li>
+        </ul>
+        <div style="margin-top: 30px; padding: 20px; background: var(--zk-light); border-radius: 8px;">
+          <p style="font-size: 13px; color: var(--zk-text-muted); line-height: 1.6;"><strong style="color: var(--zk-primary);">Sobre os secundários:</strong> bandeiras com sobreposição parcial de mix ou posicionamento, recomendadas para validar percepção de preço em regiões específicas e detectar movimentos competitivos sazonais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENÁRIO 1 -->
+<section class="slide" id="cenario1" style="background: var(--zk-light);">
+  <div class="slide-content">
+    <div class="scenario-hero">
+      <div class="scenario-tag">Cenário 1 — Cobertura Completa</div>
+      <h2 class="scenario-title">Primários + Secundários</h2>
+      <p class="scenario-desc">Expansão máxima da inteligência competitiva — 23 concorrentes monitorados semanalmente com cobertura completa do raio competitivo solicitado.</p>
+    </div>
+
+    <div class="scenario-stats">
+      <div class="stat-card">
+        <div class="stat-label">Concorrentes</div>
+        <div class="stat-value">23</div>
+        <div class="stat-sublabel">10 atuais + 13 novos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Ticket Unitário</div>
+        <div class="stat-value">R$ 900</div>
+        <div class="stat-sublabel">por concorrente/mês</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-label">Investimento Mensal</div>
+        <div class="stat-value">R$ 20.700</div>
+        <div class="stat-sublabel">novo valor consolidado</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Economia Mensal Total</div>
+        <div class="stat-value">R$ 1.750,76</div>
+        <div class="stat-sublabel">vs. ticket atual aplicado aos 23 concorrentes</div>
+      </div>
+    </div>
+
+    <div class="pricing-table-container">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Composição</th>
+            <th>Concorrentes</th>
+            <th>Valor Unitário</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pricing-row-current">
+            <td><strong>Base atual</strong><br><span style="font-size:12px; color: var(--zk-text-muted);">10 concorrentes já monitorados</span></td>
+            <td>10</td>
+            <td>R$ 900,00</td>
+            <td><strong>R$ 9.000,00</strong></td>
+          </tr>
+          <tr class="pricing-row-new">
+            <td><strong>Novos concorrentes</strong><br><span style="font-size:12px; color: var(--zk-text-muted);">10 primários + 3 secundários</span></td>
+            <td>13</td>
+            <td>R$ 900,00</td>
+            <td><strong>R$ 11.700,00</strong></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Investimento mensal total</td>
+            <td>23</td>
+            <td>R$ 900,00</td>
+            <td>R$ 20.700,00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div style="background: white; padding: 30px; border-radius: 12px; margin-top: 30px; border-left: 4px solid var(--zk-success);">
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--zk-primary); margin-bottom: 12px;">Condição comercial aplicada</h4>
+      <p style="font-size: 14px; color: var(--zk-text); line-height: 1.7;">Em reconhecimento à expansão e ao fortalecimento da parceria estratégica, o ticket por concorrente é ajustado de <strong>R$ 976,12</strong> para <strong>R$ 900,00</strong> — uma redução de <strong>7,8%</strong> aplicada ao escopo consolidado. Essa condição é específica desta expansão e reflete o investimento ampliado na nossa estrutura de pesquisa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CENÁRIO 2 -->
+<section class="slide" id="cenario2" style="background: white;">
+  <div class="slide-content">
+    <div class="scenario-hero scenario-2">
+      <div class="scenario-tag">Cenário 2 — Foco em Primários</div>
+      <h2 class="scenario-title">Apenas Concorrentes Primários</h2>
+      <p class="scenario-desc">Foco em alta prioridade competitiva — 20 concorrentes monitorados semanalmente, mantendo somente as bandeiras com sobreposição direta de mix e raio competitivo crítico.</p>
+    </div>
+
+    <div class="scenario-stats">
+      <div class="stat-card">
+        <div class="stat-label">Concorrentes</div>
+        <div class="stat-value">20</div>
+        <div class="stat-sublabel">10 atuais + 10 novos primários</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Ticket Unitário</div>
+        <div class="stat-value">R$ 940</div>
+        <div class="stat-sublabel">por concorrente/mês</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-label">Investimento Mensal</div>
+        <div class="stat-value">R$ 18.800</div>
+        <div class="stat-sublabel">novo valor consolidado</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Economia Mensal Total</div>
+        <div class="stat-value">R$ 722,40</div>
+        <div class="stat-sublabel">vs. ticket atual aplicado aos 20 concorrentes</div>
+      </div>
+    </div>
+
+    <div class="pricing-table-container">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Composição</th>
+            <th>Concorrentes</th>
+            <th>Valor Unitário</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pricing-row-current">
+            <td><strong>Base atual</strong><br><span style="font-size:12px; color: var(--zk-text-muted);">10 concorrentes já monitorados</span></td>
+            <td>10</td>
+            <td>R$ 940,00</td>
+            <td><strong>R$ 9.400,00</strong></td>
+          </tr>
+          <tr class="pricing-row-new">
+            <td><strong>Novos concorrentes primários</strong><br><span style="font-size:12px; color: var(--zk-text-muted);">10 bandeiras de alta prioridade</span></td>
+            <td>10</td>
+            <td>R$ 940,00</td>
+            <td><strong>R$ 9.400,00</strong></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Investimento mensal total</td>
+            <td>20</td>
+            <td>R$ 940,00</td>
+            <td>R$ 18.800,00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div style="background: var(--zk-light); padding: 30px; border-radius: 12px; margin-top: 30px; border-left: 4px solid var(--zk-secondary);">
+      <h4 style="font-size: 16px; font-weight: 700; color: var(--zk-primary); margin-bottom: 12px;">Condição comercial aplicada</h4>
+      <p style="font-size: 14px; color: var(--zk-text); line-height: 1.7;">Para o cenário com foco em concorrentes primários, o ticket por concorrente é ajustado de <strong>R$ 976,12</strong> para <strong>R$ 940,00</strong> — uma redução de <strong>3,7%</strong>. A diferença em relação ao Cenário 1 reflete o volume menor de pontos de coleta consolidados na operação.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="slide" id="comparativo" style="background: var(--zk-light);">
+  <div class="slide-content">
+    <div class="slide-label">Comparativo Lado a Lado</div>
+    <h2 class="slide-title">Qual cenário gera mais valor?</h2>
+    <p class="slide-subtitle">Análise comparativa para suportar a decisão da liderança Barbosa — visão consolidada de cobertura, investimento e ganho competitivo.</p>
+
+    <div class="comparison-grid">
+      <div class="comparison-card recommended">
+        <div class="recommended-badge">Maior Cobertura</div>
+        <div class="comparison-header">
+          <div class="comparison-name">Cenário 1</div>
+          <div class="comparison-coverage">Primários + Secundários • 23 concorrentes</div>
+        </div>
+        <div class="comparison-price">
+          <span class="comparison-price-value">R$ 20.700</span>
+          <span class="comparison-price-period">/mês</span>
+        </div>
+        <ul class="comparison-features">
+          <li>23 concorrentes monitorados semanalmente</li>
+          <li>Cobertura completa do raio competitivo</li>
+          <li>Ticket unitário de R$ 900 (redução de 7,8%)</li>
+          <li>Detecção de movimentos em bandeiras secundárias</li>
+          <li>Validação ampliada de percepção de preço regional</li>
+          <li>Acréscimo de R$ 10.938,81 sobre o investimento atual</li>
+        </ul>
+      </div>
+
+      <div class="comparison-card">
+        <div class="comparison-header">
+          <div class="comparison-name">Cenário 2</div>
+          <div class="comparison-coverage">Apenas Primários • 20 concorrentes</div>
+        </div>
+        <div class="comparison-price">
+          <span class="comparison-price-value">R$ 18.800</span>
+          <span class="comparison-price-period">/mês</span>
+        </div>
+        <ul class="comparison-features">
+          <li>20 concorrentes monitorados semanalmente</li>
+          <li>Foco em alta prioridade competitiva</li>
+          <li>Ticket unitário de R$ 940 (redução de 3,7%)</li>
+          <li>Cobertura dos concorrentes de impacto direto</li>
+          <li>Investimento mais enxuto que o Cenário 1</li>
+          <li>Acréscimo de R$ 9.038,81 sobre o investimento atual</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="investment-summary">
+      <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Síntese de Investimento</h3>
+      <p style="font-size: 15px; color: rgba(255,255,255,0.8);">Visão consolidada para a tomada de decisão da liderança</p>
+
+      <div class="investment-grid">
+        <div class="investment-item">
+          <div class="label">Hoje (10 concorrentes)</div>
+          <div class="value">R$ 9.761,19</div>
+        </div>
+        <div class="investment-item">
+          <div class="label">Cenário 1 (23 concorrentes)</div>
+          <div class="value accent">R$ 20.700,00</div>
+        </div>
+        <div class="investment-item">
+          <div class="label">Cenário 2 (20 concorrentes)</div>
+          <div class="value accent">R$ 18.800,00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGIA -->
+<section class="slide" style="background: white;">
+  <div class="slide-content">
+    <div class="slide-label">Metodologia Zukkin</div>
+    <h2 class="slide-title">O que está incluso na operação</h2>
+    <p class="slide-subtitle">Todos os concorrentes — atuais e novos — recebem o mesmo padrão de coleta e qualidade já praticado na operação Barbosa.</p>
+
+    <div class="method-grid">
+      <div class="method-card">
+        <div class="method-icon">📅</div>
+        <div class="method-title">Coleta Semanal</div>
+        <div class="method-desc">Pesquisa de preços realizada presencialmente por equipe própria, com periodicidade semanal por concorrente.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">📊</div>
+        <div class="method-title">500 SKUs Estratégicos</div>
+        <div class="method-desc">Curadoria conjunta com o time Barbosa para garantir relevância da curva A e categorias-chave.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">📷</div>
+        <div class="method-title">Evidência Fotográfica</div>
+        <div class="method-desc">Cada coleta é documentada com fotos georreferenciadas que garantem auditabilidade e rastreabilidade.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">💻</div>
+        <div class="method-title">Plataforma ZAnalytics</div>
+        <div class="method-desc">Acesso ao dashboard com indicadores de competitividade, dispersão de preços e alertas em tempo quase real.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS PASSOS -->
+<section class="slide" id="proximos" style="background: var(--zk-light);">
+  <div class="slide-content">
+    <div class="slide-label">Próximos Passos</div>
+    <h2 class="slide-title">Como avançamos a partir daqui</h2>
+    <p class="slide-subtitle">Sequência sugerida para implementação assim que a liderança Barbosa definir o cenário escolhido.</p>
+
+    <div class="next-steps-grid">
+      <div class="next-step">
+        <div class="next-step-number">1</div>
+        <div class="next-step-title">Definição do Cenário</div>
+        <div class="next-step-desc">Validação interna pela liderança Barbosa sobre Cenário 1 ou Cenário 2, em reunião do dia 28/05.</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step-number">2</div>
+        <div class="next-step-title">Aditivo Contratual</div>
+        <div class="next-step-desc">Emissão de aditivo simples ao contrato vigente, formalizando os novos pontos de coleta e a condição comercial.</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step-number">3</div>
+        <div class="next-step-title">Setup Operacional</div>
+        <div class="next-step-desc">Estruturação das rotas de pesquisa para os novos concorrentes — prazo médio de 15 dias úteis para início da coleta.</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step-number">4</div>
+        <div class="next-step-title">Primeiro Ciclo</div>
+        <div class="next-step-desc">Primeira coleta dos novos concorrentes com relatório consolidado entregue ao time Barbosa para validação inicial.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">Z<span>u</span>kkin</div>
+    <p class="footer-tagline">Inteligência de mercado para o varejo brasileiro</p>
+    <div class="footer-contact">
+      <div class="footer-contact-item">
+        <strong>Ricardo Forte</strong>
+        Diretor Comercial — Zukkin Brasil
+      </div>
+      <div class="footer-contact-item">
+        <strong>www.zukkin.com.br</strong>
+        Proposta confidencial — Barbosa Supermercados
+      </div>
+      <div class="footer-contact-item">
+        <strong>28 de Maio de 2025</strong>
+        Validade: 30 dias
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Engagement tracking pixel (silent) -->
+<script>
+(function() {
+  const WEBHOOK_URL = 'https://webhook.site/your-webhook-id-here';
+  const proposalId = 'barbosa-expansao-2025-05';
+  const sessionStart = Date.now();
+  let lastPing = Date.now();
+  let totalTime = 0;
+  let pageVisible = true;
+
+  function track(event, data) {
+    try {
+      const payload = {
+        proposal: proposalId,
+        event: event,
+        timestamp: new Date().toISOString(),
+        sessionDuration: Math.round((Date.now() - sessionStart) / 1000),
+        userAgent: navigator.userAgent,
+        screen: window.innerWidth + 'x' + window.innerHeight,
+        language: navigator.language,
+        referrer: document.referrer || 'direct',
+        ...data
+      };
+      const img = new Image();
+      img.src = WEBHOOK_URL + '?d=' + encodeURIComponent(JSON.stringify(payload));
+    } catch(e) {}
+  }
+
+  track('open', { url: window.location.href });
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      pageVisible = false;
+      track('hidden', { timeOnPage: Math.round((Date.now() - sessionStart) / 1000) });
+    } else {
+      pageVisible = true;
+      track('visible');
+    }
+  });
+
+  window.addEventListener('beforeunload', function() {
+    track('close', { totalTime: Math.round((Date.now() - sessionStart) / 1000) });
+  });
+
+  setInterval(function() {
+    if (pageVisible) track('ping', { scrollY: window.scrollY, scrollPct: Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100) });
+  }, 60000);
+})();
+</script>
+
+</body>
+</html>
