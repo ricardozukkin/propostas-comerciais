@@ -1,0 +1,1573 @@
+<!DOCTYPE html><html lang="pt-BR" data-theme="light" style="--ck-bg: #E2E8F0; --ck-border: rgba(0,0,0,0.08);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+:root { --bg: #1C2F48; --bg-outer: #0D1B2A; --surface: #253A56; --surface-hover: #2D4462; --border: rgba(2, 56, 90, 0.28); --border-accent: rgba(2, 56, 90, 0.4); --text: #EEF4FA; --text-secondary: rgba(180, 210, 245, 0.6); --text-muted: rgba(180, 210, 245, 0.35); --vermelho: #CF110D; --azul: #02385A; --branco: #FFFFFF; --cinza: #71869D; --pricing: #02385A; --analytics: #EE8625; --promo: #FF4D6A; --robot: #6B2246; --go: #78AE3F; --consulting: #8C9BAB; --market: #7C6EF6; --gradient-vibrant: linear-gradient(135deg, #7C6EF6, #00D4FF, #FF6B9D); --gradient-warm: linear-gradient(135deg, #EE8625, #FF4D6A); --positive: #10B981; --negative: #EF4444; --warning: #F59E0B; --slide-padding: 48px; --radius: 16px; --font: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; --zk-safe-top: 72px; --zk-safe-bottom: 40px; --zk-safe-side: var(--slide-padding); --zk-title-gap: 32px; }
+
+:root[data-theme="light"] { --bg: #F8FAFC; --bg-outer: #E2E8F0; --surface: #FFFFFF; --surface-hover: #F1F5F9; --border: rgba(2,56,90,0.12); --border-accent: rgba(2,56,90,0.22); --text: #1C2F48; --text-secondary: rgba(28,47,72,0.6); --text-muted: rgba(28,47,72,0.35); --gradient-vibrant: linear-gradient(135deg, #6B5CE7, #0099CC, #E8456B); --gradient-warm: linear-gradient(135deg, #D4730F, #D42A4C); }
+
+:root { --ck-bg: var(--bg-outer, #0D1B2A); --ck-surface: rgba(255,255,255,0.04); --ck-border: rgba(255,255,255,0.08); --ck-text: rgba(255,255,255,0.5); --ck-text-strong: rgba(255,255,255,0.85); --ck-bar-h: 44px; }
+
+:root[data-theme="light"] { --ck-surface: rgba(0,0,0,0.04); --ck-border: rgba(0,0,0,0.08); --ck-text: rgba(0,0,0,0.45); --ck-text-strong: rgba(0,0,0,0.8); }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+html, body { width: 100%; height: 100%; overflow: hidden; }
+
+body { font-family: var(--font); background: var(--ck-bg); display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; color: var(--text); line-height: 1.6; }
+
+.zk-expiration { position: fixed; top: 0px; left: 0px; right: 0px; z-index: 9999; background: linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235)); color: white; text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.zk-expiration.visible { transform: translateY(0px); }
+
+.zk-expired-block { position: fixed; inset: 0px; z-index: 99999; background: var(--bg-outer); display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px; }
+
+.zk-expired-block.active { display: flex; }
+
+.ck-viewport { flex: 1 1 0%; display: flex; justify-content: center; align-items: center; padding: 12px 48px 0px; min-height: 0px; position: relative; }
+
+.ck-frame { width: 90%; max-width: 1400px; aspect-ratio: 16 / 9; max-height: calc(100vh - var(--ck-bar-h) - 24px); border-radius: 10px; overflow: hidden; position: relative; background: var(--bg); box-shadow: rgba(0, 0, 0, 0.5) 0px 8px 40px, rgba(255, 255, 255, 0.04) 0px 0px 0px 1px; }
+
+:root[data-theme="light"] .ck-frame { box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 40px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; }
+
+.ck-frame::before { content: ""; position: absolute; inset: 0px; z-index: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.043) 1px, transparent 1px); background-size: 28px 28px; }
+
+.ck-frame::after { content: ""; position: absolute; inset: 0px; z-index: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 128px; opacity: 0.03; }
+
+:root[data-theme="light"] .ck-frame::before { background-image: repeating-linear-gradient(45deg, rgba(2, 56, 90, 0.05) 0px, rgba(2, 56, 90, 0.05) 1px, transparent 1px, transparent 48px); background-size: auto; }
+
+.ck-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 36px; height: 72px; border-radius: 8px; background: var(--ck-surface); border: 1px solid var(--ck-border); color: rgba(255, 255, 255, 0.25); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.25s; font-family: var(--font); padding: 0px; }
+
+.ck-arrow:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.15); color: rgba(255, 255, 255, 0.7); }
+
+.ck-arrow:disabled { opacity: 0; pointer-events: none; }
+
+.ck-arrow-prev { left: 6px; }
+
+.ck-arrow-next { right: 6px; }
+
+.ck-bar { height: var(--ck-bar-h); position: relative; display: flex; align-items: center; justify-content: space-between; padding: 0px 28px; background: var(--ck-bg); border-top: 1px solid var(--ck-border); flex-shrink: 0; }
+
+.ck-bar-left, .ck-bar-right { display: flex; align-items: center; gap: 12px; z-index: 1; }
+
+.ck-bar button { width: 28px; height: 28px; min-height: 28px; max-height: 28px; border-radius: 7px; background: var(--ck-surface); border: 1px solid var(--ck-border); color: var(--ck-text); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; font-family: var(--font); box-sizing: border-box; padding: 0px; }
+
+.ck-bar button:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.15); color: var(--ck-text-strong); }
+
+.ck-bar button:disabled { opacity: 0.2; cursor: not-allowed; }
+
+.ck-bar span { font-size: 11px; font-weight: 600; color: var(--ck-text); font-variant-numeric: tabular-nums; }
+
+.ck-progress-wrap { width: 140px; height: 3px; background: rgba(255, 255, 255, 0.06); border-radius: 2px; overflow: hidden; }
+
+.ck-progress { height: 100%; width: 0%; background: var(--vermelho); border-radius: 2px; box-shadow: rgba(207, 17, 13, 0.3) 0px 0px 8px; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.zk-theme-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: 0.2s; }
+
+.zk-theme-dot.active { border-color: rgb(255, 255, 255); transform: scale(1.2); }
+
+.zk-theme-dot.needs-border { border-color: rgba(0, 0, 0, 0.2); }
+
+#zkThemeLabel { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ck-text); }
+
+#zkThemeSwitcher { display: flex; gap: 6px; align-items: center; }
+
+.zk-slide { position: absolute; inset: 0px; display: flex; flex-direction: column; padding: var(--zk-safe-top) var(--zk-safe-side) var(--zk-safe-bottom); overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.5s, transform 0.5s; transform: translateX(40px); z-index: 1; }
+
+.zk-slide.active { opacity: 1; pointer-events: auto; transform: translateX(0px); }
+
+.zk-slide h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; line-height: 1.15; margin-bottom: var(--zk-title-gap); }
+
+.zk-animate { opacity: 0; }
+
+.zk-animate.zk-entering { animation: 0.5s ease 0s 1 normal forwards running zkFadeInUp; }
+
+@keyframes zkFadeInUp { 
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+
+@keyframes orbSpin { 
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.zk-slide.cover { justify-content: center; align-items: center; text-align: center; padding: var(--zk-safe-bottom) var(--zk-safe-side) var(--zk-safe-bottom) !important; }
+
+.zk-slide.cover::before { content: ""; position: absolute; width: 400px; height: 400px; border-radius: 50%; background: conic-gradient(rgba(207, 17, 13, 0.2), rgba(2, 56, 90, 0.2), rgba(238, 134, 37, 0.2), rgba(207, 17, 13, 0.2)); filter: blur(80px); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: 20s linear 0s infinite normal none running orbSpin; }
+
+.zk-slide.cover::after { content: ""; position: absolute; z-index: 0; pointer-events: none; width: 350px; height: 350px; bottom: -80px; right: -60px; background: radial-gradient(circle, rgba(238, 134, 37, 0.12) 0%, rgba(255, 77, 106, 0.08) 40%, transparent 70%); border-radius: 50%; filter: blur(60px); }
+
+.zk-slide.cover > * { position: relative; z-index: 2; }
+
+.zk-slide.cover .zk-logo { margin-bottom: 40px; }
+
+.zk-slide.cover .zk-logo svg { height: 40px; }
+
+.zk-slide.cover h1 { font-family: "Plus Jakarta Sans", Montserrat, sans-serif; font-size: clamp(36px, 6vw, 72px); font-weight: 800; line-height: 1.05; margin-bottom: 16px; color: var(--text); letter-spacing: -0.02em; }
+
+.zk-slide.cover h2 { font-size: clamp(16px, 2vw, 24px); font-weight: 400; color: var(--text-secondary); max-width: 600px; margin-bottom: 0px; }
+
+.zk-slide.cover .zk-meta { margin-top: 48px; font-size: 12px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.zk-slide.content { justify-content: flex-start; }
+
+.zk-slide.content::after { content: ""; position: absolute; z-index: 0; pointer-events: none; width: 500px; height: 500px; bottom: -150px; right: -100px; background: radial-gradient(circle, rgba(2, 56, 90, 0.18) 0%, rgba(207, 17, 13, 0.06) 40%, transparent 70%); border-radius: 50%; filter: blur(60px); }
+
+.zk-slide.content > * { position: relative; z-index: 1; }
+
+.zk-slide.two-col { justify-content: flex-start; }
+
+.zk-slide.two-col::after { content: ""; position: absolute; z-index: 0; pointer-events: none; width: 500px; height: 500px; bottom: -150px; right: -100px; background: radial-gradient(circle, rgba(2, 56, 90, 0.18) 0%, rgba(207, 17, 13, 0.06) 40%, transparent 70%); border-radius: 50%; filter: blur(60px); }
+
+.zk-slide.two-col > * { position: relative; z-index: 1; }
+
+.zk-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1 1 0%; }
+
+.zk-slide.kpi-grid { justify-content: flex-start; }
+
+.zk-slide.kpi-grid::after { content: ""; position: absolute; z-index: 0; pointer-events: none; width: 500px; height: 500px; bottom: -150px; right: -100px; background: radial-gradient(circle, rgba(2, 56, 90, 0.18) 0%, rgba(207, 17, 13, 0.06) 40%, transparent 70%); border-radius: 50%; filter: blur(60px); }
+
+.zk-slide.kpi-grid > * { position: relative; z-index: 1; }
+
+.zk-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+
+.zk-kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+
+.zk-kpi:hover { transform: translateY(-4px); border-color: var(--border-accent); }
+
+.zk-kpi::before { content: ""; position: absolute; top: 0px; left: 0px; right: 0px; height: 3px; background: var(--accent-color,var(--vermelho)); border-radius: var(--radius) var(--radius) 0 0; }
+
+.zk-kpi .label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+
+.zk-kpi .value { font-size: 36px; font-weight: 900; color: var(--branco); line-height: 1; margin-bottom: 8px; }
+
+.zk-kpi .trend { font-size: 13px; font-weight: 600; }
+
+.zk-kpi .trend.up { color: var(--positive); }
+
+.zk-slide.timeline { justify-content: flex-start; }
+
+.zk-slide.timeline::after { content: ""; position: absolute; z-index: 0; pointer-events: none; width: 500px; height: 500px; bottom: -150px; right: -100px; background: radial-gradient(circle, rgba(2, 56, 90, 0.18) 0%, rgba(207, 17, 13, 0.06) 40%, transparent 70%); border-radius: 50%; filter: blur(60px); }
+
+.zk-slide.timeline > * { position: relative; z-index: 1; }
+
+.zk-timeline { display: flex; gap: 0px; position: relative; }
+
+.zk-timeline::before { content: ""; position: absolute; top: 22px; left: 0px; right: 0px; height: 3px; border-radius: 2px; background: linear-gradient(90deg,var(--vermelho),var(--vermelho) 30%,var(--text-muted) 50%,var(--text-muted) 70%,var(--border-accent) 100%); opacity: 0.5; }
+
+.zk-timeline-item { flex: 1 1 0%; position: relative; padding-top: 56px; padding-right: 16px; }
+
+.zk-timeline-item::before { content: ""; position: absolute; top: 12px; left: 0px; width: 20px; height: 20px; border-radius: 50%; background: var(--vermelho); border: 3px solid var(--bg); box-shadow: rgba(207, 17, 13, 0.2) 0px 0px 0px 3px, rgba(207, 17, 13, 0.3) 0px 2px 8px; }
+
+.zk-timeline-item.future::before { background: var(--surface); border-color: var(--cinza); box-shadow: none; }
+
+.zk-timeline-item .phase { font-size: 11px; font-weight: 700; color: var(--vermelho); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+
+.zk-timeline-item.future .phase { color: var(--text-muted); }
+
+.zk-timeline-item strong { display: block; font-size: clamp(13px, 1.4vw, 15px); font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+
+.zk-timeline-item .desc { font-size: clamp(11px, 1.1vw, 13px); color: var(--text-secondary); line-height: 1.5; }
+
+.zk-slide.closing { justify-content: center; align-items: center; text-align: center; padding: var(--zk-safe-bottom) var(--zk-safe-side) var(--zk-safe-bottom) !important; }
+
+.zk-slide.closing::after { content: ""; position: absolute; z-index: 0; pointer-events: none; width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(124, 110, 246, 0.1) 0%, rgba(0, 212, 255, 0.06) 35%, rgba(255, 107, 157, 0.04) 60%, transparent 75%); border-radius: 50%; filter: blur(80px); }
+
+.zk-slide.closing > * { position: relative; z-index: 2; }
+
+.zk-slide.closing h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 900; color: var(--text); margin-bottom: var(--zk-title-gap); }
+
+.zk-slide.closing p { font-size: 18px; color: var(--text-secondary); margin-bottom: 8px; }
+
+.zk-slide.closing .contact { margin-top: 32px; font-size: 14px; color: var(--text-muted); }
+
+.zk-slide.closing .contact a { color: var(--text-secondary); text-decoration: none; border-bottom: 1px solid var(--border-accent); }
+
+.zk-logo svg { height: 40px; width: auto; }
+
+.zk-eco-top { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+
+.zk-eco-platform { background: var(--surface); border: 1px solid var(--border-accent); border-radius: var(--radius); padding: 18px 20px; position: relative; overflow: hidden; }
+
+.zk-eco-platform::before { content: ""; position: absolute; top: 0px; left: 0px; right: 0px; height: 4px; }
+
+.zk-eco-platform.analytics-p::before { background: var(--analytics); }
+
+.zk-eco-platform.pricing-p::before { background: var(--pricing); }
+
+.zk-eco-platform .plat-icon { font-size: 22px; margin-bottom: 6px; }
+
+.zk-eco-platform .plat-name { font-size: clamp(13px, 1.4vw, 16px); font-weight: 800; color: var(--text); margin-bottom: 4px; }
+
+.zk-eco-platform .plat-desc { font-size: clamp(10px, 1.1vw, 12px); color: var(--text-secondary); line-height: 1.4; }
+
+.zk-eco-platform .plat-tag { display: inline-block; margin-top: 8px; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.analytics-p .plat-tag { background: rgba(238, 134, 37, 0.15); color: var(--analytics); }
+
+.pricing-p .plat-tag { background: rgba(2, 56, 90, 0.3); color: rgb(124, 184, 232); }
+
+.zk-eco-arrows { display: flex; justify-content: center; gap: 0px; margin-bottom: 10px; }
+
+.zk-eco-arrows-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
+
+.zk-eco-arrow-col { display: flex; justify-content: center; align-items: center; }
+
+.zk-eco-arrow-col svg { opacity: 0.4; }
+
+.zk-eco-feeders { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+
+.zk-eco-feeder { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 8px; text-align: center; transition: border-color 0.2s, transform 0.2s; position: relative; }
+
+.zk-eco-feeder:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+
+.zk-eco-feeder::before { content: ""; position: absolute; bottom: 0px; left: 0px; right: 0px; height: 3px; border-radius: 0px 0px 12px 12px; }
+
+.zk-eco-feeder.f-robot::before { background: var(--robot); }
+
+.zk-eco-feeder.f-promo::before { background: var(--promo); }
+
+.zk-eco-feeder.f-pesquisa::before { background: var(--vermelho); }
+
+.zk-eco-feeder.f-go::before { background: var(--go); }
+
+.zk-eco-feeder.f-erp::before { background: var(--consulting); }
+
+.zk-eco-feeder.f-market::before { background: rgb(124, 110, 246); }
+
+.zk-eco-feeder .f-icon { font-size: 18px; margin-bottom: 5px; }
+
+.zk-eco-feeder .f-name { font-size: clamp(9px, 1vw, 11px); font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.04em; }
+
+.zk-eco-feeder .f-sub { font-size: clamp(8px, 0.9vw, 10px); color: var(--text-muted); margin-top: 2px; line-height: 1.3; }
+
+.zk-eco-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); text-align: center; margin-bottom: 8px; }
+
+.zk-clients-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+
+.zk-client-badge { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 10px; text-align: center; font-size: clamp(10px, 1.1vw, 13px); font-weight: 700; color: var(--text); transition: border-color 0.2s, transform 0.2s; }
+
+.zk-client-badge:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+
+.zk-reasons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+.zk-reason { background: var(--surface); border-top-color: ; border-top-style: ; border-top-width: ; border-right-color: ; border-right-style: ; border-right-width: ; border-bottom-color: ; border-bottom-style: ; border-bottom-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: var(--radius); padding: 16px; border-left: 3px solid var(--vermelho); }
+
+.zk-reason .r-icon { font-size: 20px; margin-bottom: 8px; }
+
+.zk-reason .r-title { font-size: clamp(12px, 1.3vw, 14px); font-weight: 700; color: var(--text); margin-bottom: 4px; }
+
+.zk-reason .r-desc { font-size: clamp(10px, 1.1vw, 12px); color: var(--text-secondary); line-height: 1.4; }
+
+.zk-project-header { display: flex; align-items: center; gap: 16px; background: var(--surface); border-top-color: ; border-top-style: ; border-top-width: ; border-right-color: ; border-right-style: ; border-right-width: ; border-bottom-color: ; border-bottom-style: ; border-bottom-width: ; border-image-source: ; border-image-slice: ; border-image-width: ; border-image-outset: ; border-image-repeat: ; border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px; border-left: 4px solid var(--vermelho); }
+
+.zk-project-header .proj-icon { font-size: 32px; }
+
+.zk-project-header .proj-title { font-size: clamp(14px, 1.6vw, 18px); font-weight: 800; color: var(--text); }
+
+.zk-project-header .proj-sub { font-size: clamp(11px, 1.2vw, 13px); color: var(--text-secondary); }
+
+.zk-project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.zk-phase-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; position: relative; overflow: hidden; }
+
+.zk-phase-card::before { content: ""; position: absolute; top: 0px; left: 0px; right: 0px; height: 3px; background: var(--vermelho); }
+
+.zk-phase-card.p2::before { background: var(--analytics); }
+
+.zk-phase-card.p3::before { background: var(--go); }
+
+.zk-phase-card.p4::before { background: var(--positive); }
+
+.zk-phase-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
+
+.zk-phase-title { font-size: clamp(12px, 1.4vw, 15px); font-weight: 800; color: var(--text); margin-bottom: 8px; }
+
+.zk-phase-items { list-style: none; padding: 0px; }
+
+.zk-phase-items li { font-size: clamp(10px, 1.1vw, 12px); color: var(--text-secondary); padding: 3px 0px 3px 14px; position: relative; line-height: 1.4; }
+
+.zk-phase-items li::before { content: ""; position: absolute; left: 0px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--vermelho); }
+
+.zk-phase-card.p2 .zk-phase-items li::before { background: var(--analytics); }
+
+.zk-phase-card.p3 .zk-phase-items li::before { background: var(--go); }
+
+.zk-phase-card.p4 .zk-phase-items li::before { background: var(--positive); }
+
+.zk-onboarding-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+
+.zk-onboarding-step { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 12px; text-align: center; }
+
+.zk-onboarding-step .step-num { font-size: 20px; font-weight: 900; color: var(--vermelho); line-height: 1; margin-bottom: 6px; font-family: "Plus Jakarta Sans", sans-serif; }
+
+.zk-onboarding-step .step-title { font-size: clamp(10px, 1.1vw, 12px); font-weight: 700; color: var(--text); margin-bottom: 4px; }
+
+.zk-onboarding-step .step-sub { font-size: clamp(9px, 0.95vw, 11px); color: var(--text-secondary); line-height: 1.3; }
+
+.step-arrow { display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 18px; padding-top: 14px; }
+
+:root[data-theme="light"] .zk-kpi .value { color: var(--text); }
+
+:root[data-theme="light"] .zk-slide.cover::before { background: conic-gradient(rgba(207, 17, 13, 0.08), rgba(2, 56, 90, 0.08), rgba(238, 134, 37, 0.08), rgba(207, 17, 13, 0.08)); }
+
+:root[data-theme="light"] .zk-timeline-item strong, :root[data-theme="light"] .zk-timeline-item .desc, :root[data-theme="light"] .zk-phase-title, :root[data-theme="light"] .zk-phase-items li, :root[data-theme="light"] .zk-client-badge, :root[data-theme="light"] .zk-reason .r-title, :root[data-theme="light"] .zk-reason .r-desc, :root[data-theme="light"] .zk-eco-platform .plat-name, :root[data-theme="light"] .zk-eco-platform .plat-desc, :root[data-theme="light"] .zk-eco-feeder .f-name, :root[data-theme="light"] .zk-eco-feeder .f-sub, :root[data-theme="light"] .zk-project-header .proj-title, :root[data-theme="light"] .zk-project-header .proj-sub, :root[data-theme="light"] .zk-onboarding-step .step-title, :root[data-theme="light"] .zk-onboarding-step .step-sub { color: var(--text); }
+
+:root[data-theme="light"] .zk-kpi { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.15); }
+
+:root[data-theme="light"] .zk-kpi .label { color: rgba(28, 47, 72, 0.5); }
+
+:root[data-theme="light"] .zk-kpi .trend.up { color: rgb(5, 150, 105); }
+
+:root[data-theme="light"] .zk-eco-platform { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.2); }
+
+:root[data-theme="light"] .zk-eco-feeder { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.12); }
+
+:root[data-theme="light"] .zk-client-badge { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.15); color: var(--text); }
+
+:root[data-theme="light"] .zk-reason { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.12); }
+
+:root[data-theme="light"] .zk-phase-card { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.12); }
+
+:root[data-theme="light"] .zk-project-header { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.15); }
+
+:root[data-theme="light"] .zk-onboarding-step { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.12); }
+
+:root[data-theme="light"] [style*="background:var(--surface)"] { background: rgb(255, 255, 255) !important; }
+
+:root[data-theme="light"] .zk-eco-label { color: rgba(28, 47, 72, 0.45); }
+
+:root[data-theme="light"] .zk-phase-tag { color: rgba(28, 47, 72, 0.5); }
+
+:root[data-theme="light"] .zk-timeline::before { opacity: 0.3; }
+
+:root[data-theme="light"] .zk-timeline-item::before { border-color: var(--bg); }
+
+:root[data-theme="light"] .zk-progress-wrap { background: rgba(0, 0, 0, 0.08); }
+
+:root[data-theme="light"] .zk-slide [style*="background:var(--surface)"], :root[data-theme="light"] .zk-slide [style*="background: var(--surface)"] { background: rgb(255, 255, 255) !important; }
+
+:root[data-theme="light"] .zk-slide div[style*="color:var(--text)"], :root[data-theme="light"] .zk-slide div[style*="color: var(--text)"] { color: rgb(28, 47, 72) !important; }
+
+:root[data-theme="light"] .zk-slide div[style*="color:var(--text-secondary)"], :root[data-theme="light"] .zk-slide div[style*="color: var(--text-secondary)"] { color: rgba(28, 47, 72, 0.65) !important; }
+
+:root[data-theme="light"] .zk-slide div[style*="color:var(--text-muted)"], :root[data-theme="light"] .zk-slide div[style*="color: var(--text-muted)"] { color: rgba(28, 47, 72, 0.45) !important; }
+
+:root[data-theme="light"] .zk-slide div[style*="color:var(--branco)"] { color: rgb(28, 47, 72) !important; }
+
+:root[data-theme="light"] .zk-timeline-item::before { border-color: var(--bg); }
+
+:root[data-theme="light"] .zk-slide [style*="color:var(--text); font-weight:600"] { color: rgb(28, 47, 72) !important; }
+
+:root[data-theme="light"] .zk-slide [style*="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden"] { background: rgb(244, 246, 248) !important; }
+
+.zk-modal-overlay { position: fixed; inset: 0px; z-index: 99990; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; padding: 20px; }
+
+.zk-modal-overlay.active { display: flex; }
+
+.zk-modal { background: var(--bg); border: 1px solid var(--border-accent); border-radius: 20px; width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: rgba(0, 0, 0, 0.5) 0px 24px 80px; }
+
+.zk-modal-header { padding: 24px 28px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; position: sticky; top: 0px; background: var(--bg); z-index: 2; border-radius: 20px 20px 0px 0px; }
+
+.zk-modal-header h3 { font-size: 18px; font-weight: 800; color: var(--text); margin: 0px; }
+
+.zk-modal-header p { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+.zk-modal-close { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font); }
+
+.zk-modal-close:hover { background: var(--surface-hover); color: var(--text); }
+
+.zk-modal-body { padding: 20px 28px 28px; }
+
+.zk-form-section { margin-bottom: 20px; }
+
+.zk-form-section-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--vermelho); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+.zk-form-row { display: grid; gap: 12px; margin-bottom: 12px; }
+
+.zk-form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+
+.zk-form-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.zk-form-row.cols-addr { grid-template-columns: 3fr 1fr; }
+
+.zk-form-row.cols-city { grid-template-columns: 2fr 1fr 1.2fr; }
+
+.zk-form-group { display: flex; flex-direction: column; gap: 4px; }
+
+.zk-form-group label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+
+.zk-form-group input, .zk-form-group textarea, .zk-form-group select { font-family: var(--font); font-size: 13px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text); outline: none; transition: border-color 0.2s; }
+
+.zk-form-group input:focus, .zk-form-group textarea:focus, .zk-form-group select:focus { border-color: var(--vermelho); }
+
+.zk-form-group input::placeholder, .zk-form-group textarea::placeholder { color: var(--text-muted); }
+
+.zk-form-group textarea { resize: vertical; min-height: 56px; }
+
+.zk-form-group .opt { font-size: 9px; font-weight: 500; color: var(--text-muted); font-style: italic; text-transform: none; letter-spacing: 0px; }
+
+.zk-form-submit { width: 100%; padding: 16px; border: none; border-radius: 14px; background: var(--vermelho); color: rgb(255, 255, 255); font-family: var(--font); font-size: 15px; font-weight: 800; letter-spacing: 0.02em; cursor: pointer; transition: 0.2s; box-shadow: rgba(207, 17, 13, 0.3) 0px 4px 20px; margin-top: 8px; }
+
+.zk-form-submit:hover { transform: translateY(-2px); box-shadow: rgba(207, 17, 13, 0.4) 0px 6px 28px; }
+
+.zk-form-success { display: none; text-align: center; padding: 40px 20px; }
+
+.zk-form-success.active { display: block; }
+
+.zk-form-success .icon { font-size: 48px; margin-bottom: 16px; }
+
+.zk-form-success h3 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+
+.zk-form-success p { font-size: 14px; color: var(--text-secondary); }
+
+.zk-scope-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-bottom: 12px; align-items: start; }
+
+.zk-scope-row .zk-form-group:first-child input { text-align: center; }
+
+.zk-prod-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto; gap: 14px; flex: 1 1 0%; align-content: start; }
+
+.zk-prod-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 18px; cursor: pointer; position: relative; overflow: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; gap: 8px; }
+
+.zk-prod-card:hover { transform: translateY(-4px); border-color: var(--border-accent); box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 24px; }
+
+.zk-prod-card .pc-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+
+.zk-prod-card .pc-name { font-size: clamp(13px, 1.5vw, 17px); font-weight: 900; line-height: 1.2; }
+
+.zk-prod-card .pc-tag { font-size: clamp(9px, 1vw, 11px); color: var(--text-secondary); line-height: 1.4; }
+
+.zk-prod-card .pc-cta { margin-top: auto; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; opacity: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 10px; background: rgba(207,17,13,0.1); border: 1.5px solid rgba(207,17,13,0.25); border-radius: 8px; color: var(--vermelho); transition: all 0.3s; }
+
+.zk-prod-card:hover .pc-cta { background: rgba(207,17,13,0.18); border-color: rgba(207,17,13,0.4); transform: scale(1.03); }
+
+.zk-prod-card.card-span-row { grid-area: 1 / 4 / 3; }
+
+:root[data-theme="light"] .zk-prod-card { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.1); }
+
+:root[data-theme="light"] .zk-prod-card:hover { border-color: rgba(2, 56, 90, 0.25); box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 24px; }
+
+.zk-pmod-overlay { position: fixed; inset: 0px; z-index: 100000; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s; }
+
+.zk-pmod-overlay.active { display: flex; opacity: 1; }
+
+.zk-pmod { width: 100%; max-width: 780px; max-height: 85vh; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: rgba(0, 0, 0, 0.4) 0px 24px 80px; transform: translateY(20px) scale(0.97); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.zk-pmod-overlay.active .zk-pmod { transform: translateY(0px) scale(1); }
+
+.zk-pmod-header { padding: 28px 32px 24px; position: relative; overflow: hidden; }
+
+.zk-pmod-header::before { content: ""; position: absolute; bottom: -50px; right: -50px; width: 180px; height: 180px; border-radius: 50%; background: rgba(255, 255, 255, 0.07); }
+
+.zk-pmod-header::after { content: ""; position: absolute; top: -30px; left: -30px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255, 255, 255, 0.04); }
+
+.zk-pmod-header > * { position: relative; z-index: 1; }
+
+.zk-pmod-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, 0.15); border: none; color: rgb(255, 255, 255); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; z-index: 2; font-family: var(--font); }
+
+.zk-pmod-close:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.1); }
+
+.zk-pmod-header .pm-row { display: flex; align-items: center; gap: 16px; }
+
+.zk-pmod-header .pm-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+
+.zk-pmod-header .pm-name { font-size: clamp(22px, 3vw, 30px); font-weight: 900; color: rgb(255, 255, 255); }
+
+.zk-pmod-header .pm-badge { display: inline-block; margin-top: 4px; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(255, 255, 255, 0.15); color: rgb(255, 255, 255); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.zk-pmod-header .pm-desc { margin-top: 16px; font-size: clamp(13px, 1.4vw, 16px); color: rgba(255, 255, 255, 0.85); line-height: 1.6; }
+
+.zk-pmod-body { padding: 24px 32px 28px; background: var(--bg); overflow-y: auto; flex: 1 1 0%; }
+
+.zk-pmod-body .pm-features-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 14px; }
+
+.zk-pmod-body .pm-features { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+
+.zk-pmod-body .pm-feat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 14px; position: relative; overflow: hidden; }
+
+.zk-pmod-body .pm-feat .pf-icon { font-size: 18px; margin-bottom: 6px; }
+
+.zk-pmod-body .pm-feat .pf-title { font-size: clamp(11px, 1.2vw, 13px); font-weight: 800; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+
+.zk-pmod-body .pm-feat .pf-desc { font-size: clamp(9px, 1vw, 11px); color: var(--text-secondary); line-height: 1.5; }
+
+.zk-pmod-body .pm-highlight { display: flex; align-items: center; gap: 18px; padding: 16px 20px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+
+.zk-pmod-body .pm-hl-num { font-size: clamp(30px, 4vw, 44px); font-weight: 900; line-height: 1; flex-shrink: 0; }
+
+.zk-pmod-body .pm-hl-text { font-size: clamp(12px, 1.3vw, 14px); font-weight: 700; color: var(--text); line-height: 1.4; }
+
+.zk-pmod-body .pm-hl-sub { font-size: clamp(9px, 1vw, 11px); color: var(--text-secondary); margin-top: 2px; }
+
+:root[data-theme="light"] .zk-pmod-body { background: rgb(241, 245, 249); }
+
+:root[data-theme="light"] .zk-pmod-body .pm-feat { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.1); }
+
+:root[data-theme="light"] .zk-pmod-body .pm-highlight { background: rgb(255, 255, 255); border-color: rgba(2, 56, 90, 0.1); }</style>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Zukkin — Proposta Comercial Mart Minas 2026 (Interativa)</title>
+ <meta name="robots" content="noindex, nofollow">
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet">
+ 
+</head>
+<body style="background: rgb(226, 232, 240);">
+
+<div class="zk-expiration" id="zkExpiration"></div>
+<div class="zk-expired-block" id="zkExpiredBlock">
+ <div style="font-size:48px;margin-bottom:16px">🔒</div>
+ <h2 style="font-size:32px;font-weight:800;margin-bottom:8px">Apresentação expirada</h2>
+ <p>Esta apresentação atingiu sua data de validade.</p>
+</div>
+
+<div class="ck-viewport">
+ <button class="ck-arrow ck-arrow-prev" id="ckArrowPrev" disabled="">‹</button>
+ <div class="ck-frame">
+  <div class="zk-deck" id="zkDeck">
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 1 — CAPA
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide cover active zk-animate">
+    <div class="zk-animate zk-entering" style="animation-delay: 0s; display:flex; align-items:center; gap:28px; justify-content:center; margin-bottom:16px;">
+      <div class="zk-logo" style="margin-bottom:0;"><svg viewBox="0 0 991.8 225.4" fill="none"><defs><linearGradient id="zg1" x1="19.3" y1="67.2" x2="171.1" y2="-20.5" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"></stop><stop offset="1" stop-color="#A11E21"></stop></linearGradient><linearGradient id="zg2" x1="179.7" y1="141.3" x2="62.7" y2="258.3" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"></stop><stop offset="1" stop-color="#A11E21"></stop></linearGradient></defs><path fill="#CF110D" d="M814.9,7.2C810.2,2.4,804.4,0,797.7,0h-25.7v40.6h50.1V24.4C822.1,17.7,819.7,11.9,814.9,7.2z"></path><path fill="url(#zg1)" d="M182.7,0h-0.2H0v27.3C0,40.4,10.6,51,23.7,51h101.7h6.5h51V0C182.9,0,182.8,0,182.7,0z"></path><path fill="url(#zg2)" d="M86.3,174.3h-5.6h-51v51c0.1,0,0.2,0,0.3,0h0.2h182.5v-51H86.3z"></path><path fill="#CF110D" d="M183.5,0.1c-0.2,0-0.3-0.1-0.5-0.1l-30.4,30.4L131.9,51l-2.1,2.1l-0.1-0.1L9,173.8l-0.4,0.4c-5.3,5.4-8.6,12.8-8.6,21c0,16.3,13,29.5,29.2,30c0.2,0,0.3,0.1,0.5,0.1l30.4-30.4l20.6-20.6l2.1-2.1l0.1,0.1L203.6,51.5l0.4-0.4c5.3-5.4,8.6-12.8,8.6-21C212.7,13.8,199.7,0.6,183.5,0.1z"></path><path fill="#CF110D" d="M360.2,56.7c-6.3,0-11.5,2.1-15.5,6.3c-4,4.2-6,9.3-6,15.2v6.3v70.3c0-0.1-0.1-0.1-0.1-0.2c-1.1,15.2-13.8,27.3-29.4,27.3c-15.5,0-28.2-12-29.4-27.3c0,0.1-0.1,0.1-0.1,0.2V84.3V56.7h-44.4l0,95.1v0c0,32,20.5,59.3,49.1,69.4c7.7,2.7,15.9,4.2,24.5,4.2c40.6,0,73.6-32.9,73.6-73.6V56.7H360.2z"></path><path fill="#CF110D" d="M866.9,225.4c6.3,0,11.5-2.1,15.5-6.3c4-4.2,6-9.3,6-15.2v-6.3v-70.3c0,0.1,0.1,0.1,0.1,0.2c1.1-15.2,13.8-27.3,29.4-27.3c15.5,0,28.2,12,29.4,27.3c0-0.1,0.1-0.1,0.1-0.2v70.6v27.6h44.4l0-95.1v0c0-32-20.5-59.3-49.1-69.4c-7.7-2.7-15.9-4.2-24.5-4.2c-40.6,0-73.6,32.9-73.6,73.6v95.1H866.9z"></path><path fill="#CF110D" d="M508.5,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C443.1,2.4,437.3,0,430.6,0H405v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L508.5,115.5z"></path><path fill="#CF110D" d="M692,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C626.6,2.4,620.8,0,614.2,0h-25.7v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L692,115.5z"></path><path fill="#CF110D" d="M814.9,63.9c-4.8-4.8-10.6-7.2-17.2-7.2h-25.7v34.1v2.8v131.7h50.1V93.7v-2.8v-9.7C822.1,74.4,819.7,68.6,814.9,63.9z"></path></svg></div>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--vermelho)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <img src="data:image/png;base64,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" alt="Mart Minas" style="height:clamp(55px,7vw,80px); object-fit:contain;">
+    </div>
+
+    <h1 class="zk-animate zk-entering" style="animation-delay: 0.1s;">Inteligência de Preços<br>para o Varejo Brasileiro</h1>
+    <h2 class="zk-animate zk-entering" style="animation-delay: 0.2s;">Do preço coletado à decisão tomada — em um único ecossistema</h2>
+    <div class="zk-meta zk-animate zk-entering" style="animation-delay: 0.3s;">Mart Minas · Inteligência de Preços · Abril 2026</div>
+    <div class="zk-animate zk-entering" style="animation-delay: 0.4s; margin-top:24px;">
+      <div style="display:inline-flex; align-items:center; gap:10px; background:var(--vermelho); border-radius:10px; padding:12px 32px; box-shadow:0 4px 16px rgba(207,17,13,0.3);">
+        <div style="font-size:clamp(13px,1.5vw,16px); font-weight:800; text-transform:uppercase; letter-spacing:.12em; color:#FFFFFF;">Proposta Exclusiva</div>
+      </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 2 — HISTÓRIA / TIMELINE
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide timeline">
+    <h2 class="zk-animate">Uma empresa construída <span style="color:var(--vermelho)">dentro do varejo</span></h2>
+
+    <div class="zk-timeline zk-animate">
+     <div class="zk-timeline-item">
+      <div class="phase">2016</div>
+      <strong>Nascimento da Zukkin</strong>
+      <div class="desc">Fundada em Santos/SP por profissionais do varejo. Primeiro produto: pesquisa física de preços com metodologia própria.</div>
+     </div>
+     <div class="zk-timeline-item">
+      <div class="phase">2018</div>
+      <strong>Expansão nacional</strong>
+      <div class="desc">Primeiras 20 redes clientes. Criação do Time Zukkin especializado em pesquisa de campo. Cobertura nos principais estados.</div>
+     </div>
+     <div class="zk-timeline-item">
+      <div class="phase">2020</div>
+      <strong>Digitalização do produto</strong>
+      <div class="desc">Lançamento do ZRobot Online e App ZGO. Pesquisa física + digital integradas numa só plataforma — pioneirismo no Brasil.</div>
+     </div>
+     <div class="zk-timeline-item">
+      <div class="phase">2022</div>
+      <strong>Ecossistema completo</strong>
+      <div class="desc">ZAnalytics, ZPromo e Zukkin Pricing IA entram em produção. Zukkin passa a cobrir toda a cadeia de pricing: coleta → análise → decisão.</div>
+     </div>
+     <div class="zk-timeline-item">
+      <div class="phase">2024–26</div>
+      <strong>+100 redes no Brasil</strong>
+      <div class="desc">Mais de +100 redes varejistas ativas. Referência nacional em inteligência de pricing para o varejo alimentar e atacarejo.</div>
+     </div>
+    </div>
+
+    <!-- Destaque ABRAS -->
+    <div class="zk-animate" style="margin-top:18px; background:linear-gradient(135deg,rgba(207,17,13,0.1),rgba(2,56,90,0.06)); border:1px solid rgba(207,17,13,0.22); border-radius:var(--radius); padding:14px 22px; display:flex; align-items:center; gap:20px;">
+     <div style="font-size:clamp(30px,4.5vw,48px); font-weight:900; color:var(--vermelho); line-height:1; flex-shrink:0;">67%</div>
+     <div>
+      <div style="font-size:clamp(12px,1.4vw,15px); font-weight:700; color:var(--text); margin-bottom:3px;">das 150 maiores redes do Ranking ABRAS confiam nas soluções Zukkin</div>
+      <div style="font-size:clamp(10px,1.1vw,12px); color:var(--text-secondary);">Referência consolidada no varejo alimentar brasileiro — de redes regionais a grupos nacionais.</div>
+     </div>
+    </div>
+
+    <div style="margin-top:14px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px;" class="zk-animate">
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
+      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--vermelho); line-height:1; margin-bottom:4px;">+100</div>
+      <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Redes ativas</div>
+      <div style="font-size:10px; color:var(--text-secondary);">em todo o Brasil</div>
+     </div>
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
+      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--analytics); line-height:1; margin-bottom:4px;">6</div>
+      <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Produtos integrados</div>
+      <div style="font-size:10px; color:var(--text-secondary);">ecossistema completo</div>
+     </div>
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
+      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--go); line-height:1; margin-bottom:4px;">+5Bi</div>
+      <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Preços coletados</div>
+      <div style="font-size:10px; color:var(--text-secondary);">base Zukkin Market</div>
+     </div>
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; text-align:center;">
+      <div style="font-size:clamp(20px,2.8vw,30px); font-weight:900; color:var(--text); line-height:1; margin-bottom:4px;">+10</div>
+      <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;">Anos no varejo</div>
+      <div style="font-size:10px; color:var(--text-secondary);">especialistas em pricing</div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3 — ECOSSISTEMA DE PRODUTOS
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">O ecossistema <span style="color:var(--vermelho)">completo</span> de precificação</h2>
+
+    <!-- Layout: feeders à esquerda, seta central, plataformas à direita -->
+    <div style="display:grid; grid-template-columns:1fr 60px 1fr; gap:0; flex:1; align-items:center;" class="zk-animate">
+
+     <!-- COLUNA ESQUERDA: Feeders -->
+     <div style="display:flex; flex-direction:column; gap:10px;">
+      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Fontes de dados</div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--robot);">
+       <span style="font-size:20px;">🤖</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZRobot</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Pesquisa online automática</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--promo);">
+       <span style="font-size:20px;">🏷️</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPromo</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Encartes e promoções dos concorrentes</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--vermelho);">
+       <span style="font-size:20px;">🧑‍💼</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPesquisa</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Time Zukkin em campo — físico</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--go);">
+       <span style="font-size:20px;">📱</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZGO</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">App de Pesquisa de Preços para o seu time</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--consulting);">
+       <span style="font-size:20px;">🔗</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ERP</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Integração com seu sistema de gestão</div>
+       </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid #7C6EF6;">
+       <span style="font-size:20px;">🌐</span>
+       <div>
+        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">Zukkin Market</div>
+        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Base com 5Bi+ preços do varejo nacional</div>
+       </div>
+      </div>
+     </div>
+
+     <!-- COLUNA CENTRAL: Seta de fluxo -->
+     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px; padding:0 4px;">
+      <div style="flex:1; width:2px; background:linear-gradient(to bottom, transparent, rgba(207,17,13,0.4)); border-radius:2px;"></div>
+      <div style="width:36px; height:36px; border-radius:50%; background:var(--vermelho); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 0 4px rgba(207,17,13,0.15),0 0 16px rgba(207,17,13,0.3);">
+       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 H12 M8 3 L12 7 L8 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </div>
+      <div style="flex:1; width:2px; background:linear-gradient(to bottom, rgba(207,17,13,0.4), transparent); border-radius:2px;"></div>
+     </div>
+
+     <!-- COLUNA DIREITA: Plataformas centrais -->
+     <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Plataformas centrais</div>
+
+      <!-- ZAnalytics -->
+      <div style="background:linear-gradient(135deg,rgba(238,134,37,0.12),rgba(238,134,37,0.04)); border:2px solid rgba(238,134,37,0.35); border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
+       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:var(--analytics); border-radius:16px 16px 0 0;"></div>
+       <div style="display:flex; align-items:flex-start; gap:14px;">
+        <div style="font-size:28px; flex-shrink:0;">📊</div>
+        <div style="flex:1;">
+         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:var(--analytics); margin-bottom:5px;">ZAnalytics</div>
+         <div style="font-size:clamp(10px,1.1vw,13px); color:var(--text-secondary); line-height:1.5;">Central de inteligência. Dashboards estratégicos por categoria, produto, região e concorrente. Onde o dado vira decisão.</div>
+         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(238,134,37,0.15); color:var(--analytics); text-transform:uppercase; letter-spacing:.06em;">Análise &amp; Inteligência</div>
+        </div>
+       </div>
+      </div>
+
+      <!-- ZPricing IA -->
+      <div style="background:linear-gradient(135deg,#02385A,#0A4F7A); border:2px solid #02385A; border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
+       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#02385A,#1C6EA4); border-radius:16px 16px 0 0;"></div>
+       <div style="position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,0.04);"></div>
+       <div style="display:flex; align-items:flex-start; gap:14px; position:relative; z-index:1;">
+        <div style="font-size:28px; flex-shrink:0;">🧠</div>
+        <div style="flex:1;">
+         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:#FFFFFF; margin-bottom:5px;">ZPricing IA</div>
+         <div style="font-size:clamp(10px,1.1vw,13px); color:rgba(255,255,255,0.75); line-height:1.5;">Motor de precificação com IA. Sugere e executa ajustes automáticos considerando margem, elasticidade e concorrência.</div>
+         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,0.15); color:#FFFFFF; text-transform:uppercase; letter-spacing:.06em;">Precificação Inteligente</div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+
+   <!-- ══════════════════════════════════════════
+      SLIDE — PRODUTOS INTERATIVOS (clique para ver detalhes)
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">Conheça nossos <span style="color:var(--vermelho)">produtos</span></h2>
+    <div style="font-size:clamp(11px,1.2vw,14px); color:var(--text-secondary); margin-top:-24px; margin-bottom:20px;" class="zk-animate">Clique em cada produto para conhecer os detalhes</div>
+
+    <div class="zk-prod-grid zk-animate">
+     <div class="zk-prod-card" onclick="zkOpenProduct('zrobot')">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--robot);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div class="pc-icon" style="background:rgba(107,34,70,0.12);">🤖</div>
+      <div class="pc-name" style="color:var(--robot);">ZRobot</div>
+      <div class="pc-tag">Pesquisa online automática de preços em e-commerces</div>
+      <div class="pc-cta">Clique aqui e conheça detalhes →</div>
+     </div>
+     <div class="zk-prod-card" onclick="zkOpenProduct('zpromo')">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--promo);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div class="pc-icon" style="background:rgba(255,77,106,0.12);">🏷️</div>
+      <div class="pc-name" style="color:var(--promo);">ZPromo</div>
+      <div class="pc-tag">Monitoramento diário de todas as Ofertas: Encartes, Redes sociais e WhatsApp. Entrega no mesmo dia</div>
+      <div class="pc-cta">Clique aqui e conheça detalhes →</div>
+     </div>
+     <div class="zk-prod-card" onclick="zkOpenProduct('zgo')">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--go);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div class="pc-icon" style="background:rgba(120,174,63,0.12);">📱</div>
+      <div class="pc-name" style="color:var(--go);">ZGO</div>
+      <div class="pc-tag">App de Pesquisa de Preços para o seu time — lista, categorização e auditoria</div>
+      <div class="pc-cta">Clique aqui e conheça detalhes →</div>
+     </div>
+     <div class="zk-prod-card card-span-row" onclick="zkOpenProduct('zpricing')" style="justify-content:center; align-items:center; text-align:center; background:linear-gradient(135deg,#02385A,#0A4F7A); border-color:#02385A;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#02385A,#1C6EA4);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div style="position:absolute;bottom:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.04);"></div>
+      <div class="pc-icon" style="background:rgba(255,255,255,0.15); margin:0 auto;">🧠</div>
+      <div class="pc-name" style="color:#fff;">ZPricing IA</div>
+      <div class="pc-tag" style="color:rgba(255,255,255,0.7);">Motor de precificação com IA. Sugere e executa ajustes automáticos de preço.</div>
+      <div style="margin-top:8px; display:inline-block; font-size:9px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,0.15); color:#fff; text-transform:uppercase; letter-spacing:.06em;">Precificação Inteligente</div>
+            <div style="display:flex; flex-direction:column; gap:6px; margin-top:14px; text-align:left; width:100%; padding:0 8px;">
+              <div style="display:flex; align-items:center; gap:8px; font-size:clamp(10px,1.1vw,12px); font-weight:600; color:#fff;">
+                <span style="flex-shrink:0; width:22px; text-align:center;">📈</span> Aumente sua Margem
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:clamp(10px,1.1vw,12px); font-weight:600; color:#fff;">
+                <span style="flex-shrink:0; width:22px; text-align:center;">📊</span> Elasticidade de preços
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:clamp(10px,1.1vw,12px); font-weight:600; color:#fff;">
+                <span style="flex-shrink:0; width:22px; text-align:center;">⚙️</span> Automatização completa
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:clamp(10px,1.1vw,12px); font-weight:600; color:#fff;">
+                <span style="flex-shrink:0; width:22px; text-align:center;">🔗</span> Integrado com o ERP
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; font-size:clamp(10px,1.1vw,12px); font-weight:700; color:#4FC3F7;">
+                <span style="flex-shrink:0; width:22px; text-align:center;">🏆</span> +100 Redes já usam
+              </div>
+            </div>
+      <div class="pc-cta" style="background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.3); color:#fff;">Clique aqui e conheça detalhes →</div>
+     </div>
+     <div class="zk-prod-card" onclick="zkOpenProduct('zmarket')">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--market);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div class="pc-icon" style="background:rgba(124,110,246,0.12);">🌐</div>
+      <div class="pc-name" style="color:var(--market);">ZMarket</div>
+      <div class="pc-tag">Painel de preços de NF-e — base com 5Bi+ preços do varejo</div>
+      <div class="pc-cta">Clique aqui e conheça detalhes →</div>
+     </div>
+     <div class="zk-prod-card" onclick="zkOpenProduct('zanalytics')">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--analytics);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div class="pc-icon" style="background:rgba(238,134,37,0.12);">📊</div>
+      <div class="pc-name" style="color:var(--analytics);">ZAnalytics</div>
+      <div class="pc-tag">Plataforma de Competitividade — posicionamento em tempo real</div>
+      <div class="pc-cta">Clique aqui e conheça detalhes →</div>
+     </div>
+     <div class="zk-prod-card" onclick="zkOpenProduct('zconsulting')">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--consulting);border-radius:var(--radius) var(--radius) 0 0;"></div>
+      <div class="pc-icon" style="background:rgba(140,155,171,0.12);">🎯</div>
+      <div class="pc-name" style="color:var(--consulting);">ZConsulting</div>
+      <div class="pc-tag">Consultoria estratégica de pricing para o varejo</div>
+      <div class="pc-cta">Clique aqui e conheça detalhes →</div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 4 — POR QUE ZUKKIN?
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">Por que a <span style="color:var(--vermelho)">Zukkin</span>?</h2>
+
+    <!-- Stats row -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px;" class="zk-animate">
+     <div class="zk-kpi" style="--accent-color:var(--vermelho)">
+      <div class="label">Redes no Brasil</div>
+      <div class="value">100+</div>
+      <div class="trend up">↑ Em crescimento</div>
+     </div>
+     <div class="zk-kpi" style="--accent-color:var(--analytics)">
+      <div class="label">Ecossistema único</div>
+      <div class="value">6 em 1</div>
+      <div class="trend up">Pesquisa + Pricing</div>
+     </div>
+     <div class="zk-kpi" style="--accent-color:var(--go)">
+      <div class="label">Especialização</div>
+      <div class="value">10+ anos</div>
+      <div class="trend up">Só varejo alimentar</div>
+     </div>
+    </div>
+
+    <!-- Clientes grid -->
+    <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:10px;" class="zk-animate">Algumas redes que confiam na Zukkin</div>
+    <div class="zk-clients-grid zk-animate">
+     <div class="zk-client-badge">Grupo Muffato</div>
+     <div class="zk-client-badge">Grupo Pereira</div>
+     <div class="zk-client-badge">Zona Sul</div>
+     <div class="zk-client-badge">Savegnago</div>
+     <div class="zk-client-badge">Tonin Atacadista</div>
+     <div class="zk-client-badge">Arco-Mix</div>
+     <div class="zk-client-badge">Nordestão</div>
+     <div class="zk-client-badge">Comercial Zaffari</div>
+     <div class="zk-client-badge">GPA</div>
+     <div class="zk-client-badge">Grupo Coutinho</div>
+    </div>
+
+    <!-- Razões -->
+    <div class="zk-reasons zk-animate">
+     <div class="zk-reason">
+      <div class="r-icon">🏆</div>
+      <div class="r-title">Ecossistema único no Brasil</div>
+      <div class="r-desc">Única solução que cobre pesquisa física, online, análise e ZPricing IA em uma plataforma integrada. Do dado à decisão.</div>
+     </div>
+     <div class="zk-reason" style="border-left-color:var(--analytics)">
+      <div class="r-icon">✅</div>
+      <div class="r-title">Sabemos como fazer</div>
+      <div class="r-desc">Experiência comprovada em mais de 100 redes. Metodologia estruturada, onboarding rápido e time dedicado a cada cliente.</div>
+     </div>
+     <div class="zk-reason" style="border-left-color:var(--go)">
+      <div class="r-icon">📐</div>
+      <div class="r-title">Varejos de todos os tamanhos</div>
+      <div class="r-desc">De redes com 5 lojas a grupos com 500+ unidades. Produto escalável, preço justo e escopo adaptado à realidade de cada operação.</div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 5 — PROJETO ZUKKIN × SUPERMARKET
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content" style="padding-top: 72px; padding-bottom: 40px;">
+    <h2 class="zk-animate" style="margin-bottom:14px;">Projeto <span style="color:var(--vermelho)">Zukkin × Mart Minas</span></h2>
+
+    <!-- Header do projeto -->
+    <div class="zk-project-header zk-animate" style="padding:11px 16px; margin-bottom:12px;">
+     <div class="proj-icon" style="font-size:24px;">🤝</div>
+     <div>
+      <div class="proj-title" style="font-size:clamp(11px,1.3vw,14px);">Implementação personalizada para o Mart Minas</div>
+      <div class="proj-sub" style="font-size:clamp(9px,1vw,11px);">Projeto exclusivo para o Mart Minas: escopo customizado, concorrentes da sua praça em Minas Gerais e módulos adequados à sua operação.</div>
+     </div>
+    </div>
+
+    <!-- Fases de implantação -->
+    <div class="zk-project-grid zk-animate" style="gap:10px;">
+     <div class="zk-phase-card" style="padding:13px 14px;">
+      <div class="zk-phase-tag" style="font-size:9px; margin-bottom:5px;">⏱ Fase 1 · Semanas 1–2</div>
+      <div class="zk-phase-title" style="font-size:clamp(11px,1.3vw,13px); margin-bottom:6px;">Diagnóstico e Setup</div>
+      <ul class="zk-phase-items">
+       <li>Mapeamento de concorrentes por praça</li>
+       <li>Definição dos SKUs prioritários</li>
+       <li>Integração com ERP do Mart Minas</li>
+       <li>Configuração do ZAnalytics</li>
+      </ul>
+     </div>
+     <div class="zk-phase-card p2" style="padding:13px 14px;">
+      <div class="zk-phase-tag" style="color:var(--analytics); font-size:9px; margin-bottom:5px;">⏱ Fase 2 · Semanas 3–4</div>
+      <div class="zk-phase-title" style="font-size:clamp(11px,1.3vw,13px); margin-bottom:6px;">Ativação da Pesquisa</div>
+      <ul class="zk-phase-items">
+       <li>Pesquisa de campo BH + ZRobot online</li>
+       <li>Primeiros dashboards com dados reais</li>
+       <li>Treinamento do time no ZAnalytics + ZMarket</li>
+       <li>Ativação do ZPromo + ZMarket MVP</li>
+      </ul>
+     </div>
+     <div class="zk-phase-card p3" style="padding:13px 14px;">
+      <div class="zk-phase-tag" style="color:var(--go); font-size:9px; margin-bottom:5px;">⏱ Fase 3 · Semanas 5–6</div>
+      <div class="zk-phase-title" style="font-size:clamp(11px,1.3vw,13px); margin-bottom:6px;">ZPricing IA Ligado</div>
+      <ul class="zk-phase-items">
+       <li>Ativação do ZPricing IA</li>
+       <li>Calibração de margem e competitividade</li>
+       <li>Primeiras execuções automáticas</li>
+       <li>Relatório de ganho de margem</li>
+      </ul>
+     </div>
+     <div class="zk-phase-card p4" style="padding:13px 14px;">
+      <div class="zk-phase-tag" style="color:var(--positive); font-size:9px; margin-bottom:5px;">⏱ Fase 4 · Semanas 7–8</div>
+      <div class="zk-phase-title" style="font-size:clamp(11px,1.3vw,13px); margin-bottom:6px;">Operação Plena</div>
+      <ul class="zk-phase-items">
+       <li>Acompanhamento semanal com CSM dedicado</li>
+       <li>Expansão ZMarket + novas categorias</li>
+       <li>Benchmark regional — praça do Mart Minas</li>
+       <li>QBR trimestral com time Zukkin</li>
+      </ul>
+     </div>
+    </div>
+
+    <!-- Cronograma visual -->
+    <div style="margin-top:10px;" class="zk-animate">
+     <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:6px;">Prazo máximo: 8 semanas do kick-off à operação plena</div>
+     <div style="display:flex; align-items:stretch; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+      <div style="flex:1; padding:8px 12px; border-right:1px solid var(--border);">
+       <div style="font-size:9px; font-weight:700; color:var(--vermelho); text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Semanas 1–2</div>
+       <div style="font-size:10px; color:var(--text); font-weight:600;">Diagnóstico</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Setup + Integração</div>
+      </div>
+      <div style="flex:1; padding:8px 12px; border-right:1px solid var(--border);">
+       <div style="font-size:9px; font-weight:700; color:var(--analytics); text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Semanas 3–4</div>
+       <div style="font-size:10px; color:var(--text); font-weight:600;">Pesquisa ativa</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Primeiros dashboards</div>
+      </div>
+      <div style="flex:1; padding:8px 12px; border-right:1px solid var(--border);">
+       <div style="font-size:9px; font-weight:700; color:var(--go); text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Semanas 5–6</div>
+       <div style="font-size:10px; color:var(--text); font-weight:600;">ZPricing IA on</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Automação rodando</div>
+      </div>
+      <div style="flex:1; padding:8px 12px;">
+       <div style="font-size:9px; font-weight:700; color:var(--positive); text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Semanas 7–8</div>
+       <div style="font-size:10px; color:var(--text); font-weight:600;">Operação plena</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Expansão contínua</div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 6 — PROPOSTA OPÇÃO 1: POR REDE
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content" style="padding-top: 72px; padding-bottom: 40px;">
+
+    <!-- Header -->
+    <div class="zk-animate" style="background:var(--vermelho); border-radius:12px; padding:12px 18px; margin-bottom:8px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 16px rgba(207,17,13,0.35);">
+     <div style="font-size:22px; flex-shrink:0;">🏪</div>
+     <div style="font-size:clamp(13px,1.6vw,16px); font-weight:800; color:#FFFFFF; line-height:1.4;">Proposta exclusiva para o Mart Minas &nbsp;·&nbsp; Escopo e valores customizados para a sua operação</div>
+    </div>
+
+    <!-- PACOTE ECOSSISTEMA -->
+    <div class="zk-animate" style="background:linear-gradient(135deg,var(--surface),rgba(2,56,90,0.06)); border:2px solid var(--border-accent); border-radius:14px; padding:14px 18px; margin-bottom:8px;">
+
+     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+      <div style="font-size:clamp(13px,1.5vw,16px); font-weight:900; text-transform:uppercase; letter-spacing:.08em; color:var(--vermelho);">Pacote Ecossistema Zukkin</div>
+      <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em;">Preço único · Todos os produtos integrados</div>
+     </div>
+
+     <!-- Grid 5 produtos do pacote -->
+     <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; margin-bottom:10px;">
+
+      <!-- ZPricing IA -->
+      <div style="background:linear-gradient(135deg,#02385A,#0A4F7A); border-radius:10px; padding:10px; position:relative;">
+       <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:rgba(255,255,255,0.7); margin-bottom:3px;">🧠 ZPricing IA</div>
+       <div style="font-size:9px; color:rgba(255,255,255,0.5); margin-bottom:5px; line-height:1.3;"><em>Motor de precificação com IA — ajustes automáticos de preço</em></div>
+       <div style="font-size:clamp(11px,1.2vw,13px); font-weight:600; color:rgba(255,255,255,0.35); text-decoration:line-through; line-height:1;">R$ 30.000</div>
+       <div style="font-size:clamp(16px,2vw,20px); font-weight:900; color:#fff; line-height:1; margin-top:2px;">R$ 17.000<span style="font-size:9px; color:rgba(255,255,255,0.5);">/mês</span></div>
+       <div style="margin-top:4px; font-size:9px; color:rgba(255,255,255,0.5);">Setup <span style="text-decoration:line-through;">R$ 60.000</span> → <span style="color:#7de8c8; font-weight:800;">ISENTO</span></div>
+       <div style="position:absolute; top:6px; right:6px; background:rgba(125,232,200,0.2); border-radius:20px; padding:1px 6px; font-size:8px; font-weight:800; color:#7de8c8;">-43%</div>
+      </div>
+
+      <!-- ZRobot 9 sites -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px; position:relative;">
+       <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--robot); margin-bottom:3px;">🤖 ZRobot</div>
+       <div style="font-size:9px; color:var(--text-secondary); margin-bottom:5px; line-height:1.3;"><em>Monitoramento de 9 e-commerces concorrentes</em></div>
+       <div style="font-size:clamp(11px,1.2vw,13px); font-weight:600; color:var(--text-muted); text-decoration:line-through; line-height:1;">R$ 4.500</div>
+       <div style="font-size:clamp(16px,2vw,20px); font-weight:900; color:var(--positive); line-height:1; margin-top:2px;">INCLUSO</div>
+       <div style="margin-top:4px; font-size:9px; color:var(--text-secondary);">9 sites · Frequência semanal</div>
+       <div style="position:absolute; top:6px; right:6px; background:rgba(16,185,129,0.15); border-radius:20px; padding:1px 6px; font-size:8px; font-weight:800; color:var(--positive);">BÔNUS</div>
+      </div>
+
+      <!-- ZMarket -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px;">
+       <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:#7C6EF6; margin-bottom:3px;">🌐 ZMarket</div>
+       <div style="font-size:9px; color:var(--text-secondary); margin-bottom:5px; line-height:1.3;"><em>Painel de preços de NF-e — dados do varejo nacional</em></div>
+       <div style="font-size:clamp(16px,2vw,20px); font-weight:900; color:#7C6EF6; line-height:1; margin-bottom:2px;">R$ 5.500<span style="font-size:9px; font-weight:600; color:var(--text-muted);">/mês</span></div>
+       <div style="margin-top:4px; font-size:9px; color:var(--positive); font-weight:600;">✓ 41 CNPJs · 13 redes em MG</div>
+      </div>
+
+      <!-- ZPromo -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px; position:relative;">
+       <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--promo); margin-bottom:3px;">🏷️ ZPromo</div>
+       <div style="font-size:9px; color:var(--text-secondary); margin-bottom:5px; line-height:1.3;"><em>Monitoramento diário de ofertas: encartes, redes sociais e WhatsApp</em></div>
+       <div style="font-size:clamp(16px,2vw,20px); font-weight:900; color:var(--promo); line-height:1; margin-bottom:2px;">R$ 5.000<span style="font-size:9px; font-weight:600; color:var(--text-muted);">/mês</span></div>
+       <div style="margin-top:4px; font-size:9px; color:var(--positive); font-weight:600;">✓ Todas as ofertas · Diário (seg–sex)</div>
+       <div style="position:absolute; top:6px; right:6px; background:rgba(255,77,106,0.15); border-radius:20px; padding:1px 6px; font-size:8px; font-weight:800; color:var(--promo);">NOVO</div>
+      </div>
+
+      <!-- ZGO -->
+      <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px; position:relative;">
+       <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--go); margin-bottom:3px;">📱 App ZGO</div>
+       <div style="font-size:9px; color:var(--text-secondary); margin-bottom:5px; line-height:1.3;"><em>App de pesquisa de preços para o time da rede</em></div>
+       <div style="font-size:clamp(11px,1.2vw,13px); font-weight:600; color:var(--text-muted); text-decoration:line-through; line-height:1;">R$ 5.000</div>
+       <div style="font-size:clamp(16px,2vw,20px); font-weight:900; color:var(--go); line-height:1; margin-top:2px;">R$ 3.000<span style="font-size:9px; font-weight:600; color:var(--text-muted);">/mês</span></div>
+       <div style="margin-top:4px; font-size:9px; color:var(--positive); font-weight:600;">✓ Usuários ilimitados</div>
+       <div style="position:absolute; top:6px; right:6px; background:rgba(16,185,129,0.15); border-radius:20px; padding:1px 6px; font-size:8px; font-weight:800; color:var(--positive);">-40%</div>
+      </div>
+
+     </div>
+
+     <!-- Valor pacote -->
+     <div style="display:flex; align-items:center; justify-content:space-between; background:linear-gradient(135deg,rgba(207,17,13,0.1),rgba(207,17,13,0.03)); border:2px solid rgba(207,17,13,0.3); border-radius:10px; padding:10px 18px;">
+      <div>
+       <div style="font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em;">Valor de tabela dos 5 produtos</div>
+       <div style="font-size:clamp(14px,1.6vw,17px); font-weight:600; color:var(--text-muted); text-decoration:line-through;">R$ 49.500/mês</div>
+      </div>
+      <div style="text-align:right;">
+       <div style="font-size:10px; font-weight:700; color:var(--vermelho); text-transform:uppercase; letter-spacing:.06em;">Pacote Ecossistema</div>
+       <div style="font-size:clamp(24px,3vw,32px); font-weight:900; color:var(--vermelho); letter-spacing:.02em;">R$ 34.000<span style="font-size:12px; font-weight:600; color:var(--text-muted);">/mês</span></div>
+      </div>
+      <div style="background:rgba(16,185,129,0.15); border-radius:20px; padding:4px 12px; font-size:clamp(11px,1.2vw,13px); font-weight:800; color:var(--positive);">-31%</div>
+     </div>
+
+    </div>
+
+    <!-- PESQUISA DE CAMPO + TOTAL -->
+    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+     <div style="background:var(--surface); border:2px solid var(--analytics); border-radius:12px; padding:12px 16px; display:flex; align-items:center; gap:14px;">
+      <div style="flex:1;">
+       <div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--analytics); margin-bottom:3px;">📊 ZAnalytics + Pesquisa de Campo</div>
+       <div style="font-size:9px; color:var(--text-secondary); line-height:1.3; margin-bottom:6px;"><em>Plataforma de inteligência + coleta presencial em BH e Contagem</em></div>
+       <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:3px;">
+        <div style="font-size:10px; font-weight:700; color:var(--text-muted);">R$ 1.044,25<span style="font-size:9px; font-weight:500;"> /concorrente</span></div>
+        <div style="font-size:9px; color:var(--text-muted);">×</div>
+        <div style="font-size:10px; font-weight:700; color:var(--text-muted);">6 concorrentes</div>
+       </div>
+       <div style="font-size:clamp(18px,2.2vw,24px); font-weight:900; color:var(--analytics); line-height:1;">R$ 6.265,50<span style="font-size:10px; font-weight:600; color:var(--text-muted);">/mês</span></div>
+      </div>
+      <div style="font-size:9px; color:var(--text-muted); border-left:1px solid var(--border); padding-left:12px; min-width:110px;">Contratação separada — escopo ajustável por concorrente e praça</div>
+     </div>
+
+     <!-- Total geral -->
+     <div style="background:linear-gradient(135deg,#02385A,#0A4F7A); border-radius:12px; padding:12px 16px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+      <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px;">Investimento mensal total</div>
+      <div style="font-size:clamp(26px,3.2vw,36px); font-weight:900; color:#fff; letter-spacing:.02em;">R$ 40.265,50<span style="font-size:12px; font-weight:600; color:rgba(255,255,255,0.5);">/mês</span></div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:2px;">Pacote R$ 34.000 + Pesquisa R$ 6.265,50</div>
+      <div style="margin-top:6px; display:inline-block; background:rgba(125,232,200,0.2); border-radius:20px; padding:3px 12px; font-size:10px; font-weight:800; color:#7de8c8;">Mesmo investimento, +3 produtos novos</div>
+     </div>
+    </div>
+
+    <!-- Destaques carência + cancelamento -->
+    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:5px;">
+     <div style="background:linear-gradient(135deg,rgba(124,110,246,0.12),rgba(124,110,246,0.04)); border:2px solid rgba(124,110,246,0.3); border-radius:10px; padding:7px 12px; display:flex; align-items:center; gap:8px;">
+      <div style="font-size:14px; flex-shrink:0;">🕐</div>
+      <div>
+       <div style="font-size:clamp(10px,1.1vw,12px); font-weight:800; color:#7C6EF6;">Carência de 3 meses no ZPricing</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Primeira mensalidade apenas no 4° mês</div>
+      </div>
+     </div>
+     <div style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.04)); border:2px solid rgba(16,185,129,0.3); border-radius:10px; padding:7px 12px; display:flex; align-items:center; gap:8px;">
+      <div style="font-size:14px; flex-shrink:0;">🔓</div>
+      <div>
+       <div style="font-size:clamp(10px,1.1vw,12px); font-weight:800; color:var(--positive);">Sem multa de cancelamento</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Cancele sem custo. Apenas aviso prévio de 30 dias.</div>
+      </div>
+     </div>
+    </div>
+
+    <!-- Incluso -->
+    <div class="zk-animate" style="background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(16,185,129,0.03)); border:1px solid rgba(16,185,129,0.2); border-radius:10px; padding:5px 12px; display:flex; gap:16px; flex-wrap:wrap;">
+     <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--positive); width:100%;">✓ Incluso em todas as mensalidades</div>
+     <div style="font-size:9px; color:var(--text-secondary);">✓ Integração com ERP</div>
+     <div style="font-size:9px; color:var(--text-secondary);">✓ Usuários ilimitados</div>
+     <div style="font-size:9px; color:var(--text-secondary);">✓ Treinamento da equipe</div>
+     <div style="font-size:9px; color:var(--text-secondary);">✓ Melhorias e atualizações sem custo adicional</div>
+     <div style="font-size:9px; color:var(--text-secondary);">✓ Reajuste anual pelo IPCA</div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 9 — ENCERRAMENTO + CTAs
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide closing">
+    <div class="zk-logo zk-animate"><svg viewBox="0 0 991.8 225.4" fill="none"><defs><linearGradient id="zg1" x1="19.3" y1="67.2" x2="171.1" y2="-20.5" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"></stop><stop offset="1" stop-color="#A11E21"></stop></linearGradient><linearGradient id="zg2" x1="179.7" y1="141.3" x2="62.7" y2="258.3" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"></stop><stop offset="1" stop-color="#A11E21"></stop></linearGradient></defs><path fill="#CF110D" d="M814.9,7.2C810.2,2.4,804.4,0,797.7,0h-25.7v40.6h50.1V24.4C822.1,17.7,819.7,11.9,814.9,7.2z"></path><path fill="url(#zg1)" d="M182.7,0h-0.2H0v27.3C0,40.4,10.6,51,23.7,51h101.7h6.5h51V0C182.9,0,182.8,0,182.7,0z"></path><path fill="url(#zg2)" d="M86.3,174.3h-5.6h-51v51c0.1,0,0.2,0,0.3,0h0.2h182.5v-51H86.3z"></path><path fill="#CF110D" d="M183.5,0.1c-0.2,0-0.3-0.1-0.5-0.1l-30.4,30.4L131.9,51l-2.1,2.1l-0.1-0.1L9,173.8l-0.4,0.4c-5.3,5.4-8.6,12.8-8.6,21c0,16.3,13,29.5,29.2,30c0.2,0,0.3,0.1,0.5,0.1l30.4-30.4l20.6-20.6l2.1-2.1l0.1,0.1L203.6,51.5l0.4-0.4c5.3-5.4,8.6-12.8,8.6-21C212.7,13.8,199.7,0.6,183.5,0.1z"></path><path fill="#CF110D" d="M360.2,56.7c-6.3,0-11.5,2.1-15.5,6.3c-4,4.2-6,9.3-6,15.2v6.3v70.3c0-0.1-0.1-0.1-0.1-0.2c-1.1,15.2-13.8,27.3-29.4,27.3c-15.5,0-28.2-12-29.4-27.3c0,0.1-0.1,0.1-0.1,0.2V84.3V56.7h-44.4l0,95.1v0c0,32,20.5,59.3,49.1,69.4c7.7,2.7,15.9,4.2,24.5,4.2c40.6,0,73.6-32.9,73.6-73.6V56.7H360.2z"></path><path fill="#CF110D" d="M866.9,225.4c6.3,0,11.5-2.1,15.5-6.3c4-4.2,6-9.3,6-15.2v-6.3v-70.3c0,0.1,0.1,0.1,0.1,0.2c1.1-15.2,13.8-27.3,29.4-27.3c15.5,0,28.2,12,29.4,27.3c0-0.1,0.1-0.1,0.1-0.2v70.6v27.6h44.4l0-95.1v0c0-32-20.5-59.3-49.1-69.4c-7.7-2.7-15.9-4.2-24.5-4.2c-40.6,0-73.6,32.9-73.6,73.6v95.1H866.9z"></path><path fill="#CF110D" d="M508.5,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C443.1,2.4,437.3,0,430.6,0H405v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L508.5,115.5z"></path><path fill="#CF110D" d="M692,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C626.6,2.4,620.8,0,614.2,0h-25.7v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L692,115.5z"></path><path fill="#CF110D" d="M814.9,63.9c-4.8-4.8-10.6-7.2-17.2-7.2h-25.7v34.1v2.8v131.7h50.1V93.7v-2.8v-9.7C822.1,74.4,819.7,68.6,814.9,63.9z"></path></svg></div>
+
+    <h2 class="zk-animate" style="margin-bottom:8px;">Obrigado pela oportunidade!<br><span style="font-size:clamp(18px,2.5vw,30px); font-weight:400; color:var(--text-secondary);">É uma honra poder fazer parte do crescimento<br>do Mart Minas.</span></h2>
+
+    <div class="zk-animate" style="display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:32px; margin-top:8px;">
+     <a href="https://wa.me/5513981112221" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:var(--vermelho); color:#fff; text-decoration:none; font-family:var(--font); padding:18px 42px; border-radius:14px; font-size:clamp(15px,1.8vw,20px); font-weight:800; letter-spacing:.02em; box-shadow:0 4px 24px rgba(207,17,13,0.35); cursor:pointer; transition:all .2s;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+      Falar com o Ricardo
+     </a>
+    </div>
+   </div>
+
+  </div><!-- /zk-deck -->
+ </div><!-- /ck-frame -->
+ <button class="ck-arrow ck-arrow-next" id="ckArrowNext">›</button>
+</div><!-- /ck-viewport -->
+
+<!-- BARRA INFERIOR MÍNIMA -->
+<div class="ck-bar" style="justify-content: center; gap: 16px; background: rgb(216, 222, 232);">
+ <button id="ckBtnPrev" disabled="">‹</button>
+ <span><span id="ckCurrent">1</span> / <span id="ckTotal">8</span></span>
+ <button id="ckBtnNext">›</button>
+</div>
+
+<script>
+const THEME_COCKPIT = {
+ azul_aberto: { bg:'#0D1B2A', bar:'#112233', border:'rgba(28,47,72,0.25)' },
+ light:    { bg:'#E2E8F0', bar:'#D8DEE8', border:'rgba(0,0,0,0.08)' },
+ warm:    { bg:'#0F0A0C', bar:'#140E10', border:'rgba(26,18,21,0.3)' },
+ midnight:  { bg:'#050810', bar:'#080C16', border:'rgba(10,14,26,0.3)' },
+ sand:    { bg:'#E5E0D9', bar:'#DBD5CC', border:'rgba(0,0,0,0.08)' },
+ silver:   { bg:'#CBD0D8', bar:'#C0C6CF', border:'rgba(0,0,0,0.08)' },
+ analytics:  { bg:'#714518', bar:'#7D4F1E', border:'rgba(238,134,37,0.2)' },
+ zgo:     { bg:'#365A22', bar:'#3E6428', border:'rgba(120,174,63,0.2)' },
+ consulting: { bg:'#506070', bar:'#5A6A7A', border:'rgba(140,155,171,0.2)' },
+ promo:    { bg:'#712E48', bar:'#7D3450', border:'rgba(255,77,106,0.2)' },
+ robot:    { bg:'#5E2240', bar:'#6B2A4A', border:'rgba(107,34,70,0.3)' },
+ vermelho:  { bg:'#711E1C', bar:'#7D2422', border:'rgba(207,17,13,0.2)' }
+};
+
+function ckApplyTheme(themeId) {
+ const id = themeId || 'azul_aberto';
+ const colors = THEME_COCKPIT[id];
+ if (!colors) return;
+ document.body.style.background = colors.bg;
+ document.documentElement.style.setProperty('--ck-bg', colors.bg);
+ document.documentElement.style.setProperty('--ck-border', colors.border);
+ const bar = document.querySelector('.ck-bar');
+ if (bar) bar.style.background = colors.bar;
+}
+
+let ckCurrent = 0;
+const ckSlides = document.querySelectorAll('.zk-slide');
+const ckTotalCount = ckSlides.length;
+
+function ckNext() { if (ckCurrent < ckTotalCount - 1) { ckCurrent++; ckUpdateSlide(); } }
+function ckPrev() { if (ckCurrent > 0) { ckCurrent--; ckUpdateSlide(); } }
+
+function ckUpdateSlide() {
+ ckSlides.forEach((s, i) => {
+  const isActive = i === ckCurrent;
+  s.classList.toggle('active', isActive);
+  const animEls = s.querySelectorAll('.zk-animate');
+  if (isActive) {
+   animEls.forEach((el, idx) => {
+    el.classList.remove('zk-entering');
+    el.style.animationDelay = '';
+    void el.offsetWidth;
+    el.style.animationDelay = `${idx * 0.1}s`;
+    el.classList.add('zk-entering');
+   });
+  } else {
+   animEls.forEach(el => { el.classList.remove('zk-entering'); el.style.animationDelay = ''; });
+  }
+ });
+ const curEl = document.getElementById('ckCurrent');
+ const totEl = document.getElementById('ckTotal');
+ if (curEl) curEl.textContent = ckCurrent + 1;
+ if (totEl) totEl.textContent = ckTotalCount;
+ const progEl = document.getElementById('ckProgress');
+ if (progEl) progEl.style.width = `${((ckCurrent + 1) / ckTotalCount) * 100}%`;
+ document.getElementById('ckBtnPrev').disabled = ckCurrent === 0;
+ document.getElementById('ckBtnNext').disabled = ckCurrent === ckTotalCount - 1;
+ document.getElementById('ckArrowPrev').disabled = ckCurrent === 0;
+ document.getElementById('ckArrowNext').disabled = ckCurrent === ckTotalCount - 1;
+}
+
+function ckCheckExpiration() {
+ if (!METADATA.expires_at) return true;
+ const expiresAt = new Date(METADATA.expires_at);
+ const daysLeft = Math.ceil((expiresAt - new Date()) / 86400000);
+ if (daysLeft < 0) {
+  document.getElementById('zkExpiredBlock').classList.add('active');
+  document.querySelector('.ck-viewport').style.display = 'none';
+  document.querySelector('.ck-bar').style.display = 'none';
+  return false;
+ }
+ return true;
+}
+
+function ckInit() {
+ ckApplyTheme(METADATA.theme || 'azul_aberto');
+ if (ckCheckExpiration() === false) return;
+ ckUpdateSlide();
+ document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); ckNext(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); ckPrev(); }
+  if (e.key === 'Home') { ckCurrent = 0; ckUpdateSlide(); }
+  if (e.key === 'End') { ckCurrent = ckTotalCount - 1; ckUpdateSlide(); }
+ });
+ let touchStartX = 0;
+ document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+ document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { diff > 0 ? ckNext() : ckPrev(); }
+ });
+ document.getElementById('ckBtnPrev').addEventListener('click', ckPrev);
+ document.getElementById('ckBtnNext').addEventListener('click', ckNext);
+ document.getElementById('ckArrowPrev').addEventListener('click', ckPrev);
+ document.getElementById('ckArrowNext').addEventListener('click', ckNext);
+}
+
+const METADATA = { theme: 'light', title: "Zukkin × Mart Minas 2026", expires_at: "2026-07-30" };
+
+const ZK_LOGO_RED = `<svg viewBox="0 0 991.8 225.4" fill="none"><defs><linearGradient id="zg1" x1="19.3" y1="67.2" x2="171.1" y2="-20.5" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"/><stop offset="1" stop-color="#A11E21"/></linearGradient><linearGradient id="zg2" x1="179.7" y1="141.3" x2="62.7" y2="258.3" gradientUnits="userSpaceOnUse"><stop stop-color="#EE2D2B"/><stop offset="1" stop-color="#A11E21"/></linearGradient></defs><path fill="#CF110D" d="M814.9,7.2C810.2,2.4,804.4,0,797.7,0h-25.7v40.6h50.1V24.4C822.1,17.7,819.7,11.9,814.9,7.2z"/><path fill="url(#zg1)" d="M182.7,0h-0.2H0v27.3C0,40.4,10.6,51,23.7,51h101.7h6.5h51V0C182.9,0,182.8,0,182.7,0z"/><path fill="url(#zg2)" d="M86.3,174.3h-5.6h-51v51c0.1,0,0.2,0,0.3,0h0.2h182.5v-51H86.3z"/><path fill="#CF110D" d="M183.5,0.1c-0.2,0-0.3-0.1-0.5-0.1l-30.4,30.4L131.9,51l-2.1,2.1l-0.1-0.1L9,173.8l-0.4,0.4c-5.3,5.4-8.6,12.8-8.6,21c0,16.3,13,29.5,29.2,30c0.2,0,0.3,0.1,0.5,0.1l30.4-30.4l20.6-20.6l2.1-2.1l0.1,0.1L203.6,51.5l0.4-0.4c5.3-5.4,8.6-12.8,8.6-21C212.7,13.8,199.7,0.6,183.5,0.1z"/><path fill="#CF110D" d="M360.2,56.7c-6.3,0-11.5,2.1-15.5,6.3c-4,4.2-6,9.3-6,15.2v6.3v70.3c0-0.1-0.1-0.1-0.1-0.2c-1.1,15.2-13.8,27.3-29.4,27.3c-15.5,0-28.2-12-29.4-27.3c0,0.1-0.1,0.1-0.1,0.2V84.3V56.7h-44.4l0,95.1v0c0,32,20.5,59.3,49.1,69.4c7.7,2.7,15.9,4.2,24.5,4.2c40.6,0,73.6-32.9,73.6-73.6V56.7H360.2z"/><path fill="#CF110D" d="M866.9,225.4c6.3,0,11.5-2.1,15.5-6.3c4-4.2,6-9.3,6-15.2v-6.3v-70.3c0,0.1,0.1,0.1,0.1,0.2c1.1-15.2,13.8-27.3,29.4-27.3c15.5,0,28.2,12,29.4,27.3c0-0.1,0.1-0.1,0.1-0.2v70.6v27.6h44.4l0-95.1v0c0-32-20.5-59.3-49.1-69.4c-7.7-2.7-15.9-4.2-24.5-4.2c-40.6,0-73.6,32.9-73.6,73.6v95.1H866.9z"/><path fill="#CF110D" d="M508.5,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C443.1,2.4,437.3,0,430.6,0H405v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L508.5,115.5z"/><path fill="#CF110D" d="M692,115.5l5.2-5.6l49.6-53.2h-60.9l-47.3,54.5V56.7l0-14.4h0V28.2v-3.7c0-6.7-2.4-12.5-7.2-17.2C626.6,2.4,620.8,0,614.2,0h-25.7v4.4v36.2v114.4v70.4h4.4h40h5.7h0V170l10.7-11l37.8,66.4h59.8l-60.7-103.6L692,115.5z"/><path fill="#CF110D" d="M814.9,63.9c-4.8-4.8-10.6-7.2-17.2-7.2h-25.7v34.1v2.8v131.7h50.1V93.7v-2.8v-9.7C822.1,74.4,819.7,68.6,814.9,63.9z"/></svg>`;
+const ZK_LOGO_WHITE = ZK_LOGO_RED.replace(/#CF110D/g,'#FFFFFF').replace(/#EE2D2B/g,'#FFFFFF').replace(/#A11E21/g,'#DCDBDB');
+
+const LIGHT_THEMES = ['light','sand','silver'];
+const THEMES = [
+ { id:'azul_aberto', name:'Pricing', color:'#1C2F48' },
+ { id:'light', name:'Claro', color:'#F8FAFC', needsBorder:true },
+ { id:'warm', name:'Warm', color:'#1A1215' },
+ { id:'midnight', name:'Midnight', color:'#0A0E1A' },
+ { id:'sand', name:'Sand', color:'#F0EDE8', needsBorder:true },
+ { id:'silver', name:'Silver', color:'#DFE3E8', needsBorder:true },
+ { id:'analytics', name:'Analytics', color:'#EE8625' },
+ { id:'zgo', name:'ZGo', color:'#78AE3F' },
+ { id:'consulting', name:'Consulting', color:'#8C9BAB', needsBorder:true },
+ { id:'promo', name:'Promo', color:'#FF4D6A' },
+ { id:'robot', name:'Robot', color:'#6B2246' },
+ { id:'vermelho', name:'Vermelho', color:'#CF110D' }
+];
+
+// Auto-inject logos
+const isLightTheme = LIGHT_THEMES.includes(METADATA.theme);
+const slideLogo = isLightTheme ? ZK_LOGO_RED : ZK_LOGO_WHITE;
+document.querySelectorAll('.zk-logo').forEach(el => { el.innerHTML = slideLogo; });
+
+// Brand validator
+(function validateBrand() {
+ const slides = document.querySelectorAll('.zk-slide');
+ if (!slides.length) return;
+ slides[0].classList.add('active');
+ const coverSlide = slides[0];
+ if (!coverSlide.querySelector('.zk-logo')) {
+  const logoDiv = document.createElement('div');
+  logoDiv.className = 'zk-logo zk-animate';
+  logoDiv.innerHTML = slideLogo;
+  coverSlide.insertBefore(logoDiv, coverSlide.firstChild);
+ }
+ slides.forEach(slide => {
+  Array.from(slide.children).forEach(child => {
+   if (!child.classList.contains('zk-animate') && !child.classList.contains('zk-orb')) {
+    child.classList.add('zk-animate');
+   }
+  });
+ });
+})();
+
+// Theme switcher
+function initThemeSwitcher() {
+ const switcher = document.getElementById('zkThemeSwitcher');
+ if (!switcher) return;
+ THEMES.forEach(theme => {
+  const dot = document.createElement('button');
+  dot.className = 'zk-theme-dot';
+  dot.style.backgroundColor = theme.color;
+  dot.title = theme.name;
+  if (theme.needsBorder) dot.classList.add('needs-border');
+  if (!METADATA.theme && theme.id === 'azul_aberto' || METADATA.theme === theme.id) dot.classList.add('active');
+  dot.onclick = () => switchTheme(theme.id, dot);
+  switcher.appendChild(dot);
+ });
+}
+
+function switchTheme(themeId, dotEl) {
+ METADATA.theme = themeId === 'azul_aberto' ? null : themeId;
+ if (themeId === 'azul_aberto') {
+  document.documentElement.removeAttribute('data-theme');
+ } else {
+  document.documentElement.setAttribute('data-theme', themeId);
+ }
+ document.querySelectorAll('.zk-theme-dot').forEach(d => d.classList.remove('active'));
+ dotEl.classList.add('active');
+ document.getElementById('zkThemeLabel').textContent = `TEMA: ${THEMES.find(t=>t.id===themeId).name}`;
+ const newIsLight = LIGHT_THEMES.includes(themeId);
+ const newLogo = newIsLight ? ZK_LOGO_RED : ZK_LOGO_WHITE;
+ document.querySelectorAll('.zk-logo').forEach(el => { el.innerHTML = newLogo; });
+ if (typeof ckApplyTheme === 'function') ckApplyTheme(themeId);
+}
+
+ckInit();
+initThemeSwitcher();
+
+// Safe zone enforcer
+(function enforceSafeZones() {
+ const slides = document.querySelectorAll('.zk-slide');
+ const root = getComputedStyle(document.documentElement);
+ const safeTop = root.getPropertyValue('--zk-safe-top').trim();
+ const safeBottom = root.getPropertyValue('--zk-safe-bottom').trim();
+ const CENTERED = ['cover','section-divider','closing','quote','big-number','stats-row','checklist','process-steps'];
+ slides.forEach(slide => {
+  const cs = getComputedStyle(slide);
+  const classes = Array.from(slide.classList);
+  if (classes.includes('image-text')) return;
+  const isCentered = CENTERED.some(c => classes.includes(c));
+  if (cs.overflow !== 'hidden') slide.style.overflow = 'hidden';
+  const expectedTop = isCentered ? safeBottom : safeTop;
+  if (parseInt(cs.paddingTop) < parseInt(expectedTop) - 2) slide.style.paddingTop = expectedTop;
+  if (parseInt(cs.paddingBottom) < parseInt(safeBottom) - 2) slide.style.paddingBottom = safeBottom;
+ });
+})();
+
+
+function zkOpenModal() {
+ document.getElementById('zkModal').classList.add('active');
+ document.body.style.overflow = 'hidden';
+}
+function zkCloseModal() {
+ document.getElementById('zkModal').classList.remove('active');
+ document.body.style.overflow = '';
+}
+document.getElementById('zkModal').addEventListener('click', function(e) {
+ if (e.target === this) zkCloseModal();
+});
+
+function zkSubmitForm(e) {
+ e.preventDefault();
+ var f = document.getElementById('zkForm');
+ var d = new FormData(f);
+ var nn = document.querySelector('.zk-modal-header p').textContent.match(/no (.+)/);
+ var networkName = nn ? nn[1] : 'rede';
+
+ var subject = encodeURIComponent('Proposta Aceita \u2014 ' + networkName + ' \u2014 Zukkin');
+
+ var lines = [];
+ lines.push('=== PROPOSTA ACEITA \u2014 ' + networkName.toUpperCase() + ' ===');
+ lines.push('');
+ lines.push('DADOS DA EMPRESA');
+ lines.push('Nome Fantasia: ' + d.get('nome_fantasia'));
+ lines.push('Raz\u00e3o Social: ' + d.get('razao_social'));
+ lines.push('CNPJ: ' + d.get('cnpj'));
+ if (d.get('ie')) lines.push('Inscri\u00e7\u00e3o Estadual: ' + d.get('ie'));
+ lines.push('Endere\u00e7o: ' + d.get('endereco') + ', ' + d.get('numero'));
+ lines.push('Cidade: ' + d.get('cidade') + '/' + d.get('uf') + ' \u2014 CEP ' + d.get('cep'));
+ lines.push('N\u00ba de lojas bases: ' + d.get('num_lojas'));
+ lines.push('');
+ lines.push('CONTATO COMERCIAL');
+ lines.push('Nome: ' + d.get('contato_nome'));
+ lines.push('E-mail: ' + d.get('contato_email'));
+ if (d.get('fin_nome') || d.get('fin_email')) {
+  lines.push('');
+  lines.push('CONTATO FINANCEIRO');
+  if (d.get('fin_nome')) lines.push('Nome: ' + d.get('fin_nome'));
+  if (d.get('fin_email')) lines.push('E-mail: ' + d.get('fin_email'));
+ }
+ lines.push('');
+ lines.push('ESCOPO DE MONITORAMENTO');
+ lines.push('ZRobot: ' + d.get('num_zrobot') + ' site(s)');
+ if (d.get('sites_zrobot')) lines.push('Sites: ' + d.get('sites_zrobot'));
+ lines.push('ZPromo: ' + d.get('num_zpromo') + ' bandeira(s)');
+ if (d.get('concorrentes_zpromo')) lines.push('Concorrentes: ' + d.get('concorrentes_zpromo'));
+ lines.push('');
+ lines.push('---');
+ lines.push('Enviado via Proposta Comercial Zukkin');
+
+ var body = encodeURIComponent(lines.join('\n'));
+
+ document.getElementById('zkFormWrap').style.display = 'none';
+ document.getElementById('zkFormSuccess').classList.add('active');
+
+ setTimeout(function() {
+  window.location.href = 'mailto:ricardo@zukkin.com?subject=' + subject + '&body=' + body;
+ }, 600);
+
+ return false;
+}
+
+
+
+
+</script>
+
+  <!-- MODAL FORMULÁRIO -->
+  <div class="zk-modal-overlay" id="zkModal">
+   <div class="zk-modal">
+    <div class="zk-modal-header">
+     <div>
+      <h3>Avançar com a Proposta</h3>
+      <p>Preencha os dados abaixo para iniciarmos o projeto no Mart Minas</p>
+     </div>
+     <button class="zk-modal-close">×</button>
+    </div>
+    <div class="zk-modal-body">
+     <div id="zkFormWrap">
+     <form id="zkForm">
+
+      <div class="zk-form-section">
+       <div class="zk-form-section-title">Dados da Empresa</div>
+       <div class="zk-form-row cols-2">
+        <div class="zk-form-group">
+         <label>Nome Fantasia *</label>
+         <input type="text" name="nome_fantasia" required="" placeholder="Nome fantasia da rede">
+        </div>
+        <div class="zk-form-group">
+         <label>Razão Social *</label>
+         <input type="text" name="razao_social" required="" placeholder="Razão social completa">
+        </div>
+       </div>
+       <div class="zk-form-row cols-2">
+        <div class="zk-form-group">
+         <label>CNPJ *</label>
+         <input type="text" name="cnpj" required="" placeholder="00.000.000/0000-00">
+        </div>
+        <div class="zk-form-group">
+         <label>Inscrição Estadual</label>
+         <input type="text" name="ie" placeholder="Inscrição estadual">
+        </div>
+       </div>
+       <div class="zk-form-row cols-addr">
+        <div class="zk-form-group">
+         <label>Endereço *</label>
+         <input type="text" name="endereco" required="" placeholder="Rua, Avenida...">
+        </div>
+        <div class="zk-form-group">
+         <label>Número *</label>
+         <input type="text" name="numero" required="" placeholder="Nº">
+        </div>
+       </div>
+       <div class="zk-form-row cols-city">
+        <div class="zk-form-group">
+         <label>Cidade *</label>
+         <input type="text" name="cidade" required="" placeholder="Cidade">
+        </div>
+        <div class="zk-form-group">
+         <label>UF *</label>
+         <select name="uf" required="">
+          <option value="">UF</option>
+          <option value="AC">AC</option><option value="AL">AL</option><option value="AM">AM</option><option value="AP">AP</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MG">MG</option><option value="MS">MS</option><option value="MT">MT</option><option value="PA">PA</option><option value="PB">PB</option><option value="PE">PE</option><option value="PI">PI</option><option value="PR">PR</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RO">RO</option><option value="RR">RR</option><option value="RS">RS</option><option value="SC">SC</option><option value="SE">SE</option><option value="SP">SP</option><option value="TO">TO</option>
+         </select>
+        </div>
+        <div class="zk-form-group">
+         <label>CEP *</label>
+         <input type="text" name="cep" required="" placeholder="00000-000">
+        </div>
+       </div>
+       <div class="zk-form-row">
+        <div class="zk-form-group">
+         <label>Nº de Lojas Bases *</label>
+         <input type="number" name="num_lojas" required="" placeholder="Quantidade de lojas bases" min="1" style="max-width:200px;">
+        </div>
+       </div>
+      </div>
+
+      <div class="zk-form-section">
+       <div class="zk-form-section-title">Contato Comercial</div>
+       <div class="zk-form-row cols-2">
+        <div class="zk-form-group">
+         <label>Nome completo *</label>
+         <input type="text" name="contato_nome" required="" placeholder="Nome e sobrenome">
+        </div>
+        <div class="zk-form-group">
+         <label>E-mail *</label>
+         <input type="email" name="contato_email" required="" placeholder="email@empresa.com">
+        </div>
+       </div>
+      </div>
+
+      <div class="zk-form-section">
+       <div class="zk-form-section-title">Contato Financeiro <span class="opt">(se diferente)</span></div>
+       <div class="zk-form-row cols-2">
+        <div class="zk-form-group">
+         <label>Nome</label>
+         <input type="text" name="fin_nome" placeholder="Nome do responsável">
+        </div>
+        <div class="zk-form-group">
+         <label>E-mail</label>
+         <input type="email" name="fin_email" placeholder="financeiro@empresa.com">
+        </div>
+       </div>
+      </div>
+
+      <div class="zk-form-section">
+       <div class="zk-form-section-title">Escopo de Monitoramento <span class="opt">(opcional)</span></div>
+       <div class="zk-scope-row">
+        <div class="zk-form-group">
+         <label>Qtd. sites ZRobot *</label>
+         <input type="number" name="num_zrobot" placeholder="0" min="0">
+        </div>
+        <div class="zk-form-group">
+         <label>Quais sites? <span class="opt">(opcional)</span></label>
+         <textarea name="sites_zrobot" placeholder="Ex: site1.com.br, site2.com.br..." rows="2"></textarea>
+        </div>
+       </div>
+       <div class="zk-scope-row">
+        <div class="zk-form-group">
+         <label>Qtd. bandeiras ZPromo *</label>
+         <input type="number" name="num_zpromo" placeholder="0" min="0">
+        </div>
+        <div class="zk-form-group">
+         <label>Quais concorrentes? <span class="opt">(opcional)</span></label>
+         <textarea name="concorrentes_zpromo" placeholder="Ex: Rede X, Atacadão, Assaí..." rows="2"></textarea>
+        </div>
+       </div>
+      </div>
+
+      <button type="submit" class="zk-form-submit">Enviar e Avançar →</button>
+     </form>
+     </div>
+
+     <div class="zk-form-success" id="zkFormSuccess">
+      <div class="icon">🎉</div>
+      <h3>Dados enviados com sucesso!</h3>
+      <p>Seu e-mail está sendo aberto com os dados preenchidos.<br>Ricardo Forte vai dar andamento ao projeto em breve.</p>
+     </div>
+    </div>
+   </div>
+  </div>
+
+
+<!-- ═══ MODAL DE PRODUTOS ═══ -->
+<div class="zk-pmod-overlay" id="zkProductModal">
+ <div class="zk-pmod" id="zkProductModalContent"></div>
+</div>
+
+<script>
+/* ═══ PRODUCT DATA & MODAL ═══ */
+var PRODUCTS = {
+ zrobot: { icon:'\u{1F916}', name:'ZRobot', badge:'Pesquisa Online Autom\u00e1tica', gradient:'linear-gradient(135deg,#6B2246,#8E3060)', color:'#6B2246', desc:'Crawler inteligente que varre os sites dos seus concorrentes e traz os pre\u00e7os atualizados automaticamente. Sem pesquisador, sem planilha, sem retrabalho.', features:[{icon:'\u{1F50D}',title:'Varredura autom\u00e1tica',desc:'Monitora m\u00faltiplos sites com frequ\u00eancia configur\u00e1vel \u2014 di\u00e1ria, semanal ou sob demanda.'},{icon:'\u{1F517}',title:'Associa\u00e7\u00e3o autom\u00e1tica',desc:'A Zukkin associa seus produtos com os links de cada site. Pesquisa completa de todo o sortimento.'},{icon:'\u{1F4F8}',title:'Print como evid\u00eancia',desc:'Captura screenshots dos pre\u00e7os fora do range para comprova\u00e7\u00e3o e auditoria.'}], hlNum:'5mil+', hlText:'Ideal para fundo de sortimento', hlSub:'M\u00e9dia de mais de 5 mil produtos pesquisados' },
+ zpromo: { icon:'\u{1F3F7}\uFE0F', name:'ZPromo', badge:'Intelig\u00eancia Promocional', gradient:'linear-gradient(135deg,#FF4D6A,#E83A5A)', color:'#FF4D6A', desc:'Entrega no mesmo dia dos concorrentes: encartes, redes sociais e WhatsApp. Entrega no mesmo dia \u2014 voc\u00ea nunca mais \u00e9 pego de surpresa.', features:[{icon:'\u{1F4CB}',title:'Encartes e tabloides',desc:'Captura completa dos encartes impressos e digitais de cada concorrente.'},{icon:'\u{1F4F1}',title:'WhatsApp e redes',desc:'Monitora promo\u00e7\u00f5es via WhatsApp, Instagram e sites automaticamente.'},{icon:'\u26A1',title:'Frequ\u00eancia di\u00e1ria',desc:'Atualiza\u00e7\u00e3o seg\u2013sex com todas as ofertas do dia.'}], hlNum:'D+0', hlText:'Entrega no mesmo dia', hlSub:'Integrado ao ZPricing IA \u2014 voc\u00ea analisa os pre\u00e7os de combate das ofertas em poucos segundos' },
+ zgo: { icon:'\u{1F4F1}', name:'ZGO', badge:'App de Coleta em Campo', gradient:'linear-gradient(135deg,#78AE3F,#5C8F2E)', color:'#78AE3F', desc:'App de Pesquisa de Pre\u00e7os para o seu time \u2014 sistema completo com lista, categoriza\u00e7\u00e3o e auditoria. Menos trabalho manual, mais resultado.', features:[{icon:'\u{1F4C5}',title:'Agenda inteligente',desc:'Programa pesquisa por loja, dia e pesquisador com roteiro otimizado.'},{icon:'\u2705',title:'Valida\u00e7\u00e3o e alertas',desc:'Foto autom\u00e1tica dos pre\u00e7os fora do range personalizado por produto. Alertas de pre\u00e7os em tempo real.'},{icon:'\u{1F4CA}',title:'Dashboard de gest\u00e3o',desc:'Acompanhe em tempo real o andamento e produtividade por pesquisador.'}], hlNum:'Tempo real', hlText:'Tudo integrado no ecossistema Zukkin', hlSub:'Pesquisa entra online, r\u00e1pido e autom\u00e1tico \u2014 direto no ZAnalytics e ZPricing' },
+ zmarket: { icon:'\u{1F310}', name:'ZMarket', badge:'Big Data de Pre\u00e7os', gradient:'linear-gradient(135deg,#7C6EF6,#5A4FD4)', color:'#7C6EF6', desc:'A maior base de pre\u00e7os do varejo brasileiro. Dados de nota fiscal, e-commerce, g\u00f4ndola \u2014 um painel de pre\u00e7os completo para posicionar todo o sortimento com intelig\u00eancia.', features:[{icon:'\u{1F9FE}',title:'Dados de NF-e',desc:'Pre\u00e7os reais de notas fiscais \u2014 \u00e9 o pre\u00e7o que o consumidor pagou.'},{icon:'\u{1F5FA}\uFE0F',title:'Cobertura nacional',desc:'Dados de todo o Brasil com filtros por estado, cidade, bandeira e canal.'},{icon:'\u{1F4C8}',title:'Posicionamento',desc:'Compare seus pre\u00e7os com o mercado inteiro por categoria e regi\u00e3o.'}], hlNum:'5Bi+', hlText:'Pre\u00e7os coletados na base Zukkin Market', hlSub:'A maior base de pre\u00e7os de cupom fiscal do varejo alimentar' },
+ zanalytics: { icon:'\u{1F4CA}', name:'ZAnalytics', badge:'An\u00e1lise e Intelig\u00eancia', gradient:'linear-gradient(135deg,#EE8625,#D4730F)', color:'#EE8625', desc:'A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, regi\u00e3o e concorrente.', features:[{icon:'\u{1F4C8}',title:'Dashboards estrat\u00e9gicos',desc:'Vis\u00e3o completa de competitividade por categoria, produto, loja e concorrente.'},{icon:'\u{1F514}',title:'Alertas autom\u00e1ticos',desc:'Alertas de pre\u00e7os no WhatsApp, em tempo real \u2014 pre\u00e7o do concorrente com foto, direto no seu celular.'},{icon:'\u{1F947}',title:'Primeiro Pre\u00e7o',desc:'Veja o produto mais barato da categoria com pre\u00e7o, marca e associa\u00e7\u00e3o autom\u00e1tica com o seu mais barato.'}], hlNum:'360\u00b0', hlText:'Vis\u00e3o completa da competitividade', hlSub:'Todos os dados centralizados em um s\u00f3 lugar' },
+ zpricing: { icon:'\u{1F9E0}', name:'ZPricing IA', badge:'Precifica\u00e7\u00e3o Inteligente', gradient:'linear-gradient(135deg,#02385A,#0A4F7A)', color:'#02385A', desc:'O c\u00e9rebro do ecossistema. Analisa competitividade, margem, elasticidade e regras do neg\u00f3cio para sugerir o pre\u00e7o ideal.<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;"><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4C8} Aumente sua Margem</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4CA} Elasticidade de pre\u00e7os</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u2699\uFE0F Automatiza\u00e7\u00e3o completa</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F517} Integrado com o ERP</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F3C6} +100 Redes j\u00e1 usam</span></div>', features:[{icon:'\u2699\uFE0F',title:'Regras de neg\u00f3cio',desc:'Cadastre margem m\u00ednima, posicionamento, teto e piso por categoria.'},{icon:'\u{1F916}',title:'Sugest\u00e3o autom\u00e1tica',desc:'A IA calcula o pre\u00e7o ideal considerando concorr\u00eancia, custo e margem.'},{icon:'\u{1F504}',title:'Execu\u00e7\u00e3o autom\u00e1tica',desc:'Integra com ERP para enviar pre\u00e7os direto ao PDV sem esfor\u00e7o.'}], hlNum:'IA', hlText:'Precifica\u00e7\u00e3o por produto, dia e loja', hlSub:'Ganho m\u00e9dio de margem desde o primeiro m\u00eas' },
+ zconsulting: { icon:'\u{1F3AF}', name:'ZConsulting', badge:'Consultoria de Pricing', gradient:'linear-gradient(135deg,#8C9BAB,#6B7A8A)', color:'#8C9BAB', desc:'Consultores de pricing com experi\u00eancia no varejo alimentar atuam junto ao seu time para evoluir sua estrat\u00e9gia.', features:[{icon:'\u{1F4DA}',title:'Base conceitual de Pricing',desc:'Primeiro, os conceitos: seu time aprende fundamentos de pricing, forma\u00e7\u00e3o de pre\u00e7o e posicionamento competitivo.'},{icon:'\u{1F5D3}\uFE0F',title:'Plano de a\u00e7\u00e3o',desc:'Depois da base conceitual, plano pr\u00e1tico com metas, cronograma e indicadores claros.'},{icon:'\u{1F465}',title:'Treinamento do time',desc:'Capacita\u00e7\u00e3o da equipe para decis\u00f5es baseadas em dados.'}], hlNum:'+10', hlText:'Anos de experi\u00eancia no varejo alimentar', hlSub:'Consultores que j\u00e1 viveram o varejo por dentro \u00b7 Do conceito \u00e0 execu\u00e7\u00e3o com seu time' }
+};
+
+function zkOpenProduct(id) {
+ var p = PRODUCTS[id];
+ if (!p) return;
+ var modal = document.getElementById('zkProductModal');
+ if (!modal) return;
+ var content = document.getElementById('zkProductModalContent');
+ if (!content) return;
+
+ var featHtml = '';
+ for (var i = 0; i < p.features.length; i++) {
+  var f = p.features[i];
+  featHtml += '<div class="pm-feat"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:' + p.color + ';border-radius:12px 12px 0 0;"></div><div class="pf-icon">' + f.icon + '</div><div class="pf-title">' + f.title + '</div><div class="pf-desc">' + f.desc + '</div></div>';
+ }
+
+ content.innerHTML = '<div class="zk-pmod-header" style="background:' + p.gradient + ';"><button class="zk-pmod-close" onclick="zkCloseProduct()">&times;</button><div class="pm-row"><div class="pm-icon">' + p.icon + '</div><div><div class="pm-name">' + p.name + '</div><div class="pm-badge">' + p.badge + '</div></div></div><div class="pm-desc">' + p.desc + '</div></div><div class="zk-pmod-body"><div class="pm-features-label">Principais funcionalidades</div><div class="pm-features">' + featHtml + '</div><div class="pm-highlight" style="border-left:4px solid ' + p.color + ';"><div class="pm-hl-num" style="color:' + p.color + ';">' + p.hlNum + '</div><div><div class="pm-hl-text">' + p.hlText + '</div><div class="pm-hl-sub">' + p.hlSub + '</div></div></div></div>';
+
+ modal.style.display = 'flex';
+ modal.style.opacity = '1';
+ modal.classList.add('active');
+}
+
+function zkCloseProduct() {
+ var modal = document.getElementById('zkProductModal');
+ if (modal) {
+  modal.classList.remove('active');
+  modal.style.display = 'none';
+  modal.style.opacity = '0';
+ }
+}
+
+document.getElementById('zkProductModal').addEventListener('click', function(e) {
+ if (e.target === this) zkCloseProduct();
+});
+</script>
+
+
+
+</body></html>
