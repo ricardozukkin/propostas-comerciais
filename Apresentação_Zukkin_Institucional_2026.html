@@ -550,9 +550,31 @@
    transform: translateY(-2px);
    box-shadow: 0 6px 18px rgba(207,17,13,0.45);
   }
- </style>
+ 
+  /* ═══ MOBILE ═══ */
+  #zkRotateOverlay { display:none; }
+  @media screen and (orientation:portrait) and (max-width:840px) {
+   #zkRotateOverlay { display:flex; position:fixed; inset:0; z-index:99999; background:#0D1B2A; color:#EEF4FA; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:32px; gap:18px; }
+   #zkRotateOverlay .zk-rot-icon { font-size:56px; animation: zkRotHint 1.8s ease-in-out infinite; }
+   @keyframes zkRotHint { 0%,100% { transform:rotate(0deg); } 50% { transform:rotate(90deg); } }
+   #zkRotateOverlay .zk-rot-title { font-size:20px; font-weight:800; }
+   #zkRotateOverlay .zk-rot-sub { font-size:13px; color:rgba(180,210,245,0.7); max-width:280px; line-height:1.5; }
+  }
+  @media screen and (orientation:landscape) and (max-height:500px) {
+   .ck-viewport { padding: 6px 12px 0; }
+   .ck-frame { width: 96%; }
+   .ck-arrow { display: none !important; }
+  }
+
+</style>
 </head>
 <body>
+
+<div id="zkRotateOverlay">
+ <div class="zk-rot-icon">📱</div>
+ <div class="zk-rot-title">Gire o celular</div>
+ <div class="zk-rot-sub">Esta apresentação foi feita para tela deitada. Gire o dispositivo para continuar.</div>
+</div>
 
 <div class="zk-expiration" id="zkExpiration"></div>
 <div class="zk-expired-block" id="zkExpiredBlock">
@@ -771,7 +793,7 @@
        <div class="hl-number" style="color:var(--vermelho);">+10</div>
        <div>
         <div class="hl-text">Anos de história — nosso primeiro produto</div>
-        <div class="hl-sub">Carro-chefe da Zukkin desde 2016 · Já entregamos pesquisa para mais de 100 redes</div>
+        <div class="hl-sub">Recomendação Zukkin: 500–600 itens/semana + varredura trimestral de sortimento · Benchmark das +100 redes para montar sua lista</div>
        </div>
       </div>
      </div>
@@ -940,7 +962,7 @@
       <div>
        <div class="zk-prod-icon">📊</div>
        <div class="zk-prod-name">ZAnalytics</div>
-       <div class="zk-prod-tagline">A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, região e concorrente. O coração do ecossistema Zukkin.</div>
+       <div class="zk-prod-tagline">A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, região e concorrente. A central de inteligência do ecossistema Zukkin.</div>
       </div>
       <div class="zk-prod-badge">Análise &amp; Inteligência</div>
      </div>
@@ -1015,7 +1037,258 @@
        <div class="hl-number" style="color:var(--pricing);">IA</div>
        <div>
         <div class="hl-text">Precificação por produto, dia e loja</div>
-        <div class="hl-sub">Ganho médio de margem desde o primeiro mês · +100 redes já usam</div>
+        <div class="hl-sub">De 1 a 2 pontos de margem em clientes que seguem as boas práticas · +100 redes já usam</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3H2 — FLUXO ANIMADO ZPRICING (ecossistema)
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">O <span style="color:var(--pricing)">ecossistema completo</span> de precificação</h2>
+    <div class="zk-prod-sub zk-animate" style="margin-top:-18px; margin-bottom:6px;">Ciclo fechado com o seu ERP — o dado entra, a IA processa, o preço aprovado volta</div>
+
+    <style>
+     @keyframes zkFlowIn  { from { stroke-dashoffset: 36; } to { stroke-dashoffset: 0; } }
+     @keyframes zkFlowOut { from { stroke-dashoffset: 0; }  to { stroke-dashoffset: 36; } }
+     @keyframes zkMotorPulse {
+      0%,100% { box-shadow: 0 12px 40px rgba(2,56,90,0.30), 0 0 0 0 rgba(2,56,90,0.40); }
+      50%     { box-shadow: 0 12px 40px rgba(2,56,90,0.30), 0 0 0 16px rgba(2,56,90,0); }
+     }
+     .zk-flow-in  { animation: zkFlowIn 1.6s linear infinite; }
+     .zk-flow-out { animation: zkFlowOut 1.6s linear infinite; }
+    </style>
+
+    <div class="zk-animate" style="position:relative; width:100%; flex:1; min-height:0;">
+
+     <svg viewBox="0 0 1200 460" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;">
+      <defs>
+       <marker id="zkArrIn"  viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#CF110D"/></marker>
+       <marker id="zkArrOut" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#78AE3F"/></marker>
+       <marker id="zkArrSrc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#02385A"/></marker>
+      </defs>
+
+      <!-- ERP -> Motor (dados entrando: vermelho) -->
+      <path id="zkPathIn" d="M 268 200 L 400 200" stroke="#CF110D" stroke-width="3.5" stroke-dasharray="8 4" stroke-linecap="round" fill="none" class="zk-flow-in" marker-end="url(#zkArrIn)"/>
+      <!-- Motor -> ERP (preço otimizado saindo: verde) -->
+      <path id="zkPathOut" d="M 400 262 L 268 262" stroke="#78AE3F" stroke-width="3.5" stroke-dasharray="8 4" stroke-linecap="round" fill="none" class="zk-flow-out" marker-end="url(#zkArrOut)"/>
+
+      <!-- Pesquisas -> Motor -->
+      <path d="M 900 155 C 840 168, 795 188, 742 206" stroke="#CF110D" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round" fill="none" class="zk-flow-in" style="animation-delay:.0s;" marker-end="url(#zkArrSrc)"/>
+      <path d="M 900 213 C 850 218, 800 221, 742 224" stroke="#78AE3F" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round" fill="none" class="zk-flow-in" style="animation-delay:.25s;" marker-end="url(#zkArrSrc)"/>
+      <path d="M 900 271 C 850 264, 800 250, 742 242" stroke="#6B2246" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round" fill="none" class="zk-flow-in" style="animation-delay:.5s;" marker-end="url(#zkArrSrc)"/>
+      <path d="M 900 329 C 840 314, 795 278, 742 258" stroke="#FF4D6A" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round" fill="none" class="zk-flow-in" style="animation-delay:.75s;" marker-end="url(#zkArrSrc)"/>
+
+      <!-- Pontos em movimento -->
+      <circle r="5" fill="#CF110D"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#zkPathIn"/></animateMotion></circle>
+      <circle r="5" fill="#78AE3F"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.1s"><mpath href="#zkPathOut"/></animateMotion></circle>
+     </svg>
+
+     <!-- ERP à esquerda -->
+     <div style="position:absolute; left:1.5%; top:50%; transform:translateY(-50%); width:20%; background:var(--surface); border-radius:16px; padding:20px 14px; text-align:center; border:2px solid rgba(2,56,90,0.18); box-shadow:0 6px 20px rgba(0,0,0,0.07);">
+      <div style="width:46px; height:46px; margin:0 auto 10px; border-radius:12px; background:rgba(2,56,90,0.08); display:flex; align-items:center; justify-content:center;">
+       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#02385A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <div style="font-weight:800; font-size:20px; color:var(--text); margin-bottom:4px;">ERP</div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.4; margin-bottom:8px;">Consinco · RMS · Bluesoft · VR e outros</div>
+      <div style="font-size:9px; color:var(--text-muted); line-height:1.5; border-top:1px solid var(--border); padding-top:7px;">Custos · Estoque · Vendas · Cadastro · Margens</div>
+     </div>
+
+     <!-- Labels das setas centrais -->
+     <div style="position:absolute; left:23%; top:36%; z-index:10; font-size:9px; font-weight:800; color:var(--vermelho); letter-spacing:0.08em; text-transform:uppercase; background:var(--surface); padding:3px 10px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.08);">Dados</div>
+     <div style="position:absolute; left:20.5%; top:60%; z-index:10; font-size:9px; font-weight:800; color:#5c872c; letter-spacing:0.06em; text-transform:uppercase; background:var(--surface); padding:3px 10px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.08); white-space:nowrap;">Preço otimizado</div>
+
+     <!-- Motor central -->
+     <div style="position:absolute; left:34%; top:50%; transform:translateY(-50%); width:27%; background:linear-gradient(135deg, #02385A, #013a5e, #024570); border-radius:20px; padding:26px 22px; text-align:center; color:#fff; animation:zkMotorPulse 2.4s ease-in-out infinite;">
+      <div style="font-size:10px; font-weight:700; letter-spacing:0.14em; opacity:0.75; margin-bottom:12px; text-transform:uppercase;">Motor de precificação</div>
+      <div style="font-size:clamp(28px,3.4vw,42px); font-weight:900; line-height:1; letter-spacing:-0.02em; margin-bottom:10px;"><span style="opacity:0.55;font-size:0.7em">Z</span>Pricing IA</div>
+      <div style="height:1px; background:rgba(255,255,255,0.18); margin:12px 8%;"></div>
+      <div style="font-size:11px; opacity:0.85; line-height:1.55;">A IA processa dados do ERP e das pesquisas e devolve o preço ideal — <strong>só itens aprovados</strong>, com data de ativação programada</div>
+     </div>
+
+     <!-- Coluna direita: Pesquisas -->
+     <div style="position:absolute; right:1.5%; top:50%; transform:translateY(-50%); width:23%; display:flex; flex-direction:column; gap:7px;">
+      <div style="font-size:9px; font-weight:800; letter-spacing:0.08em; color:var(--text-muted); text-transform:uppercase; padding-left:4px;">Pesquisas — dados de mercado</div>
+      <div style="background:var(--surface); border-radius:10px; padding:9px 12px; border-left:3px solid var(--vermelho); box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+       <div style="font-weight:700; font-size:12px; color:var(--text);"><span style="opacity:0.55;font-size:0.885em">Z</span>Pesquisa</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Time Zukkin em campo nas lojas concorrentes</div>
+      </div>
+      <div style="background:var(--surface); border-radius:10px; padding:9px 12px; border-left:3px solid var(--go); box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+       <div style="font-weight:700; font-size:12px; color:var(--text);"><span style="opacity:0.55;font-size:0.885em">Z</span>GO</div>
+       <div style="font-size:9px; color:var(--text-secondary);">App de pesquisa do seu time — com foto-evidência</div>
+      </div>
+      <div style="background:var(--surface); border-radius:10px; padding:9px 12px; border-left:3px solid var(--robot); box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+       <div style="font-weight:700; font-size:12px; color:var(--text);"><span style="opacity:0.55;font-size:0.885em">Z</span>Robot</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Pesquisa online automática — fundo de sortimento</div>
+      </div>
+      <div style="background:var(--surface); border-radius:10px; padding:9px 12px; border-left:3px solid var(--promo); box-shadow:0 2px 8px rgba(0,0,0,0.05);">
+       <div style="font-weight:700; font-size:12px; color:var(--text);"><span style="opacity:0.55;font-size:0.885em">Z</span>Promo</div>
+       <div style="font-size:9px; color:var(--text-secondary);">Ofertas e encartes dos concorrentes — no mesmo dia</div>
+      </div>
+     </div>
+    </div>
+
+    <div class="zk-animate" style="margin-top:8px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:7px 14px; font-size:10px; color:var(--text-secondary); text-align:center;">
+     <strong style="color:var(--text);">Do cálculo à gôndola sem trabalho manual</strong> — e o ZAnalytics acompanhando tudo em dashboards de competitividade
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3H3 — DO MANUAL AO AUTOMÁTICO
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">Do <span style="color:var(--vermelho)">manual</span> ao <span style="color:var(--pricing)">automático</span></h2>
+    <div class="zk-prod-sub zk-animate" style="margin-top:-18px; margin-bottom:10px;">Os mesmos processos que sua equipe já domina — sem planilha, sem e-mail, sem depender de memória</div>
+
+    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; min-height:0;">
+     <!-- Coluna HOJE -->
+     <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--vermelho); padding:6px 12px; background:rgba(207,17,13,0.07); border-radius:8px;">✗ Como o varejo faz hoje</div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(207,17,13,0.18); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--text); margin-bottom:2px;">Pesquisa de concorrência</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Planilha circula por e-mail e cada comprador altera o preço item a item no ERP.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(207,17,13,0.18); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--text); margin-bottom:2px;">Alteração de custo</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Relatório chega por e-mail; o comprador confere e repassa manualmente para o preço de venda.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(207,17,13,0.18); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--text); margin-bottom:2px;">Produtos novos</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Rotina diária de conferir cadastros novos no ERP e precificar um a um.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(207,17,13,0.18); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--text); margin-bottom:2px;">Governança</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">O gestor confere planilhas depois — e precisa acreditar que a regra foi seguida.</div>
+      </div>
+     </div>
+
+     <!-- Coluna COM ZPRICING -->
+     <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--pricing); padding:6px 12px; background:rgba(2,56,90,0.07); border-radius:8px;">✓ Com o ZPricing IA</div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(2,56,90,0.22); border-left:3px solid var(--pricing); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--pricing); margin-bottom:2px;">Gatilho de pesquisa</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">A pesquisa chegou e os fluxos de combate já nascem prontos — por comprador ou categoria.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(2,56,90,0.22); border-left:3px solid var(--pricing); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--pricing); margin-bottom:2px;">Gatilho de custo</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Alterou acima do parâmetro, o sistema otimiza — e pode rodar 100% no automático, direto pro ERP.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(2,56,90,0.22); border-left:3px solid var(--pricing); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--pricing); margin-bottom:2px;">Gatilho de novos produtos</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Cadastrou no ERP, o preço já nasce calculado pela estratégia da empresa.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(2,56,90,0.22); border-left:3px solid var(--pricing); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:11px; font-weight:700; color:var(--pricing); margin-bottom:2px;">Governança embutida</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Só sai preço dentro da estratégia — exceção exige justificativa registrada no sistema.</div>
+      </div>
+     </div>
+    </div>
+
+    <div class="zk-animate" style="margin-top:10px; background:linear-gradient(135deg,#02385A,#0A4F7A); border-radius:10px; padding:8px 14px; font-size:11px; color:#fff; text-align:center; font-weight:600;">
+     Além dos gatilhos: fluxos por calendário programado e fluxos manuais criados em segundos — inclusive para simular uma negociação com fornecedor
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3H4 — JORNADA DO PREÇO / GOVERNANÇA
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">Todo preço tem uma <span style="color:var(--pricing)">jornada auditável</span></h2>
+    <div class="zk-prod-sub zk-animate" style="margin-top:-18px; margin-bottom:10px;">Clique no status e veja etapa por etapa por que o sistema chegou naquele preço — sem caixa-preta</div>
+
+    <div class="zk-animate" style="display:grid; grid-template-columns:1.05fr 1fr; gap:14px; flex:1; min-height:0;">
+     <!-- Pipeline da jornada -->
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; justify-content:space-between;">
+      <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:6px;">A jornada do preço — etapa por etapa</div>
+      <div style="display:flex; flex-direction:column; gap:0; flex:1; justify-content:space-evenly;">
+       <div style="display:flex; align-items:center; gap:10px;"><div style="width:22px; height:22px; border-radius:50%; background:rgba(2,56,90,0.1); color:var(--pricing); font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div><div style="font-size:11px; color:var(--text);"><strong>Preço atual</strong> <span style="color:var(--text-secondary);">— ponto de partida, igual está no ERP</span></div></div>
+       <div style="display:flex; align-items:center; gap:10px;"><div style="width:22px; height:22px; border-radius:50%; background:rgba(2,56,90,0.1); color:var(--pricing); font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div><div style="font-size:11px; color:var(--text);"><strong>Margem ideal</strong> <span style="color:var(--text-secondary);">— com condicionantes (ex.: nunca para baixar preço)</span></div></div>
+       <div style="display:flex; align-items:center; gap:10px;"><div style="width:22px; height:22px; border-radius:50%; background:rgba(2,56,90,0.1); color:var(--pricing); font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</div><div style="font-size:11px; color:var(--text);"><strong>Competitividade</strong> <span style="color:var(--text-secondary);">— pela sensibilidade do item vs. concorrentes</span></div></div>
+       <div style="display:flex; align-items:center; gap:10px;"><div style="width:22px; height:22px; border-radius:50%; background:rgba(2,56,90,0.1); color:var(--pricing); font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">4</div><div style="font-size:11px; color:var(--text);"><strong>Arredondamento</strong> <span style="color:var(--text-secondary);">— por faixa de preço, categoria e loja</span></div></div>
+       <div style="display:flex; align-items:center; gap:10px;"><div style="width:22px; height:22px; border-radius:50%; background:rgba(2,56,90,0.1); color:var(--pricing); font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">5</div><div style="font-size:11px; color:var(--text);"><strong>Proporcionais e referências</strong> <span style="color:var(--text-secondary);">— gramaturas, embalagens e arquitetura de marca amarradas</span></div></div>
+       <div style="display:flex; align-items:center; gap:10px;"><div style="width:22px; height:22px; border-radius:50%; background:var(--pricing); color:#fff; font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">✓</div><div style="font-size:11px; color:var(--text);"><strong>Checagem final de margens</strong> <span style="color:var(--text-secondary);">— mínima, ideal e máxima definem o status</span></div></div>
+      </div>
+     </div>
+
+     <!-- Status -->
+     <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(16,185,129,0.35); border-left:4px solid var(--positive); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:12px; font-weight:800; color:var(--positive); margin-bottom:2px;">● Aprovado</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Passou por todas as regras da estratégia. <strong style="color:var(--text);">Só ele vai para o ERP</strong> — com data de ativação programada.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(245,158,11,0.35); border-left:4px solid var(--warning); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:12px; font-weight:800; color:var(--warning); margin-bottom:2px;">● Em alerta</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Entre a margem mínima e a ideal — geralmente puxado pela concorrência. O comprador decide consciente: aprova, impede ou digita outro preço.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid rgba(239,68,68,0.35); border-left:4px solid var(--negative); border-radius:12px; padding:10px 14px;">
+       <div style="font-size:12px; font-weight:800; color:var(--negative); margin-bottom:2px;">● Impedido</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.45;">Fora da regra: abaixo da mínima, aumento excessivo, erro de digitação. Só aprova quem tem alçada — <strong style="color:var(--text);">com justificativa registrada</strong>.</div>
+      </div>
+     </div>
+    </div>
+
+    <div class="zk-animate" style="margin-top:10px; background:linear-gradient(135deg,#02385A,#0A4F7A); border-radius:10px; padding:8px 14px; font-size:11px; color:#fff; text-align:center; font-weight:600;">
+     A estratégia da diretoria instalada no sistema — relatório de gestão mostra quem aprovou fora da regra, quanto e por quê
+    </div>
+   </div>
+
+   <!-- ══════════════════════════════════════════
+      SLIDE 3H5 — PRICING NÃO É BAIXAR PREÇO
+      ══════════════════════════════════════════ -->
+   <div class="zk-slide content">
+    <h2 class="zk-animate">Pricing <span style="color:var(--vermelho)">não é baixar preço</span> — é enxergar oportunidade</h2>
+    <div class="zk-prod-sub zk-animate" style="margin-top:-18px; margin-bottom:10px;">Caso real de otimização em um item hipersensível, direto da tela do ZPricing IA</div>
+
+    <div class="zk-animate" style="display:grid; grid-template-columns:1.05fr 1fr; gap:14px; flex:1; min-height:0;">
+     <!-- Case -->
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; justify-content:center; gap:12px;">
+      <div style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted);">Café — item hipersensível em fluxo de pesquisa</div>
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+       <div>
+        <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); margin-bottom:2px;">De</div>
+        <div style="font-size:clamp(20px,2.4vw,28px); font-weight:800; color:var(--text-secondary); text-decoration:line-through;">R$ 29,99</div>
+       </div>
+       <div style="font-size:20px; color:var(--pricing); font-weight:900;">→</div>
+       <div>
+        <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--pricing); margin-bottom:2px;">Para</div>
+        <div style="font-size:clamp(26px,3vw,36px); font-weight:900; color:var(--pricing);">R$ 31,49</div>
+       </div>
+       <div style="display:flex; flex-direction:column; gap:5px;">
+        <div style="background:rgba(16,185,129,0.12); color:var(--positive); font-size:10px; font-weight:800; padding:3px 10px; border-radius:20px; white-space:nowrap;">+5% no preço de venda</div>
+        <div style="background:rgba(2,56,90,0.1); color:var(--pricing); font-size:10px; font-weight:800; padding:3px 10px; border-radius:20px; white-space:nowrap;">e 1% abaixo do concorrente</div>
+       </div>
+      </div>
+      <div style="display:flex; gap:10px;">
+       <div style="flex:1; background:rgba(2,56,90,0.05); border-radius:10px; padding:8px 12px;">
+        <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-muted);">Margem antes</div>
+        <div style="font-size:16px; font-weight:800; color:var(--text-secondary);">20,78%</div>
+       </div>
+       <div style="flex:1; background:rgba(16,185,129,0.08); border-radius:10px; padding:8px 12px;">
+        <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--positive);">Margem depois</div>
+        <div style="font-size:16px; font-weight:800; color:var(--positive);">23,98%</div>
+       </div>
+      </div>
+      <div style="font-size:10px; color:var(--text-secondary); line-height:1.5;">Sem sistema, essa oportunidade passa invisível — ninguém consegue olhar o sortimento inteiro, todos os dias, com estratégia aplicada.</div>
+     </div>
+
+     <!-- Conceito -->
+     <div style="display:flex; flex-direction:column; gap:8px;">
+      <div style="flex:1; background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--vermelho); border-radius:12px; padding:12px 14px;">
+       <div style="font-size:12px; font-weight:800; color:var(--vermelho); margin-bottom:3px;">~500 itens de imagem de preço</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.5;">A briga é ferrenha e a margem é curta. Aqui você defende <strong style="color:var(--text);">competitividade</strong> — com pesquisa recorrente e regras de sensibilidade.</div>
+      </div>
+      <div style="flex:1; background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--positive); border-radius:12px; padding:12px 14px;">
+       <div style="font-size:12px; font-weight:800; color:var(--positive); margin-bottom:3px;">Fundo de sortimento — os milhares de outros itens</div>
+       <div style="font-size:10px; color:var(--text-secondary); line-height:1.5;">Sem percepção de preço do consumidor. É aqui que a <strong style="color:var(--text);">margem é recuperada</strong> — e só uma ferramenta consegue olhar tudo.</div>
+      </div>
+      <div class="zk-prod-highlight" style="border-left:4px solid var(--pricing); flex-shrink:0;">
+       <div class="hl-number" style="color:var(--pricing); white-space:nowrap;">1–2 pts</div>
+       <div>
+        <div class="hl-text">de ganho de margem</div>
+        <div class="hl-sub">Resultado observado em clientes que seguem as boas práticas — depende da estratégia de cada rede</div>
        </div>
       </div>
      </div>
@@ -1070,108 +1343,10 @@
    </div>
 
    <!-- ══════════════════════════════════════════
-      SLIDE 4 — ECOSSISTEMA DE PRODUTOS
-      ══════════════════════════════════════════ -->
-   <div class="zk-slide content">
-    <h2 class="zk-animate">O ecossistema <span style="color:var(--vermelho)">completo</span> de precificação</h2>
-
-    <!-- Layout: feeders à esquerda, seta central, plataformas à direita -->
-    <div style="display:grid; grid-template-columns:1fr 60px 1fr; gap:0; flex:1; align-items:center;" class="zk-animate">
-
-     <!-- COLUNA ESQUERDA: Feeders -->
-     <div style="display:flex; flex-direction:column; gap:10px;">
-      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Fontes de dados</div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--robot);">
-       <span style="font-size:20px;">🤖</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZRobot</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Pesquisa online automática</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--promo);">
-       <span style="font-size:20px;">🏷️</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPromo</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Encartes e promoções dos concorrentes</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--vermelho);">
-       <span style="font-size:20px;">🧑‍💼</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZPesquisa</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Time Zukkin em campo — físico</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--go);">
-       <span style="font-size:20px;">📱</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ZGO</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">App de Pesquisa de Preços para o seu time</div>
-       </div>
-      </div>
-
-      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:11px 14px; border-left:3px solid var(--consulting);">
-       <span style="font-size:20px;">🔗</span>
-       <div>
-        <div style="font-size:clamp(11px,1.3vw,14px); font-weight:800; color:var(--text);">ERP</div>
-        <div style="font-size:clamp(9px,1vw,11px); color:var(--text-secondary);">Integração com seu sistema de gestão</div>
-       </div>
-      </div>
-     </div>
-
-     <!-- COLUNA CENTRAL: Seta de fluxo -->
-     <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:8px; padding:0 4px;">
-      <div style="flex:1; width:2px; background:linear-gradient(to bottom, transparent, rgba(207,17,13,0.4)); border-radius:2px;"></div>
-      <div style="width:36px; height:36px; border-radius:50%; background:var(--vermelho); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 0 4px rgba(207,17,13,0.15),0 0 16px rgba(207,17,13,0.3);">
-       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7 H12 M8 3 L12 7 L8 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div style="flex:1; width:2px; background:linear-gradient(to bottom, rgba(207,17,13,0.4), transparent); border-radius:2px;"></div>
-     </div>
-
-     <!-- COLUNA DIREITA: Plataformas centrais -->
-     <div style="display:flex; flex-direction:column; gap:16px;">
-      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-muted); margin-bottom:4px; padding-left:4px;">Plataformas centrais</div>
-
-      <!-- ZAnalytics -->
-      <div style="background:linear-gradient(135deg,rgba(238,134,37,0.12),rgba(238,134,37,0.04)); border:2px solid rgba(238,134,37,0.35); border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
-       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:var(--analytics); border-radius:16px 16px 0 0;"></div>
-       <div style="display:flex; align-items:flex-start; gap:14px;">
-        <div style="font-size:28px; flex-shrink:0;">📊</div>
-        <div style="flex:1;">
-         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:var(--analytics); margin-bottom:5px;">ZAnalytics</div>
-         <div style="font-size:clamp(10px,1.1vw,13px); color:var(--text-secondary); line-height:1.5;">Central de inteligência. Dashboards estratégicos por categoria, produto, região e concorrente. Onde o dado vira decisão.</div>
-         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(238,134,37,0.15); color:var(--analytics); text-transform:uppercase; letter-spacing:.06em;">Análise &amp; Inteligência</div>
-        </div>
-       </div>
-      </div>
-
-      <!-- ZPricing IA -->
-      <div style="background:linear-gradient(135deg,#02385A,#0A4F7A); border:2px solid #02385A; border-radius:16px; padding:20px 22px; position:relative; overflow:hidden;">
-       <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#02385A,#1C6EA4); border-radius:16px 16px 0 0;"></div>
-       <div style="position:absolute; bottom:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,0.04);"></div>
-       <div style="display:flex; align-items:flex-start; gap:14px; position:relative; z-index:1;">
-        <div style="font-size:28px; flex-shrink:0;">🧠</div>
-        <div style="flex:1;">
-         <div style="font-size:clamp(14px,1.7vw,18px); font-weight:900; color:#FFFFFF; margin-bottom:5px;">ZPricing IA</div>
-         <div style="font-size:clamp(10px,1.1vw,13px); color:rgba(255,255,255,0.75); line-height:1.5;">Motor de precificação com IA. Sugere e executa ajustes automáticos considerando margem, elasticidade e concorrência.</div>
-         <div style="margin-top:8px; display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,0.15); color:#FFFFFF; text-transform:uppercase; letter-spacing:.06em;">Precificação Inteligente</div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-
-
-   <!-- ══════════════════════════════════════════
       SLIDE 5 — POR QUE ZUKKIN?
       ══════════════════════════════════════════ -->
-   <div class="zk-slide content">
-    <h2 class="zk-animate">Por que o <span style="color:var(--vermelho)">Zukkin</span>?</h2>
+   <div class="zk-slide content" style="padding-top:56px; padding-bottom:32px;">
+    <h2 class="zk-animate" style="margin-bottom:18px;">Por que o <span style="color:var(--vermelho)">Zukkin</span>?</h2>
 
     <!-- Razões -->
     <div class="zk-reasons zk-animate">
@@ -1189,6 +1364,26 @@
       <div class="r-icon">📐</div>
       <div class="r-title">Varejos de todos os tamanhos</div>
       <div class="r-desc">De redes com 5 lojas a grupos com +500 unidades. Produto escalável, preço justo e escopo adaptado à realidade de cada operação.</div>
+     </div>
+    </div>
+
+    <style>
+     .zk-clients-grid { gap:8px !important; margin-bottom:0 !important; }
+     .zk-reason { padding:12px 14px !important; }
+    </style>
+    <!-- Provas numéricas -->
+    <div class="zk-animate" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:12px;">
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:10px;">
+      <div style="font-size:clamp(15px,1.8vw,20px); font-weight:900; color:var(--pricing); white-space:nowrap;">+72</div>
+      <div><div style="font-size:10px; font-weight:700; color:var(--text);">usuários por dia no ZPricing</div><div style="font-size:9px; color:var(--text-secondary);">Comercial Zaffari · 2 anos de operação</div></div>
+     </div>
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:10px;">
+      <div style="font-size:clamp(15px,1.8vw,20px); font-weight:900; color:var(--go); white-space:nowrap;">+5 anos</div>
+      <div><div style="font-size:10px; font-weight:700; color:var(--text);">precificação 100% automática</div><div style="font-size:9px; color:var(--text-secondary);">Bufatti · alteração de custo direto no ERP</div></div>
+     </div>
+     <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:10px;">
+      <div style="font-size:clamp(15px,1.8vw,20px); font-weight:900; color:var(--analytics); white-space:nowrap;">+100</div>
+      <div><div style="font-size:10px; font-weight:700; color:var(--text);">lojas clusterizadas por região</div><div style="font-size:9px; color:var(--text-secondary);">Grupo Pereira · estratégia por praça</div></div>
      </div>
     </div>
     <!-- Clientes grid -->
@@ -1235,7 +1430,7 @@
      <div class="proj-icon" style="font-size:24px;">🤝</div>
      <div>
       <div class="proj-title" style="font-size:clamp(11px,1.3vw,14px);">Implementação personalizada para sua empresa</div>
-      <div class="proj-sub" style="font-size:clamp(9px,1vw,11px);">Projeto exclusivo para sua empresa: escopo customizado, concorrentes da sua praça e módulos adequados à sua operação.</div>
+      <div class="proj-sub" style="font-size:clamp(9px,1vw,11px);">Projeto exclusivo para sua empresa: escopo customizado, concorrentes da sua praça e módulos adequados à sua operação · 100% web, nada para instalar · vínculo com AD e VPN compatíveis.</div>
      </div>
     </div>
 
@@ -1247,7 +1442,7 @@
       <ul class="zk-phase-items">
        <li>Mapeamento de concorrentes por praça</li>
        <li>Definição dos SKUs prioritários</li>
-       <li>Integração com ERP da rede</li>
+       <li>Integração ERP via views com token — scripts prontos: Consinco, RMS, Bluesoft, VR</li>
        <li>Configuração do ZAnalytics</li>
       </ul>
      </div>
@@ -1266,7 +1461,7 @@
       <div class="zk-phase-title" style="font-size:clamp(11px,1.3vw,13px); margin-bottom:6px;">ZPricing IA Ligado</div>
       <ul class="zk-phase-items">
        <li>Ativação do ZPricing IA</li>
-       <li>Calibração de margem e competitividade</li>
+       <li>Regras configuradas: sensibilidade, arredondamento, proporcionais, clusters</li>
        <li>Primeiras execuções automáticas</li>
        <li>Relatório de ganho de margem</li>
       </ul>
@@ -1285,7 +1480,7 @@
 
     <!-- Cronograma visual -->
     <div style="margin-top:10px;" class="zk-animate">
-     <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:6px;">Prazo máximo: 8 semanas do kick-off à operação plena</div>
+     <div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); margin-bottom:6px;">Prazo máximo: 8 semanas do kick-off à operação plena · Consinco: integração pronta em até 30 dias</div>
      <div style="display:flex; align-items:stretch; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
       <div style="flex:1; padding:8px 12px; border-right:1px solid var(--border);">
        <div style="font-size:9px; font-weight:700; color:var(--vermelho); text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Semanas 1–2</div>
@@ -1393,6 +1588,8 @@
      <div style="font-size:10px; color:var(--text-secondary);">✓ Integração com ERP</div>
      <div style="font-size:10px; color:var(--text-secondary);">✓ Usuários ilimitados</div>
      <div style="font-size:10px; color:var(--text-secondary);">✓ Treinamento da equipe</div>
+     <div style="font-size:10px; color:var(--text-secondary);">✓ Benchmark de itens das +100 redes</div>
+     <div style="font-size:10px; color:var(--text-secondary);">✓ Integração nativa com Smarket</div>
      <div style="font-size:10px; color:var(--text-secondary);">✓ Melhorias e atualizações sem custo adicional</div>
     </div>
    </div>
@@ -1638,8 +1835,9 @@ function zkCloseModal() {
  document.getElementById('zkModal').classList.remove('active');
  document.body.style.overflow = '';
 }
-document.getElementById('zkModal').addEventListener('click', function(e) {
- if (e.target === this) zkCloseModal();
+document.addEventListener('DOMContentLoaded', function() {
+ var zkm = document.getElementById('zkModal');
+ if (zkm) zkm.addEventListener('click', function(e) { if (e.target === zkm) zkCloseModal(); });
 });
 
 function zkSubmitForm(e) {
@@ -1847,9 +2045,9 @@ var PRODUCTS = {
  zrobot: { icon:'\u{1F916}', name:'ZRobot', badge:'Pesquisa Online Autom\u00e1tica', gradient:'linear-gradient(135deg,#6B2246,#8E3060)', color:'#6B2246', desc:'Crawler inteligente que varre os sites dos seus concorrentes e traz os pre\u00e7os atualizados automaticamente. Sem pesquisador, sem planilha, sem retrabalho.', features:[{icon:'\u{1F50D}',title:'Varredura autom\u00e1tica',desc:'Monitora m\u00faltiplos sites com frequ\u00eancia configur\u00e1vel \u2014 di\u00e1ria, semanal ou sob demanda.'},{icon:'\u{1F517}',title:'Associa\u00e7\u00e3o autom\u00e1tica',desc:'A Zukkin associa seus produtos com os links de cada site. Pesquisa completa de todo o sortimento.'},{icon:'\u{1F4F8}',title:'Print como evid\u00eancia',desc:'Captura screenshots dos pre\u00e7os fora do range para comprova\u00e7\u00e3o e auditoria.'}], hlNum:'+5mil', hlText:'Ideal para fundo de sortimento', hlSub:'M\u00e9dia de mais de 5 mil produtos pesquisados' },
  zpromo: { icon:'\u{1F3F7}\uFE0F', name:'ZPromo', badge:'Intelig\u00eancia Promocional', gradient:'linear-gradient(135deg,#FF4D6A,#E83A5A)', color:'#FF4D6A', desc:'Entrega no mesmo dia dos concorrentes: encartes, redes sociais e WhatsApp. Entrega no mesmo dia \u2014 voc\u00ea nunca mais \u00e9 pego de surpresa.', features:[{icon:'\u{1F4CB}',title:'Encartes e tabloides',desc:'Captura completa dos encartes impressos e digitais de cada concorrente.'},{icon:'\u{1F4F1}',title:'WhatsApp e redes',desc:'Monitora promo\u00e7\u00f5es via WhatsApp, Instagram e sites automaticamente.'},{icon:'\u26A1',title:'Frequ\u00eancia di\u00e1ria',desc:'Atualiza\u00e7\u00e3o seg\u2013sex com todas as ofertas do dia.'}], hlNum:'D+0', hlText:'Entrega no mesmo dia', hlSub:'Integrado ao ZPricing IA \u2014 voc\u00ea analisa os pre\u00e7os de combate das ofertas em poucos segundos' },
  zgo: { icon:'\u{1F4F1}', name:'ZGO', badge:'App de Coleta em Campo', gradient:'linear-gradient(135deg,#78AE3F,#5C8F2E)', color:'#78AE3F', desc:'App de Pesquisa de Pre\u00e7os para o seu time \u2014 sistema completo com lista, categoriza\u00e7\u00e3o e auditoria. Menos trabalho manual, mais resultado.', features:[{icon:'\u{1F4C5}',title:'Agenda inteligente',desc:'Programa pesquisa por loja, dia e pesquisador com roteiro otimizado.'},{icon:'\u2705',title:'Valida\u00e7\u00e3o e alertas',desc:'Foto autom\u00e1tica dos pre\u00e7os fora do range personalizado por produto. Alertas de pre\u00e7os em tempo real.'},{icon:'\u{1F4CA}',title:'Dashboard de gest\u00e3o',desc:'Acompanhe em tempo real o andamento e produtividade por pesquisador.'}], hlNum:'Tempo real', hlText:'Tudo integrado no ecossistema Zukkin', hlSub:'Pesquisa entra online, r\u00e1pido e autom\u00e1tico \u2014 direto no ZAnalytics e ZPricing' },
- zpesquisa: { icon:'\u{1F6B6}', name:'ZPesquisa', badge:'Pesquisa Presencial em Campo', gradient:'linear-gradient(135deg,#CF110D,#A11E21)', color:'#CF110D', desc:'Pesquisa presencial nas lojas dos concorrentes. Time Zukkin treinado em campo coleta pre\u00e7os com padroniza\u00e7\u00e3o, cobertura e auditoria garantidas \u2014 o produto original que originou a Zukkin em 2016.', features:[{icon:'\u{1F465}',title:'Time Zukkin em campo',desc:'Pesquisadores treinados na metodologia Zukkin executam a coleta nas lojas dos concorrentes com padr\u00e3o uniforme.'},{icon:'\u{1F4CD}',title:'Cobertura nacional',desc:'Presen\u00e7a em todos os principais estados do Brasil \u2014 atendemos redes regionais e grupos nacionais.'},{icon:'\u{1F4F8}',title:'Auditoria e padroniza\u00e7\u00e3o',desc:'Foto como evid\u00eancia de pre\u00e7os fora do range. Rastreabilidade total da coleta com geolocaliza\u00e7\u00e3o e timestamp.'}], hlNum:'+10', hlText:'Anos de hist\u00f3ria \u2014 nosso primeiro produto', hlSub:'Carro-chefe da Zukkin desde 2016 \u00b7 J\u00e1 entregamos pesquisa para mais de 100 redes' },
+ zpesquisa: { icon:'\u{1F6B6}', name:'ZPesquisa', badge:'Pesquisa Presencial em Campo', gradient:'linear-gradient(135deg,#CF110D,#A11E21)', color:'#CF110D', desc:'Pesquisa presencial nas lojas dos concorrentes. Time Zukkin treinado em campo coleta pre\u00e7os com padroniza\u00e7\u00e3o, cobertura e auditoria garantidas \u2014 o produto original que originou a Zukkin em 2016.', features:[{icon:'\u{1F465}',title:'Time Zukkin em campo',desc:'Pesquisadores treinados na metodologia Zukkin executam a coleta nas lojas dos concorrentes com padr\u00e3o uniforme.'},{icon:'\u{1F4CD}',title:'Cobertura nacional',desc:'Presen\u00e7a em todos os principais estados do Brasil \u2014 atendemos redes regionais e grupos nacionais.'},{icon:'\u{1F4F8}',title:'Auditoria e padroniza\u00e7\u00e3o',desc:'Foto como evid\u00eancia de pre\u00e7os fora do range. Rastreabilidade total da coleta com geolocaliza\u00e7\u00e3o e timestamp.'}], hlNum:'+10', hlText:'Anos de hist\u00f3ria \u2014 nosso primeiro produto', hlSub:'Recomenda\u00e7\u00e3o Zukkin: 500\u2013600 itens/semana + varredura trimestral de sortimento \u00b7 Benchmark das +100 redes para montar sua lista' },
  zanalytics: { icon:'\u{1F4CA}', name:'ZAnalytics', badge:'An\u00e1lise e Intelig\u00eancia', gradient:'linear-gradient(135deg,#EE8625,#D4730F)', color:'#EE8625', desc:'A plataforma onde todos os dados convergem. Dashboards interativos por categoria, produto, regi\u00e3o e concorrente.', features:[{icon:'\u{1F4C8}',title:'Dashboards estrat\u00e9gicos',desc:'Vis\u00e3o completa de competitividade por categoria, produto, loja e concorrente.'},{icon:'\u{1F514}',title:'Alertas autom\u00e1ticos',desc:'Alertas de pre\u00e7os no WhatsApp, em tempo real \u2014 pre\u00e7o do concorrente com foto, direto no seu celular.'},{icon:'\u{1F947}',title:'Primeiro Pre\u00e7o',desc:'Veja o produto mais barato da categoria com pre\u00e7o, marca e associa\u00e7\u00e3o autom\u00e1tica com o seu mais barato.'}], hlNum:'360\u00b0', hlText:'Vis\u00e3o completa da competitividade', hlSub:'Todos os dados centralizados em um s\u00f3 lugar' },
- zpricing: { icon:'\u{1F9E0}', name:'ZPricing IA', badge:'Precifica\u00e7\u00e3o Inteligente', gradient:'linear-gradient(135deg,#02385A,#0A4F7A)', color:'#02385A', desc:'O c\u00e9rebro do ecossistema. Analisa competitividade, margem, elasticidade e regras do neg\u00f3cio para sugerir o pre\u00e7o ideal.<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;"><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4C8} Aumente sua Margem</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4CA} Elasticidade de pre\u00e7os</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u2699\uFE0F Automatiza\u00e7\u00e3o completa</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F517} Integrado com o ERP</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F3C6} +100 Redes j\u00e1 usam</span></div>', features:[{icon:'\u2699\uFE0F',title:'Regras de neg\u00f3cio',desc:'Cadastre margem m\u00ednima, posicionamento, teto e piso por categoria.'},{icon:'\u{1F916}',title:'Sugest\u00e3o autom\u00e1tica',desc:'A IA calcula o pre\u00e7o ideal considerando concorr\u00eancia, custo e margem.'},{icon:'\u{1F504}',title:'Execu\u00e7\u00e3o autom\u00e1tica',desc:'Integra com ERP para enviar pre\u00e7os direto ao PDV sem esfor\u00e7o.'}], hlNum:'IA', hlText:'Precifica\u00e7\u00e3o por produto, dia e loja', hlSub:'Ganho m\u00e9dio de margem desde o primeiro m\u00eas' },
+ zpricing: { icon:'\u{1F9E0}', name:'ZPricing IA', badge:'Precifica\u00e7\u00e3o Inteligente', gradient:'linear-gradient(135deg,#02385A,#0A4F7A)', color:'#02385A', desc:'O c\u00e9rebro do ecossistema. Analisa competitividade, margem, elasticidade e regras do neg\u00f3cio para sugerir o pre\u00e7o ideal.<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;"><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4C8} Aumente sua Margem</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F4CA} Elasticidade de pre\u00e7os</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u2699\uFE0F Automatiza\u00e7\u00e3o completa</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F517} Integrado com o ERP</span><span style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.15);color:#fff;">\u{1F3C6} +100 Redes j\u00e1 usam</span></div>', features:[{icon:'\u2699\uFE0F',title:'Regras de neg\u00f3cio',desc:'Cadastre margem m\u00ednima, posicionamento, teto e piso por categoria.'},{icon:'\u{1F916}',title:'Sugest\u00e3o autom\u00e1tica',desc:'A IA calcula o pre\u00e7o ideal considerando concorr\u00eancia, custo e margem.'},{icon:'\u{1F504}',title:'Execu\u00e7\u00e3o autom\u00e1tica',desc:'Integra com ERP para enviar pre\u00e7os direto ao PDV sem esfor\u00e7o.'}], hlNum:'IA', hlText:'Precifica\u00e7\u00e3o por produto, dia e loja', hlSub:'De 1 a 2 pontos de margem em clientes que seguem as boas pr\u00e1ticas \u00b7 +100 redes j\u00e1 usam' },
  zconsulting: { icon:'\u{1F3AF}', name:'ZConsulting', badge:'Consultoria de Pricing', gradient:'linear-gradient(135deg,#8C9BAB,#6B7A8A)', color:'#8C9BAB', desc:'Consultores de pricing com experi\u00eancia no varejo alimentar atuam junto ao seu time para evoluir sua estrat\u00e9gia.', features:[{icon:'\u{1F4DA}',title:'Base conceitual de Pricing',desc:'Primeiro, os conceitos: seu time aprende fundamentos de pricing, forma\u00e7\u00e3o de pre\u00e7o e posicionamento competitivo.'},{icon:'\u{1F5D3}\uFE0F',title:'Plano de a\u00e7\u00e3o',desc:'Depois da base conceitual, plano pr\u00e1tico com metas, cronograma e indicadores claros.'},{icon:'\u{1F465}',title:'Treinamento do time',desc:'Capacita\u00e7\u00e3o da equipe para decis\u00f5es baseadas em dados.'}], hlNum:'+10', hlText:'Anos de experi\u00eancia no varejo alimentar', hlSub:'Consultores que j\u00e1 viveram o varejo por dentro \u00b7 Do conceito \u00e0 execu\u00e7\u00e3o com seu time' }
 };
 
@@ -1888,5 +2086,32 @@ document.getElementById('zkProductModal').addEventListener('click', function(e) 
 });
 </script>
 
+<script>
+/* ═══ MOBILE SCALE (paisagem) ═══ */
+function zkMobileScale() {
+ var deck = document.getElementById('zkDeck');
+ var frame = document.querySelector('.ck-frame');
+ if (!deck || !frame) return;
+ var isMobileLandscape = window.matchMedia('(orientation:landscape) and (max-height:500px)').matches;
+ if (isMobileLandscape) {
+  var h = frame.clientHeight;
+  var z = Math.min(1, Math.max(0.45, h / 640));
+  deck.style.position = 'absolute';
+  deck.style.top = '0'; deck.style.left = '0';
+  deck.style.width = (100 / z) + '%';
+  deck.style.height = (100 / z) + '%';
+  deck.style.transform = 'scale(' + z + ')';
+  deck.style.transformOrigin = 'top left';
+ } else {
+  deck.style.position = ''; deck.style.top = ''; deck.style.left = '';
+  deck.style.width = ''; deck.style.height = '';
+  deck.style.transform = ''; deck.style.transformOrigin = '';
+ }
+}
+window.addEventListener('resize', zkMobileScale);
+window.addEventListener('orientationchange', function(){ setTimeout(zkMobileScale, 250); });
+document.addEventListener('DOMContentLoaded', zkMobileScale);
+zkMobileScale();
+</script>
 </body>
 </html>
